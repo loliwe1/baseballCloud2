@@ -1,0 +1,28 @@
+.modalWrap{
+    position: absolute;
+    width: 178px;
+    top: 100%;
+    left: inherit;
+    margin-top: 12px;
+    padding: 8px 0;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+    border: solid 1px #ebebeb;
+    z-index: 100;
+}
+
+.modalWrap-link {
+    display: block;
+    padding: 8px 16px;
+    background: #fff;
+    line-height: 1; 
+    width: 100%;
+    text-align: left;
+    color: #788b99;
+    font-weight: 500;
+}
+
+.modalWrap-link:hover {
+    background-color: rgba(72, 187, 255, 0.1);
+}

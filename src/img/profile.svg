@@ -1,0 +1,8 @@
+    <svg className="rc-progress-line " viewbox="0 0 100 1" preserveaspectratio="none">
+        <path className="rc-progress-line-trail" d="M 0.5,0.5
+            L 99.5,0.5" stroke-linecap="round" stroke="#eff1f3" stroke-width="1" fill-opacity="0"></path>
+        <path className="rc-progress-line-path" d="M 0.5,0.5
+            L 99.5,0.5" stroke-linecap="round" stroke="#ffd01a" stroke-width="1" fill-opacity="0"
+        style="stroke-dasharray: 0px, 100px; stroke-dashoffset: 0px; transition: stroke-dashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s linear 0s, 0.06s;">
+        </path>
+    </svg>
