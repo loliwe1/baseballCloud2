@@ -3,7 +3,7 @@ import '../../css/style.css';
 import { NavLink } from "react-router-dom";
 import ProfileModal from '../ProfileModal/ProfileModal';
 
-const TopNav = ({getNetwork, getLeaderBoard, openModal, modalIsOpen, logOut, firstName, lastName}) => (
+const TopNav = ({getNetwork, getLeaderBoard, openModal, modalIsOpen, logOut, name}) => (
   <header className="page-header">
     
     <NavLink to='profile'>
@@ -50,7 +50,7 @@ const TopNav = ({getNetwork, getLeaderBoard, openModal, modalIsOpen, logOut, fir
         <li className="main-nav__item main-nav__item--user">
           <i className="fa fa-user-circle-o fa-2x main-nav__user-pic" aria-hidden="true"></i>
           <button className="main-nav__user-control" style={{color: '#667784'}} onClick={openModal}>
-            Stanislav Vlasov
+            {name ? name : 'Profile Name'}
           </button>
           {modalIsOpen && <ProfileModal openModal={openModal} />}
         </li>

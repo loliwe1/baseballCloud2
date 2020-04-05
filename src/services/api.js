@@ -103,5 +103,13 @@ class Api {
       return axios.post(`${this.apiUrl}/api/v1/graphql`, data)
     }
 
+    getBattingLog = (data) => {
+      return axios.post(`${this.apiUrl}/api/v1/graphql`, data)
+    }
+
+    getPitchingLog = (data) => {
+      return axios.post(`${this.apiUrl}/api/v1/graphql`, data)
+    }
+
 }
 export default new Api();

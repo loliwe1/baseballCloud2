@@ -7,9 +7,12 @@ import {
     getFacilities,
     getCurrentProfile,
     changeFavorite,
+    getProfile,
+    getProfileEvent,
+    getPitchingSummary,
 } from '../../store/routines/routines';
 import {requestSchool, requestTeams, requestFacilities} from '../../graphQl/profileSettings';
-import {favoriteProf} from '../../graphQl/graphql';
+import {getProf, getProfEvent, getPitchingSumm, favoriteProf} from '../../graphQl/graphql';
 import { bindActionCreators } from 'redux';
 
 class ProfileContainer extends React.Component {
@@ -20,6 +23,28 @@ class ProfileContainer extends React.Component {
         };
     }
 
+    // componentDidMount() {
+    //     const {profile, profId} = this.props
+    //     const {id} = profile
+    //     console.log(id)
+
+    //     if(!id) {
+    //         this.getProfile(profId)
+    //     }else {
+    //         return
+    //     }
+    // }
+
+    // getProfile = async (id) => {
+    //   const {getProfile, getProfileEvent, getPitchingSummary} = this.props;
+    //   const prof = getProf(id);
+    //   const profEvent = getProfEvent(id);
+    //   const pitchSumm = getPitchingSumm(id);
+    //   await getProfile(prof);
+    //   await getProfileEvent(profEvent);
+    //   await getPitchingSummary(pitchSumm);
+    // }
+
     openBatting = () => {
         this.setState({
             activeTab : 'Batting'
@@ -29,6 +54,12 @@ class ProfileContainer extends React.Component {
     openPitching = () => {
         this.setState({
             activeTab: 'Pitching'
+        })
+    }
+
+    openPitchingLog = () => {
+        this.setState({
+            activeTab: 'PitchingLog'
         })
     }
 
@@ -80,6 +111,7 @@ class ProfileContainer extends React.Component {
             openBatting={this.openBatting}
             openPitching={this.openPitching}
             openBattingLog={this.openBattingLog}
+            openPitchingLog={this.openPitchingLog}
             openedForm={openedForm}
             openForm={this.openForm}
             closeForm={this.closeForm}
@@ -104,6 +136,10 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getFacilities,
     getCurrentProfile,
     changeFavorite,
+    getProfile,
+    getProfileEvent,
+    getPitchingSummary,
+
 },dispatch);
 
 export default connect(mapStateToPros, mapDispatchToProps)(ProfileContainer);

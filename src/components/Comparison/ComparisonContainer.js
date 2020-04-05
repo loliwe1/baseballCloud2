@@ -17,14 +17,13 @@ class ComparisonContainer extends React.Component {
         topValuesOpen: false,
         pitchVel: false,
         spinRate: false,
+        fetching: false,
     }
 
-componentDidMount(){
-    this.setState({secondProfile: ''})
-}
-componentWillUnmount(){
-    console.log(1)
-}
+    componentDidMount(){
+        this.setState({secondProfile: ''})
+    }
+    
     openTopValues = () => {
         this.setState({topValuesOpen: !this.state.topValuesOpen})
     }
@@ -45,13 +44,14 @@ componentWillUnmount(){
     }
 
     searchPlayer= async(e) => {
-      this.setState({profileList: true})
+      this.setState({profileList: true , fetching: true})
       const {profile, searchPlayer} = this.props;
       const {position} = profile;
       const player_name = e.target.value
       const profNames = playerName(player_name, position)
 
       await searchPlayer(profNames)
+      this.setState({fetching: false})
     }
 
     showPitchVel = () => {
@@ -81,7 +81,14 @@ componentWillUnmount(){
           profileNames,
           topValues,
         } = this.props;
-        const {profileList, secondProfile, topValuesOpen, pitchVel, spinRate} = this.state
+        const {
+            profileList,
+            secondProfile,
+            topValuesOpen,
+            pitchVel,
+            spinRate,
+            fetching
+        } = this.state
         const {top_values} = topValues || []
         const {pitching_top_values} = secondProfile || []
 
@@ -106,6 +113,7 @@ componentWillUnmount(){
               showSpinRate={this.showSpinRate}
               showPitchVel={this.showPitchVel}
               secondProfTopValues={pitching_top_values}
+              fetching={fetching}
             />
         )
     }

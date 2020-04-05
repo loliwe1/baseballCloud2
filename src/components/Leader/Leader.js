@@ -22,9 +22,7 @@ const Leader = ({
     <div className="leaderboards__table-col leaderboards__table-col--rank">
       {number}
     </div>
-    {/* <div className="leaderboards__table-col leaderboards__table-col--batter">
-      {batter_name}
-    </div> */}
+
     <Link 
       onClick={getProfile}
       className="leaderboards__table-col leaderboards__table-col--batter" 

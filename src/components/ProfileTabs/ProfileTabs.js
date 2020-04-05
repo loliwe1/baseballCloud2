@@ -13,12 +13,27 @@ const ProfileTabs = ({
     battingListShowed,
     hideBattingList,
     openBattingLog,
+    showPitchingList,
+    hidePitchingList,
+    pitchingListShowed,
+    openPitchingLog,
 }) => (
     <div className="profile-table__toggle-wrap">
-      <button onClick={openPitching} className={activeTab === 'Pitching' ? activeButton : button}>
+
+      <div
+        onMouseEnter={showPitchingList}
+        onMouseLeave={hidePitchingList}
+        className={activeTab === 'Pitching' ? activeButton : button}
+        style={{position: 'relative'}}
+        >
         Pitching
-        <div className="profile-table__toggle-dropdown"></div>
-      </button>
+        {pitchingListShowed &&
+        <div className='modalWrap' style={{top: 20, left: -5}}>
+          <button onClick={openPitching} className='modalWrap-link'>Summary</button>
+          <button onClick={openPitchingLog} className='modalWrap-link'>Log</button>
+        </div>
+      }
+      </div>
 
       <div
         onMouseEnter={showBattingList}

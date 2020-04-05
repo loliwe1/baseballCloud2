@@ -21,7 +21,9 @@ import {
     filterLeaderBoardsPitching,
     searchPlayer,
     getSecondProfile,
-    getBattingSummary
+    getBattingSummary,
+    getBattingLog,
+    getPitchingLog
 } from '../store/routines/routines';
 import {handleSignUpTrigger, handleSignInTrigger, handlePersisSignInTrigger} from '../saga/user';
 import {
@@ -50,6 +52,8 @@ import {
 import {handleGetSecondProfileTrigger} from '../saga/secondProfile';
 import { handleSearchPlayerTrigger } from './profileNames';
 import { handleGetBattingSummaryTrigger } from './battingSummary';
+import {handleGetBattingLogTrigger} from './battingLog';
+import { handleGetPitchingLogTrigger } from './pitchingLog';
 
 export default function* rootSaga() {
     yield takeEvery(signUp, handleSignUpTrigger);
@@ -74,4 +78,6 @@ export default function* rootSaga() {
     yield takeEvery(searchPlayer, handleSearchPlayerTrigger);
     yield takeEvery(getSecondProfile, handleGetSecondProfileTrigger);
     yield takeEvery(getBattingSummary, handleGetBattingSummaryTrigger);
+    yield takeEvery(getBattingLog, handleGetBattingLogTrigger );
+    yield takeEvery(getPitchingLog, handleGetPitchingLogTrigger);
 }

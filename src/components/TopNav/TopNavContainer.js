@@ -27,15 +27,14 @@ class TopNavContainer extends React.Component {
 
     render() {
       const {modalIsOpen} = this.state
-      const {last_name, first_name} = this.props
+      const {last_name, first_name, name} = this.props
       return (
         <TopNav
           getNetwork={this.getNetwork}
           getLeaderBoard={this.getLeaderBoard}
           openModal={this.openModal}
           modalIsOpen={modalIsOpen}
-          firstName={first_name}
-          lastName={last_name}
+          name={name}
         />
         )
     }
@@ -44,6 +43,7 @@ class TopNavContainer extends React.Component {
 const mapStateToProps = (state) => ({
     network: state.network,
     profile: state.profile.profile,
+    name: state.user.name,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({

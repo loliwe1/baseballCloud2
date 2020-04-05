@@ -9,7 +9,7 @@ import {
 } from '../../store/routines/routines';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {getProf, getProfEvent, getPitchingSumm , favoriteProf, network} from '../../graphQl/graphql';
+import {getProf, getProfEvent, getPitchingSumm, favoriteProf, network} from '../../graphQl/graphql';
 import { bindPromiseCreators } from 'redux-saga-routines';
 
 

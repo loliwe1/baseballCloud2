@@ -412,3 +412,53 @@ export const battingSummary = (id) => ({
     }`,
     variables: {id}
 })
+
+export const battingLog = (input) => ({
+    query: `query BattingLog($input:FilterBattingLogInput!)
+    { batting_log(input: $input) {
+        batting_log {
+            date
+            pitcher_name
+            pitcher_handedness
+            pitch_type
+            pitch_call
+            exit_velocity
+            launch_angle
+            direction
+            distance
+            hit_spin_rate
+            hang_time
+            pitcher_datraks_id
+         }
+         total_count
+       }
+    }`,
+    variables: {input: {...input}}
+})
+
+export const pitchingLog = (input) => ({
+    query: `query PitchingLog($input:FilterPitchingLogInput!)
+    { pitching_log(input: $input) {
+        pitching_log {
+            date
+            pitch_type
+            pitch_call
+            velocity
+            spin_rate
+            spin_axis
+            tilt
+            release_height
+            release_side
+            extension
+            vertical_break
+            horizontal_break
+            height_at_plate
+            batter_name
+            batter_datraks_id
+            batter_handedness
+        }
+        total_count
+      }
+    }`,
+    variables: {input: {...input}}
+})

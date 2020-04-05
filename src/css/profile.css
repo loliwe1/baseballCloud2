@@ -1,0 +1,36 @@
+.profile-create {
+    width: 100%;
+    font-size: 16px;
+    color: #667784;
+    -webkit-text-align: center;
+    text-align: center;
+    
+}
+
+.profile-create__container {
+    width: 420px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-create__wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.profile-create__title {
+    line-height: 1.25;
+    font-weight: 400;
+    -webkit-text-align: center;
+    text-align: center;
+    color: #667784;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}

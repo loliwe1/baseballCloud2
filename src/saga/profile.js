@@ -82,6 +82,7 @@ export function* handleGetTeamsTrigger(action) {
 
     try{
         const response = yield call(ApiService.getTeams, payload);
+        console.log('team', response)
         yield put(getTeams.success(response));
     }catch(e) {
         yield put(getTeams.failure(e));

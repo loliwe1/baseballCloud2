@@ -2,12 +2,7 @@ import React from 'react'
 import Batting from './Batting'
 import {connect} from 'react-redux';
 
-
-
-
 class BattingContainer extends React.Component {
-
-
     render() {
         const {top_values, average_values} = this.props.battingSumm;
         return (

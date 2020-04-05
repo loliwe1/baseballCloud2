@@ -18,7 +18,7 @@ class NetworkContainer extends React.Component {
       },
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         const {input} = this.state;
         this.filter(input);
     }
@@ -31,6 +31,13 @@ class NetworkContainer extends React.Component {
     getSecondNetwork = () => {
         const {getSecondNetwork} = this.props;
         getSecondNetwork(secondNetwork);
+    }
+
+    filterOffset = (offset) => {
+      const {input} = this.state;
+      input.offset = offset;
+
+      this.filter(input)
     }
 
     filter = async (input) => {
@@ -76,6 +83,7 @@ class NetworkContainer extends React.Component {
               fetchDataStart={this.fetchDataStart}
               fetchDataFinish={this.fetchDataFinish}
               filterNetworkName={this.filterNetworkName}
+              getOffset={this.filterOffset}
             />
         );
     }
@@ -83,6 +91,7 @@ class NetworkContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
     network: state.network,
+
 });
 
 const mapDispatchToProps = (dispatch) => bindPromiseCreators({

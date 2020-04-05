@@ -5,6 +5,9 @@ import NetworkTabs from '../NetworkTabs';
 import NetworkFiltersForm from '../NetworkFiltersForm';
 import { Form, Field } from 'react-final-form';
 import FilterInputSearchName from '../Form/FilterInputSearchName/FilterInputSearchName';
+import NoInfo from '../NoInfo/NoInfo';
+import Spinner from '../Spinner/Spinner';
+import Pagination from '../Pagination'
 
 const Network = ({
   network,
@@ -17,6 +20,7 @@ const Network = ({
   input,
   fetchDataFinish,
   fetchDataStart,
+  getOffset,
 
 }) => (
     <main className="network">
@@ -69,18 +73,10 @@ const Network = ({
 
           {fetching
         ? 
-          <div
-            style={{display: 'flex', justifyContent: 'center', fontSize: '22px'}}
-          >
-            FETCHING DATA..
-          </div>
+          <Spinner/>
         : (network.profiles && network.profiles.length === 0)
         ?
-          <div
-            style={{display: 'flex', justifyContent: 'center', fontSize: '22px'}}
-          >
-            There's no info yet!
-          </div>
+         <NoInfo/>
         : 
           <div className="network__table-content">
             {network &&
@@ -104,13 +100,14 @@ const Network = ({
           </div>
         }
         </div>
-        {((!fetching) && (network.profiles.length !== 0) && (network.total_count >= count)) && 
-          <NetworkTabs
-            getNetwork={getNetwork}
-            getSecondNetwork={getSecondNetwork}
-            network={network}
+        {network.total_count &&
+
+          <Pagination 
+            getOffset={getOffset}
+            total={network.total_count}
+            count={count}
           />
-      }
+        }
       </div>
     </main>
 );

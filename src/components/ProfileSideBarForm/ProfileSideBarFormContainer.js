@@ -62,7 +62,7 @@ class ProfileSideBarFormContainer extends React.Component {
             feet,
             inches,
             school,
-        } = this.props.profile;
+        } = this.props;
         const {closeForm} = this.props
         const {schools, teams, facilities} = this.props.settings;
         return (

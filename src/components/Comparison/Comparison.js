@@ -4,6 +4,8 @@ import '../../css/modal.css'
 import userpick from '../../img/userpic.png';
 import { Form, Field } from 'react-final-form';
 import ComparisonSearch from '../Form/ComparisonSearch/ComparisonSearch';
+import ComprasionSelect from '../Form/ComprasionSelect'
+import Spinner from '../Spinner/Spinner';
 
 
 const Comparison = ({
@@ -26,6 +28,7 @@ const Comparison = ({
   pitchVel,
   topValues,
   secondProfTopValues,
+  fetching,
 }) => (
     <li className="profile-table__tab profile-table__tab--comparison">
     <div className="profile-table__players-table">
@@ -35,33 +38,37 @@ const Comparison = ({
     className="profile-table__current-img"/>
   <a href="#" className="profile-table__current-name">{first_name} {last_name}</a>
 </div>
-<div className="profile-table__select-player">
+<div className="profile-table__select-player" style={{position: 'relative'}}>
+  {fetching &&
+      <div style={{marginRight: '10px', position: 'absolute', top: '10px', left: '-60px'}}>
+        <Spinner style={{minHeight: '0'}}/> 
+      </div>
+  }
   <img src={userpick} width="40" height="40" alt="userpic"
     className="profile-table__select-img"/>
     <Form
       onSubmit={()=> console.log(1)}
       render = {({handleSubmit}) => (
-        <div>
-        <Field
-          name='selected-player'
-          component={ComparisonSearch}
-          onChange={searchPlayer}
-          defaultValue={secondProfile? `${secondProfile.first_name} ${secondProfile.last_name}` : ''}
-        />
-        {(profileNames && profileNames.length !== 0 && profileList ) &&
-        <Field name='prof' onChange={chooseProfile}>
-          {(input) => (
-          <select {...input}>
-            <option value=''>Choose player:</option>
-            {profileNames.map((prof, i)=> (
-                <option key={i} value={prof.id}>{prof.first_name} {prof.last_name}</option>
-            ))}
-          </select>
-          )}
-        </Field>
-        }
-        </div>
-  )}
+          <div>
+            <Field
+              name='selected-player'
+              component={ComparisonSearch}
+              onChange={searchPlayer}
+              defaultValue={secondProfile? `${secondProfile.first_name} ${secondProfile.last_name}` : ''}
+            />
+            <div>
+            {profileNames && profileNames.length !== 0 && 
+            <Field
+              name='prof'
+              component={ComprasionSelect}
+              onChange={chooseProfile}
+              options = {profileNames.map((v)=> ({value: v.id, name: `${v.first_name} ${v.last_name}`}))}
+            />
+          }
+          </div>
+          </div>
+        )}
+        
   />
 </div>
 </div>
@@ -93,7 +100,11 @@ const Comparison = ({
 </div>
 <div className="profile-table__values">
 <div className="profile-table__sorting" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-  <button className="profile-table__sorting-btn" onClick={openTopValues}>
+  <button
+    className="profile-table__sorting-btn" 
+    onClick={openTopValues}
+    style={{width: '250px'}}
+  >
     Top Pitching Values - <span className="js-value">{!spinRate ? 'Velocity' : 'Spin Rate'}</span>
     {!topValuesOpen ? 
     <span className="profile-table__sorting-icon">
@@ -106,7 +117,7 @@ const Comparison = ({
   :
   <span className="profile-table__sorting-icon" style={{transform: 'rotate(180deg)'}}>
    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9">
-     <path fill="#48BBFF" fill-rule="nonzero"
+     <path fill="#48BBFF" fillRule="nonzero"
        d="M13.469.432a1.081 1.081 0 0 1 1.565 0 1.165 1.165 0 0 1 0 1.615L8.78 8.43a1.083 1.083 0 0 1-1.567 0L.962 2.047a1.168 1.168 0 0 1 0-1.615 1.081 1.081 0 0 1 1.564 0L8 5.667 13.469.432z">
      </path>
    </svg>
@@ -136,8 +147,6 @@ const Comparison = ({
    : '-'}
     </div>
   
-  
-
     <div className="profile-table__values-col">
       {secondProfTopValues && secondProfTopValues.length !==0 ? 
       secondProfTopValues.map((v) => (

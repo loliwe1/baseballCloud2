@@ -1,5 +1,7 @@
 import React from 'react';
 import LeaderContainer from '../../Leader/LeaderContainer';
+import NoInfo from '../../NoInfo/NoInfo';
+import Spinner from '../../Spinner/Spinner';
 
 const LeaderBoardsPitch = ({leaderBoard, fetching, filter, input}) => (
     <div className="leaderboards__table-content">
@@ -35,18 +37,10 @@ const LeaderBoardsPitch = ({leaderBoard, fetching, filter, input}) => (
 
     {fetching
         ? 
-          <div
-            style={{display: 'flex', justifyContent: 'center', fontSize: '22px'}}
-          >
-            FETCHING DATA..
-          </div>
+          <Spinner/>
         : ( leaderBoard && leaderBoard.length === 0)
         ?
-          <div
-            style={{display: 'flex', justifyContent: 'center', fontSize: '22px'}}
-          >
-            There's no info yet!
-          </div>
+          <NoInfo/>
         : 
 
     <div className="leaderboards__table-items">

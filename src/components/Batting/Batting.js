@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../css/style.css';
 import BattingItem from './BattingItem/BattingItem';
+import NoInfo from '../NoInfo/NoInfo';
 
 const Batting = ({topValues, avgValues}) => (
   <li className="profile-table__tab profile-table__tab--session">
@@ -15,7 +16,7 @@ const Batting = ({topValues, avgValues}) => (
               className='profile-table__values-row'
               style={{
                 background: 'white',
-                fontSize: 14,
+                fontSize: '16px',
                 color: '#667784',
                 fontWeight: 300,
                 gridTemplateColumns: '1fr 1fr 1fr 1fr',
@@ -36,7 +37,7 @@ const Batting = ({topValues, avgValues}) => (
                   exitVelocity={v.exit_velocity}
                 />
               ))
-              : <div style={{textAlign: 'center', fontSize: '20px'}}>There's no info yet!</div>
+              : <NoInfo/>
             }
             </div>
             </div>
@@ -56,7 +57,7 @@ const Batting = ({topValues, avgValues}) => (
                 className='profile-table__values-row'
                 style={{
                   background: 'white',
-                  fontSize: 14,
+                  fontSize: '16px',
                   color: '#667784',
                   fontWeight: 300,
                   gridTemplateColumns: '1fr 1fr 1fr 1fr',
@@ -77,7 +78,7 @@ const Batting = ({topValues, avgValues}) => (
                     exitVelocity={v.exit_velocity}
                   />
                 ))
-                : <div style={{textAlign: 'center', fontSize: '20px'}}>There's no info yet!</div>
+                : <NoInfo/>
               }
             </div>
             </div>

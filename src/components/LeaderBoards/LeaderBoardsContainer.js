@@ -14,15 +14,18 @@ import { bindPromiseCreators } from 'redux-saga-routines';
 class LeaderBoardsContainer extends React.Component {
     state = {
         pitching: false,
-        fetching: false,
+        fetching: true,
         input: {
             type: 'exit_velocity'
-        }
+        },
+        title: 'Exit Velocity',
     }
 
-    componentDidMount() {
+    componentDidMount = async () => {
         const {input} = this.state;
-        this.filter(input);
+        await this.filter(input);
+        
+        this.setState({fetching: false})
     }
 
     openPitch = async () => {
@@ -30,7 +33,11 @@ class LeaderBoardsContainer extends React.Component {
 
       const {input} = this.state;
       input.type = 'pitch_velocity';
-      await this.setState({pitching: true, input});
+      await this.setState({
+        pitching: true,
+        input,
+        title: 'Pitch Velocity',
+      });
 
       this.filter(input);
         
@@ -40,7 +47,12 @@ class LeaderBoardsContainer extends React.Component {
 
       const {input} = this.state;
       input.type = 'exit_velocity';
-      await this.setState({pitching: false, input});
+
+      await this.setState({
+          pitching: false, 
+          input,
+          title: 'Exit Velocity'
+        });
 
       this.filter(input);
 
@@ -86,7 +98,8 @@ class LeaderBoardsContainer extends React.Component {
 
     render() {
         const {leaderBoard } = this.props;
-        const {pitching, fetching, input} = this.state;
+        const {pitching, fetching, input, title} = this.state;
+        console.log(title)
         return (
             <LeaderBoards
               leaderBoard={leaderBoard}
@@ -97,6 +110,7 @@ class LeaderBoardsContainer extends React.Component {
               filter={this.filter}
               input={input}
               filterVelocity={this.filterVelocity}
+              title={title}
 
             />
         );

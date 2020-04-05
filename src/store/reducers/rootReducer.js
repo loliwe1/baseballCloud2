@@ -7,6 +7,8 @@ import settingProfile from '../reducers/settingsProfile';
 import profileNames from '../reducers/profileNames';
 import secondProfile from '../reducers/secondProfile';
 import battingSummary from '../reducers/battingSummary';
+import battingLog from '../reducers/battingLog';
+import pitchingLog from '../reducers/pitchingLog';
 
 const rootReducer = combineReducers({
     user,
@@ -17,6 +19,8 @@ const rootReducer = combineReducers({
     profileNames,
     secondProfile,
     battingSummary,
+    battingLog,
+    pitchingLog,
 });
 
 export default rootReducer;

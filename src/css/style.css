@@ -777,6 +777,9 @@ input {
     font-weight: 400;
     line-height: 1;
     color: #414f5a; }
+  .network__table-row:hover {
+    background-color: rgba(72, 187, 255, 0.1);
+  }
     .network__table-row--name {
       padding-left: 5px; }
   .network__table-link {
@@ -972,6 +975,8 @@ input {
     width: 14%;
     flex: 1 0 14%;
     min-width: 0; }
+  .leaderboards__table-col--batter:hover {
+    color: #48bbff; }
   .leaderboards__table-col--age {
     width: 5%;
     flex: 1 0 5%;
@@ -1010,6 +1015,9 @@ input {
     border-radius: 4px;
     background-color: #f7f8f9;
     color: #414f5a; }
+  .leaderboards__table-row:hover {
+    background-color: rgba(72, 187, 255, 0.1);
+  }
     .leaderboards__table-row--rank {
       padding-left: 5px; }
   .leaderboards__blue-icon {

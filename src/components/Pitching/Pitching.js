@@ -2,12 +2,13 @@ import React from 'react';
 import '../../css/style.css';
 import PitchingItemTop from '../PitchingItem/PitchingItemTop';
 import PitchingItemAvg from '../PitchingItem/PitchingItemAvg';
+import NoInfo from '../NoInfo/NoInfo';
 
 const Pitching = ({pitchingSum}) => {
     const {top_values, average_values} = pitchingSum;
     return (
       <li className="profile-table__tab profile-table__tab--pitching">
-        {(pitchingSum && top_values.length === 0) ? `There's no info yet` :
+        {(pitchingSum && top_values.length === 0) ? <NoInfo/> :
           ( <div>
             <div
               style={{color: '#414f5a', fontSize: 18, fontWeight: 400, lineHeight: 1.25}}
