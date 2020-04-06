@@ -14,11 +14,6 @@ class ProfileSideBarFormContainer extends React.Component {
     }
 
     saveSettings = (v) => {
-        console.log('v',v)
-
-        if(!v.first_name){
-            return { [FORM_ERROR]: 'lol' }
-        } 
 
         let team;
         let school;

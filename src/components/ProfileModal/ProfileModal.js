@@ -10,6 +10,7 @@ import {
   getSchools,
   getTeams,
   getFacilities,
+  logOut,
 } from '../../store/routines/routines';
 import {getProf, getProfEvent, getPitchingSumm} from '../../graphQl/graphql';
 import {requestSchool, requestTeams, requestFacilities} from '../../graphQl/profileSettings';
@@ -65,14 +66,16 @@ class ProfileModal extends React.Component {
 
     logOut = () => {
       localStorage.clear();
-      const {openModal} = this.props;
+      const {openModal, logOut} = this.props;
       openModal();
+      logOut();
     }
 
     render() {
+      console.log('modal', this.props)
         return (
           <div ref={this.setRef} className="main-nav__dropdown">
-            <Link onClick={this.getCurrentProfile} to="/" className="main-nav__dropdown-link">My Profile</Link>
+            <Link onClick={this.getCurrentProfile} to="/profile" className="main-nav__dropdown-link">My Profile</Link>
             <Link onClick={this.logOut} to="/logIn" className="main-nav__dropdown-link">Log Out</Link>
           </div>
         );
@@ -91,6 +94,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getSchools,
   getTeams,
   getFacilities,
+  logOut,
 }, dispatch);
 
 

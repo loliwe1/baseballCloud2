@@ -37,7 +37,18 @@ const LeaderBoardsPitch = ({leaderBoard, fetching, filter, input}) => (
 
     {fetching
         ? 
-          <Spinner/>
+        (
+          <div style={{
+            height: '300px',
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center' 
+          }}
+          >
+          <Spinner />
+        </div>
+        )
+
         : ( leaderBoard && leaderBoard.length === 0)
         ?
           <NoInfo/>

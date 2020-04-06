@@ -1,3 +1,3 @@
-import BattingContainer from './BattingContainer';
+import BattingContainer from './Batting';
 
 export default BattingContainer;

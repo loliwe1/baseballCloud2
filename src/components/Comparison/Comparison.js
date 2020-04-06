@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../../css/style.css';
-import '../../css/modal.css'
+import '../../css/modal.css';
 import userpick from '../../img/userpic.png';
 import { Form, Field } from 'react-final-form';
 import ComparisonSearch from '../Form/ComparisonSearch/ComparisonSearch';
-import ComprasionSelect from '../Form/ComprasionSelect'
+import ComprasionSelect from '../Form/ComprasionSelect';
 import Spinner from '../Spinner/Spinner';
 
 
@@ -19,7 +20,6 @@ const Comparison = ({
   profileNames,
   chooseProfile,
   secondProfile,
-  profileList,
   topValuesOpen,
   openTopValues,
   showPitchVel,
@@ -48,7 +48,7 @@ const Comparison = ({
     className="profile-table__select-img"/>
     <Form
       onSubmit={()=> console.log(1)}
-      render = {({handleSubmit}) => (
+      render = {() => (
           <div>
             <Field
               name='selected-player'
@@ -218,5 +218,27 @@ const Comparison = ({
 </div>
 </li>
 );
+
+Comparison.propTypes = {
+  first_name: PropTypes.string.isRequired,
+  last_name: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired,
+  feet: PropTypes.number.isRequired,
+  inches: PropTypes.number.isRequired,
+  weight: PropTypes.number.isRequired,
+  searchPlayer: PropTypes.func.isRequired,
+  profileNames: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  chooseProfile: PropTypes.func.isRequired,
+  secondProfile: PropTypes.objectOf(PropTypes.any).isRequired,
+  topValuesOpen: PropTypes.bool.isRequired,
+  openTopValues: PropTypes.func.isRequired,
+  showPitchVel: PropTypes.func.isRequired,
+  showSpinRate: PropTypes.func.isRequired,
+  spinRate: PropTypes.bool.isRequired,
+  pitchVel: PropTypes.bool.isRequired,
+  topValues: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  secondProfTopValues: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  fetching: PropTypes.bool.isRequired,
+};
 
 export default Comparison;

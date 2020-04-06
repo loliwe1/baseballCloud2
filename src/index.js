@@ -14,13 +14,19 @@ import AuthGuard from './components/AuthGuard/AuthGuard';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
-    rootReducer,
-    composeWithDevTools(
-      applyMiddleware(sagaMiddleware),
-    )
+  rootReducer,
+  composeWithDevTools(
+    applyMiddleware(sagaMiddleware),
+  ),
 );
 sagaMiddleware.run(rootSaga);
 sagaMiddleware.run(routinePromiseWatcherSaga);
 
-ReactDOM.render(<Provider store={store}> <AuthGuard><App /></AuthGuard> </Provider>, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <AuthGuard>
+      <App />
+    </AuthGuard>
+  </Provider>, document.getElementById('root'),
+);
 serviceWorker.unregister();

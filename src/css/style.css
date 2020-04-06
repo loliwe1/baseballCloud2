@@ -830,6 +830,7 @@ input {
   border-top: 1px solid rgba(0, 0, 0, 0.1); }
   .leaderboards__header {
     padding: 16px;
+    padding-right: 35px;
     display: flex;
     justify-content: space-between;
     align-items: center; }
@@ -1049,21 +1050,21 @@ input {
 .input-user {
   display: flex;
   position: absolute;
-  top: 19px;
+  top: 15px;
   left: 17px;
   bottom: 0; }
 
 .input-lock {
   display: flex;
   position: absolute;
-  top: 19px;
+  top: 15px;
   left: 17px;
   bottom: 0; }
 
 .input-check {
   display: flex;
   position: absolute;
-  top: 19px;
+  top: 14px;
   left: 17px;
   bottom: 0; }
 

@@ -1,3 +1,3 @@
-import PitchingContainer from './PitchingContainer';
+import Pitching from './Pitching';
 
-export default PitchingContainer
+export default Pitching;

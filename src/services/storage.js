@@ -14,7 +14,7 @@ class Storage {
     saveCurrentProfile = (data) => {
         console.log(data);
         const {id, first_name} = data;
-        localStorage.setItem('id', JSON.stringify(id));
+        localStorage.setItem('profId', JSON.stringify(id));
         localStorage.setItem('name', JSON.stringify(first_name));
     }
 

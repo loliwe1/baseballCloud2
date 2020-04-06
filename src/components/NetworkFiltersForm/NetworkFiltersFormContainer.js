@@ -1,82 +1,85 @@
 import React from 'react';
 import NetworkFiltersForm from './NetworkFiltersForm';
 
-class NetworkFiltersFormContainer extends React.Component{
-    state={
+class NetworkFiltersFormContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       fetching: true,
       input:{
         profiles_count: 10,
         offset: 0,
       },
-    }
+    };
+  }
 
-    filterNetworkAge = async (v) => {
-      const {filter} = this.props
-      const {input} = this.state;
-      input.age = + v.target.value;
-      !input.age && delete input.age;
+  filterNetworkAge = async (v) => {
+    const {filter} = this.props
+    const {input} = this.state;
+    input.age = + v.target.value;
+    !input.age && delete input.age;
         
-      filter(input);
-    }
+    filter(input);
+  }
 
-    filterNetworkSchool = async (v) => {
-      const {filter} = this.props
-      const {input} = this.state;
-      input.school = v.target.value;
-      !input.school && delete input.school;
+  filterNetworkSchool = async (v) => {
+    const {filter} = this.props
+    const {input} = this.state;
+    input.school = v.target.value;
+    !input.school && delete input.school;
     
-      filter(input);
-    }
+    filter(input);
+  }
 
-    filterNetworkTeam = async (v) => {
-      const {filter} = this.props
-      const {input} = this.state;
-      input.team = v.target.value;
-      !input.team && delete input.team;
+  filterNetworkTeam = async (v) => {
+    const {filter} = this.props
+    const {input} = this.state;
+    input.team = v.target.value;
+    !input.team && delete input.team;
 
-      filter(input);
-    }
+    filter(input);
+  }
 
-    filterNetworkPosition = async (v) => {
-      const {filter} = this.props
-      const {input} = this.state;
-      input.position = v.target.value;
-      !input.position && delete input.position;
+  filterNetworkPosition = async (v) => {
+    const {filter} = this.props
+    const {input} = this.state;
+    input.position = v.target.value;
+    !input.position && delete input.position;
         
-      filter(input);
-    }
+    filter(input);
+  }
 
-    filterNetworkFavorite = async (v) => {
-      const {filter} = this.props
-      const {input} = this.state;
-      input.favorite = + v.target.value;
-      !input.favorite && delete input.favorite;
+  filterNetworkFavorite = async (v) => {
+    const {filter} = this.props
+    const {input} = this.state;
+    input.favorite = + v.target.value;
+    !input.favorite && delete input.favorite;
         
-      filter(input);
-    }
+    filter(input);
+  }
     
-    filterNetworkCount = async (v) => {
-      const {filter} = this.props
-      const {input} = this.state;
-      input.profiles_count = + v.target.value;
-      !input.profiles_count && delete input.profiles_count;
+  filterNetworkCount = async (v) => {
+    const {filter} = this.props
+    const {input} = this.state;
+    input.profiles_count = + v.target.value;
+    !input.profiles_count && delete input.profiles_count;
         
-      filter(input);
-    }
+    filter(input);
+  }
 
-    render() {
-        return (
-            <NetworkFiltersForm 
-              filterNetworkSchool={this.filterNetworkSchool} 
-              filterNetworkTeam={this.filterNetworkTeam}
-              filterNetworkPosition={this.filterNetworkPosition}
-              filterNetworkAge={this.filterNetworkAge}
-              filterNetworkFavorite={this.filterNetworkFavorite}
-              filterNetworkCount={this.filterNetworkCount}
-              networkCount={this.networkCount}
-            />
-        );
-    }
+  render() {
+    return (
+      <NetworkFiltersForm
+        filterNetworkSchool={this.filterNetworkSchool}
+        filterNetworkTeam={this.filterNetworkTeam}
+        filterNetworkPosition={this.filterNetworkPosition}
+        filterNetworkAge={this.filterNetworkAge}
+        filterNetworkFavorite={this.filterNetworkFavorite}
+        filterNetworkCount={this.filterNetworkCount}
+        networkCount={this.networkCount}
+      />
+    );
+  }
 }
 
 

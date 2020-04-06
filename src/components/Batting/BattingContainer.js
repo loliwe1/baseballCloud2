@@ -1,18 +1,9 @@
-import React from 'react'
-import Batting from './Batting'
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import Batting from './Batting';
 
-class BattingContainer extends React.Component {
-    render() {
-        const {top_values, average_values} = this.props.battingSumm;
-        return (
-            <Batting topValues={top_values} avgValues={average_values}/>
-        )
-    }
-}
+const mapStateToProps = (state) => ({
+  topValues: state.battingSummary.top_values,
+  avgValues: state.battingSummary.average_values,
+});
 
-const mapStateToProps = state => ({
-    battingSumm: state.battingSummary,
-})
-
-export default connect(mapStateToProps)(BattingContainer);
+export default connect(mapStateToProps)(Batting);

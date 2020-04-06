@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
-} from "react-router-dom";
+} from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import './css/style.css';
-import Profile from './components/Profile/';
+import Profile from './components/Profile';
 import LeaderBoards from './components/LeaderBoards';
 import Network from './components/Network';
 import TopNavContainer from './components/TopNav/TopNavContainer';
@@ -17,45 +18,43 @@ import SignUpContainer from './components/SignUp/SignUpContainer';
 import LogInContainer from './components/LogIn/LogInContainer';
 
 
-function App({user}) {
+function App({ user }) {
   return (
-   <div className='main'>
-   { localStorage.getItem('headers') ? 
-     <Router history={createBrowserHistory()}>
-        <TopNavContainer/>
-        <Switch>
-          <Route path="/network">
-            <Network />
-          </Route>
-          <Route path="/leaderboards">
-            <LeaderBoards />
-          </Route>
-          <Route path="/profile" render = { props =>  <Profile {...props}/> }/>
-          <Redirect to='/profile'/>
-        </Switch>
-        <FooterNav/>
+    <div className="main">
+      <Router history={createBrowserHistory()}>
+        {user && <TopNavContainer />}
+        {user ?
+          (
+            <Switch>
+              <Route path="/network" component={Network} />
+              <Route path="/leaderboards" component={LeaderBoards} />
+              <Route path="/profile" render={(props) => <Profile {...props} />} />
+              <Route path="/signUp" component={SignUpContainer} />
+              <Route path="/logIn" component={LogInContainer} />
+              <Redirect to="/profile" />
+            </Switch>
+          )
+          :
+          (
+            <Switch>
+              <Route path="/signUp" component={SignUpContainer} />
+              <Route path="/logIn" component={LogInContainer} />
+              <Redirect to="/logIn" />
+            </Switch>
+          )}
+        <FooterNav />
       </Router>
-     :
-     <Router>
-      <Switch>
-        <Route path="/signUp">
-          <SignUpContainer/>
-        </Route>
-        <Route path="/logIn">
-          <LogInContainer />
-        </Route> 
-        <Redirect to="/logIn" />
-      </Switch>
-      <FooterNav/>
-    </Router>
-  }
-   </div>
+    </div>
   );
 }
 
+App.propTypes = {
+  user: PropTypes.string.isRequired,
+};
+
 
 const mapStateToProps = (state) => ({
-  user: state.user,
+  user: state.user.profId,
 });
 
 

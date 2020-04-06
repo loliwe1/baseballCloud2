@@ -1,26 +1,30 @@
 import React from 'react';
-import LeaderBoards from './LeaderBoards';
 import { connect } from 'react-redux';
-import {filtLeadBoardsBatt, filtLeadBoardsPitch} from '../../graphQl/graphql';
-import {
-    getLeaderBoard,
-    getLeaderBoardPitch,
-    filterLeaderBoardsBattingPromiseCreator as filterLeaderBoardsBatting,
-    filterLeaderBoardsPitchingPromiseCreator as filterLeaderBoardsPitching
-} from '../../store/routines/routines';
 import { bindActionCreators } from 'redux';
 import { bindPromiseCreators } from 'redux-saga-routines';
+import PropTypes from 'prop-types';
+import LeaderBoards from './LeaderBoards';
+import {filtLeadBoardsBatt, filtLeadBoardsPitch} from '../../graphQl/graphql';
+import {
+  getLeaderBoard,
+  getLeaderBoardPitch,
+  filterLeaderBoardsBattingPromiseCreator as filterLeaderBoardsBatting,
+  filterLeaderBoardsPitchingPromiseCreator as filterLeaderBoardsPitching,
+} from '../../store/routines/routines';
 
 class LeaderBoardsContainer extends React.Component {
-    state = {
-        pitching: false,
-        fetching: true,
-        input: {
-            type: 'exit_velocity'
-        },
-        title: 'Exit Velocity',
-    }
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      pitching: false,
+      fetching: true,
+      input: {
+        type: 'exit_velocity',
+      },
+      title: 'Exit Velocity',
+    };
+  }
+    
     componentDidMount = async () => {
         const {input} = this.state;
         await this.filter(input);
@@ -94,44 +98,49 @@ class LeaderBoardsContainer extends React.Component {
         this.filter(input);
     }
 
- 
-
-    render() {
-        const {leaderBoard } = this.props;
-        const {pitching, fetching, input, title} = this.state;
-        console.log(title)
-        return (
-            <LeaderBoards
-              leaderBoard={leaderBoard}
-              openBatting={this.openBatting} 
-              openPitch={this.openPitch}
-              pitching={pitching}
-              fetching={fetching}
-              filter={this.filter}
-              input={input}
-              filterVelocity={this.filterVelocity}
-              title={title}
-
-            />
-        );
-    }
+  render() {
+    const { leaderBoard } = this.props;
+    const {
+      pitching,
+      fetching,
+      input,
+      title,
+    } = this.state;
+    return (
+      <LeaderBoards
+        leaderBoard={leaderBoard}
+        openBatting={this.openBatting}
+        openPitch={this.openPitch}
+        pitching={pitching}
+        fetching={fetching}
+        filter={this.filter}
+        input={input}
+        filterVelocity={this.filterVelocity}
+        title={title}
+      />
+    );
+  }
 }
 
 const mapStateToProps = (state) => ({
-    leaderBoard: state.leaderBoard
+  leaderBoard: state.leaderBoard,
 });
 
-function mapDispatchToProps(dispatch){
-    return {
-        ...bindPromiseCreators({
-            filterLeaderBoardsBatting,
-            filterLeaderBoardsPitching,
-        },dispatch),
-        ...bindActionCreators({
-            getLeaderBoard,
-            getLeaderBoardPitch,
-        },dispatch)
-    };
+function mapDispatchToProps(dispatch) {
+  return {
+    ...bindPromiseCreators({
+      filterLeaderBoardsBatting,
+      filterLeaderBoardsPitching,
+    }, dispatch),
+    ...bindActionCreators({
+      getLeaderBoard,
+      getLeaderBoardPitch,
+    }, dispatch),
+  };
+}
+
+LeaderBoardsContainer.propTypes = {
+  leaderBoard: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LeaderBoardsContainer);

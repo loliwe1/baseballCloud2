@@ -1,13 +1,16 @@
 import React from 'react';
 import NewFilterSelect from './NewFilterSelect';
+import PropTypes from 'prop-types';
 
 class NewFilterSelectContainer extends React.Component {
-    state={
-        selectShowed: false,
-        title: this.props.title,
+    constructor(props) {
+        super(props);
+        this.state={
+            selectShowed: false,
+            title: this.props.title,
+        }
     }
-
-
+   
     changeTitle = (name, i) => {
         const {title} = this.props;
         if(i === 0) name = title;
@@ -67,5 +70,11 @@ class NewFilterSelectContainer extends React.Component {
         )
     }
 }
+
+NewFilterSelect.propTypes = {
+  input: PropTypes.objectOf(PropTypes.any).isRequired,
+  options: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  defTitle: PropTypes.string.isRequired,
+};
 
 export default NewFilterSelectContainer;

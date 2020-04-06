@@ -1,26 +1,26 @@
 import { combineReducers } from 'redux';
-import user from '../reducers/user';
-import network from '../reducers/network';
-import leaderBoard from '../reducers/leaderboard';
-import profile from '../reducers/profile';
-import settingProfile from '../reducers/settingsProfile';
-import profileNames from '../reducers/profileNames';
-import secondProfile from '../reducers/secondProfile';
-import battingSummary from '../reducers/battingSummary';
-import battingLog from '../reducers/battingLog';
-import pitchingLog from '../reducers/pitchingLog';
+import user from './user';
+import network from './network';
+import leaderBoard from './leaderboard';
+import profile from './profile';
+import settingProfile from './settingsProfile';
+import profileNames from './profileNames';
+import secondProfile from './secondProfile';
+import battingSummary from './battingSummary';
+import battingLog from './battingLog';
+import pitchingLog from './pitchingLog';
 
 const rootReducer = combineReducers({
-    user,
-    network,
-    leaderBoard,
-    profile,
-    settingProfile,
-    profileNames,
-    secondProfile,
-    battingSummary,
-    battingLog,
-    pitchingLog,
+  user,
+  network,
+  leaderBoard,
+  profile,
+  settingProfile,
+  profileNames,
+  secondProfile,
+  battingSummary,
+  battingLog,
+  pitchingLog,
 });
 
 export default rootReducer;

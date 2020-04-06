@@ -23,6 +23,17 @@ module.exports = {
   ],
   rules: {
     "semi": ["error", "always"],
-    "quotes": ["error", "double"]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-shadow": 0,
+    'operator-linebreak': 0,
+    'no-nested-ternary': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
+    'react/no-array-index-key': 0,
+    'react/jsx-props-no-spreading': 0,
+    'jsx-a11y/label-has-associated-control' : 0,
+    'import/no-named-as-default-member': 0,
+    'quote-props': 0,
+    'import/no-named-as-default': 0,
+    'import/prefer-default-export': 0,
   },
 };

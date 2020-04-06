@@ -1,11 +1,13 @@
-import {createRoutine, promisifyRoutine} from 'redux-saga-routines';
+import { createRoutine, promisifyRoutine } from 'redux-saga-routines';
 
 export const signUp = createRoutine('SIGN_UP');
+export const signUpPromiseCreator = promisifyRoutine(signUp);
 export const signIn = createRoutine('SIGN_IN');
 export const getNetwork = createRoutine('GET_NETWORK');
 export const getLeaderBoard = createRoutine('GET_LEADERBOARD');
 export const getLeaderBoardPitch = createRoutine('GET_LEADERBOARD_PITCH');
 export const getProfile = createRoutine('GET_PROFILE');
+export const getProfilePromiseCreator = promisifyRoutine(getProfile);
 export const getProfileEvent = createRoutine('GET_PROFILE_EVENT');
 export const getPitchingSummary = createRoutine('GET_PITCHING_SUMMARY');
 export const getSchools = createRoutine('GET_SCHOOLS');
@@ -31,14 +33,16 @@ export const getLeaderBoardPromiseCreator = promisifyRoutine(getLeaderBoard);
 export const filterLeaderBoardsBatting = createRoutine('FILTER_LEADER_BOARDS_BATTING');
 export const filterLeaderBoardsBattingPromiseCreator = promisifyRoutine(filterLeaderBoardsBatting);
 export const filterLeaderBoardsPitching = createRoutine('FILTER_LEADER_BOARDS_PITCHING');
-export const filterLeaderBoardsPitchingPromiseCreator = promisifyRoutine(filterLeaderBoardsPitching);
+export const
+  filterLeaderBoardsPitchingPromiseCreator = promisifyRoutine(filterLeaderBoardsPitching);
 export const searchPlayer = createRoutine('SEARCH_PLAYER');
 export const searchPlayerPromiseCreator = promisifyRoutine(searchPlayer);
 export const getSecondProfile = createRoutine('GET_SECOND_PROFILE');
-export const getSecondProfilePromiseCreator = promisifyRoutine(getSecondProfile)
+export const getSecondProfilePromiseCreator = promisifyRoutine(getSecondProfile);
 export const getBattingSummary = createRoutine('GET_BATTING_SUMMARY');
 export const getBattingSummaryPromiseCreator = promisifyRoutine(getBattingSummary);
 export const getBattingLog = createRoutine('GET_BATTING_LOG');
 export const getBattingLogPromiseCreator = promisifyRoutine(getBattingLog);
 export const getPitchingLog = createRoutine('GET_PITCHING_LOG');
 export const getPitchingLogPromiseCreator = promisifyRoutine(getPitchingLog);
+export const logOut = createRoutine('LOG_OUT');

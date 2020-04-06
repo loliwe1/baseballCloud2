@@ -17,6 +17,7 @@ import {
   minWeight,
   requiredThrows,
   requiredBats,
+  requiredAge,
 } from '../../validations';
 
 
@@ -44,7 +45,7 @@ const ProfileSideBarForm = ({
       </div>
       <Form
           onSubmit={saveSettings}
-          render= {({handleSubmit, submitError}) => (
+          render= {({handleSubmit, submitError, submitting, prestine}) => (
 
             <form onSubmit={handleSubmit}>
             <div className = 'profileFormWrap'>
@@ -92,7 +93,7 @@ const ProfileSideBarForm = ({
                   // validate={required}
                   defaultValue='catcher'
                 >
-                  <option selected value="catcher">Catcher</option>
+                  <option value="catcher">Catcher</option>
                   <option value="first_base">First Base</option>
                   <option value="second_base">Second Base</option>
                   <option value="shortstop">Shortstop</option>
@@ -131,7 +132,8 @@ const ProfileSideBarForm = ({
             <Field
               name='age'
               defaultValue={age}
-              validate={maxAge}
+              validate={composeValidators(maxAge, requiredAge)}
+              
             >
               {({ input, meta }) => (
               <div>
@@ -210,8 +212,9 @@ const ProfileSideBarForm = ({
                 name="throws_hand"
                 component="select"
                 validate={requiredThrows}
+                defaultValue="l"
               >
-                <option selected value="l">L</option>
+                <option value="l">L</option>
                 <option value="r">R</option>
               </Field>
               <Field
@@ -219,8 +222,9 @@ const ProfileSideBarForm = ({
                 name="bats_hand"
                 component="select"
                 validate={requiredBats}
+                defaultValue="l"
               >
-                <option selected value="l">L</option>
+                <option value="l">L</option>
                 <option value="r">R</option>
               </Field>
               </div>
@@ -292,10 +296,14 @@ const ProfileSideBarForm = ({
               // validate={required}
             />
             {submitError && <div>{submitError}</div>}
-            {console.log('er',submitError)}
+            {/* {console.log(submitting)} */}
             <div className='profileFormWrap'>
               <button className='profileButton close' type="button" onClick={closeForm}>Cancel</button>
-              <button className='profileButton save' type="submit">Save</button>
+              <button
+                className='profileButton save'
+                type="submit"
+                // disabled={submitting  || prestine}
+                >Save</button>
             </div>
 
             </form>

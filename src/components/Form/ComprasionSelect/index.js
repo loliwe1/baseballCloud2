@@ -1,3 +1,3 @@
-import ComprasionSelectContainer from '../ComprasionSelect/ComprasionSelectContainer';
+import ComprasionSelectContainer from './ComprasionSelectContainer';
 
 export default ComprasionSelectContainer;

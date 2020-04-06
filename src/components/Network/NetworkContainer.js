@@ -1,36 +1,42 @@
 import React from 'react';
-import Network from './Network';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { bindPromiseCreators } from 'redux-saga-routines';
+import Network from './Network';
 import {
-    getNetworkPromiseCreator as getNetwork,
-    getSecondNetworkPromiseCreator as getSecondNetwork,
-    filterNetworkPromiseCreator as filterNetwork,
+  getNetworkPromiseCreator as getNetwork,
+  getSecondNetworkPromiseCreator as getSecondNetwork,
+  filterNetworkPromiseCreator as filterNetwork,
 } from '../../store/routines/routines';
 import {network, secondNetwork, filtrNetwork} from '../../graphQl/graphql';
-import { bindPromiseCreators } from 'redux-saga-routines';
+
 
 class NetworkContainer extends React.Component {
-    state={
+  constructor(props) {
+    super(props);
+    this.state = {
       fetching: true,
-      input:{
+      input: {
         profiles_count: 10,
         offset: 0,
       },
-    }
+    };
+  }
+
 
     componentDidMount() {
-        const {input} = this.state;
-        this.filter(input);
+      const {input} = this.state;
+      this.filter(input);
     }
 
     getNetwork = () => {
-        const {getNetwork} = this.props;
-        getNetwork(network);
+      const {getNetwork} = this.props;
+      getNetwork(network);
     }
 
     getSecondNetwork = () => {
-        const {getSecondNetwork} = this.props;
-        getSecondNetwork(secondNetwork);
+      const {getSecondNetwork} = this.props;
+      getSecondNetwork(secondNetwork);
     }
 
     filterOffset = (offset) => {
@@ -41,20 +47,20 @@ class NetworkContainer extends React.Component {
     }
 
     filter = async (input) => {
-        this.setState({fetching: true})
-        this.setState({input})
-        const {filterNetwork} = this.props;
-        const network = filtrNetwork(input);
+      this.setState({fetching: true})
+      this.setState({input})
+      const {filterNetwork} = this.props;
+      const network = filtrNetwork(input);
 
-        try {
-            await filterNetwork(network);
-        }catch(e) {
-            console.log(e);
+      try {
+        await filterNetwork(network);
+      }catch(e) {
+        console.log(e);
         }
-        finally {
-          this.setState({fetching: false})
-        }
+      finally {
+        this.setState({fetching: false})
       }
+    }
     
     filterNetworkName = async (v) => {
       const {input} = this.state;
@@ -65,39 +71,43 @@ class NetworkContainer extends React.Component {
 
     }
 
-    render() {
-        const {network} = this.props;
-        const {fetching} = this.state;
-        const {input} = this.state;
-        const {profiles_count} = this.state.input;
+  render() {
+    const { network } = this.props;
+    const { fetching } = this.state;
+    const { input } = this.state;
+    const { profiles_count } = input;
 
-        return (
-            <Network
-              network={network}
-              count={profiles_count}
-              getNetwork={this.getNetwork}
-              getSecondNetwork={this.getSecondNetwork}
-              fetching={fetching}
-              filter={this.filter}
-              input={input}
-              fetchDataStart={this.fetchDataStart}
-              fetchDataFinish={this.fetchDataFinish}
-              filterNetworkName={this.filterNetworkName}
-              getOffset={this.filterOffset}
-            />
-        );
-    }
+    return (
+      <Network
+        network={network}
+        count={profiles_count}
+        getNetwork={this.getNetwork}
+        getSecondNetwork={this.getSecondNetwork}
+        fetching={fetching}
+        filter={this.filter}
+        input={input}
+        fetchDataStart={this.fetchDataStart}
+        fetchDataFinish={this.fetchDataFinish}
+        filterNetworkName={this.filterNetworkName}
+        getOffset={this.filterOffset}
+      />
+    );
+  }
+}
+
+NetworkContainer.propTypes = {
+  network: PropTypes.objectOf(PropTypes.any).isRequired,
 }
 
 const mapStateToProps = (state) => ({
-    network: state.network,
+  network: state.network,
 
 });
 
 const mapDispatchToProps = (dispatch) => bindPromiseCreators({
-    getNetwork,
-    getSecondNetwork,
-    filterNetwork,
-},dispatch);
+  getNetwork,
+  getSecondNetwork,
+  filterNetwork,
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(NetworkContainer);

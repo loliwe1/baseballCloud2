@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../../css/style.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Leader = ({
   batter_name,
@@ -12,7 +13,6 @@ const Leader = ({
   distance,
   favorite,
   id,
-  pitcher,
   getProfile,
   changeFavorite,
   number,
@@ -23,12 +23,12 @@ const Leader = ({
       {number}
     </div>
 
-    <Link 
+    <Link
       onClick={getProfile}
-      className="leaderboards__table-col leaderboards__table-col--batter" 
+      className="leaderboards__table-col leaderboards__table-col--batter"
       to={{ pathname: `profile/${id}`, state: id }}
     >
-        {batter_name}
+      {batter_name}
     </Link>
     <div className="leaderboards__table-col leaderboards__table-col--age">
       {age}
@@ -49,16 +49,31 @@ const Leader = ({
       {distance}
     </div>
     <div className="leaderboards__table-col leaderboards__table-col--favorite">
-      <button href="#" className="leaderboards__table-like" onClick={changeFavorite}>
-        {!favorite 
-          ? 
-            <i className="leaderboards__blue-icon fa fa-heart-o" aria-hidden="true"></i>
+      <button type="button" href="#" className="leaderboards__table-like" onClick={changeFavorite}>
+        {!favorite
+          ?
+            <i className="leaderboards__blue-icon fa fa-heart-o" aria-hidden="true" />
           :
-            <i className="leaderboards__blue-icon fa fa-heart" aria-hidden="true"></i>
-        }
+            <i className="leaderboards__blue-icon fa fa-heart" aria-hidden="true" />}
       </button>
     </div>
   </div>
 );
+
+Leader.propTypes = {
+  batter_name: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired,
+  school: PropTypes.objectOf(PropTypes.any).isRequired,
+  teams: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  exit_velocity: PropTypes.number.isRequired,
+  launch_angle: PropTypes.number.isRequired,
+  distance: PropTypes.number.isRequired,
+  favorite: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  getProfile: PropTypes.func.isRequired,
+  changeFavorite: PropTypes.func.isRequired,
+  number: PropTypes.number.isRequired,
+};
+
 
 export default Leader;

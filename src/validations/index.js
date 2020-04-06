@@ -6,8 +6,10 @@ export const requiredBats = value => (value ? undefined : `Bats Required`);
 
 
 
+
 export const maxAge =  value =>
 isNaN(value) || value < 30 ? undefined : `Must not be older than 30`
+export const requiredAge = value => (value ? undefined : `Age Required`);
 
 export const requiredFeet = value => (value ? undefined: 'Feet Required')
 export const minFeet = value => (value >= 4 ? undefined: 'Minimal height is 4')

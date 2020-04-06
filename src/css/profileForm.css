@@ -99,6 +99,11 @@
     background-color: #48bbff; 
 }
 
+.save:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .close {
     border: solid 1px #d1d7db;
     background-color: #ffffff;

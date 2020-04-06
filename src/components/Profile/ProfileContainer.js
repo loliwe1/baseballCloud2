@@ -23,38 +23,27 @@ class ProfileContainer extends React.Component {
         };
     }
 
-    // componentDidMount() {
-    //     const {profile, profId} = this.props
-    //     const {id} = profile
-    //     console.log(id)
-
-    //     if(!id) {
-    //         this.getProfile(profId)
-    //     }else {
-    //         return
-    //     }
-    // }
-
-    // getProfile = async (id) => {
-    //   const {getProfile, getProfileEvent, getPitchingSummary} = this.props;
-    //   const prof = getProf(id);
-    //   const profEvent = getProfEvent(id);
-    //   const pitchSumm = getPitchingSumm(id);
-    //   await getProfile(prof);
-    //   await getProfileEvent(profEvent);
-    //   await getPitchingSummary(pitchSumm);
-    // }
-
+    async componentDidMount() {
+        const {getPitchingSummary, profile} = this.props;
+        const {id} = profile.profile;
+        const pitchSumm = getPitchingSumm(id);
+        try{
+            await getPitchingSummary(pitchSumm);
+        }catch (e) {
+            console.log(e)
+        }  
+    }
+    
     openBatting = () => {
         this.setState({
             activeTab : 'Batting'
         })
     }
 
+
     openPitching = () => {
-        this.setState({
-            activeTab: 'Pitching'
-        })
+      this.setState({activeTab: 'Pitching'})
+
     }
 
     openPitchingLog = () => {
@@ -99,14 +88,14 @@ class ProfileContainer extends React.Component {
 
 
     render() {
-        const {profile, pitching_summary, profile_events} = this.props.profile;
+        const {profile, pitchSumm, profEvents} = this.props.profile;
         const {activeName, profId} = this.props;
         const {activeTab, openedForm} = this.state;
         return (
           <Profile
             {...profile}
-            pitchingSum={pitching_summary}
-            profEvents={profile_events}
+            pitchingSum={pitchSumm}
+            profEvents={profEvents}
             openComparison={this.openComparison}
             openBatting={this.openBatting}
             openPitching={this.openPitching}
