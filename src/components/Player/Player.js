@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import '../../css/style.css';
 
 const Player = ({
@@ -13,16 +13,18 @@ const Player = ({
   favorite,
   getProfile,
   session,
-  changeFavorite
-}) => {
-
-  return (
-    <div className="network__table-row">
+  changeFavorite,
+}) => (
+  <div className="network__table-row">
     <div className="network__table-col network__table-col--name">
-      <Link onClick={getProfile} className="network__table-link"  to={{
-            pathname: `profile/${id}`,
-            state: id
-          }}>
+      <Link
+        onClick={getProfile}
+        className="network__table-link"
+        to={{
+          pathname: `profile/${id}`,
+          state: id,
+        }}
+      >
         {first_name} {last_name}
       </Link>
     </div>
@@ -39,19 +41,28 @@ const Player = ({
       {age}
     </div>
     <div className="network__table-col network__table-col--favorite">
-      <button className="network__table-like" onClick={changeFavorite}>
-      {!favorite 
-        ?
-          <i className="network__blue-icon fa fa-heart-o" aria-hidden="true"></i>
-        : 
-          <i className="network__blue-icon fa fa-heart" aria-hidden="true"></i>
-      }
+      <button type="button" className="network__table-like" onClick={changeFavorite}>
+        {!favorite
+          ?
+            <i className="network__blue-icon fa fa-heart-o" aria-hidden="true" />
+          :
+            <i className="network__blue-icon fa fa-heart" aria-hidden="true" />}
       </button>
     </div>
-    
   </div>
-  );
-  
+);
+
+Player.propTypes = {
+  id: PropTypes.number.isRequired,
+  first_name: PropTypes.string.isRequired,
+  last_name: PropTypes.string.isRequired,
+  school: PropTypes.objectOf(PropTypes.any).isRequired,
+  teams: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  age: PropTypes.number.isRequired,
+  favorite: PropTypes.bool.isRequired,
+  getProfile: PropTypes.func.isRequired,
+  session: PropTypes.number.isRequired,
+  changeFavorite: PropTypes.func.isRequired,
 };
 
 export default Player;

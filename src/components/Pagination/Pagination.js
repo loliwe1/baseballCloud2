@@ -32,7 +32,7 @@ const Pagination = ({
       amountButtons.map((v, i) => (
         <PoginationItem
           key={i}
-          number={i}
+          number={i + 1}
           changeActiveButton={changeActiveButton}
           active={active}
         />

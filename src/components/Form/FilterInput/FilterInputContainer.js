@@ -8,11 +8,11 @@ class FilterInputContainer extends React.Component {
     this.state = { focused: false };
   }
 
-  focusInput() {
+  focusInput = () => {
     this.setState({ focused: true });
   }
 
-  blurInput() {
+  blurInput = () => {
     this.setState({ focused: false });
   }
 

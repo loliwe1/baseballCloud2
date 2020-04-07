@@ -63,25 +63,21 @@ class LeaderBoardsContainer extends React.Component {
     }
 
     filter = async (input) => {
-        this.setState({fetching:true})
-        this.setState({input})
-
-        let filterLeaderBoards;
-        let leadBoard;
-
-        if (this.state.pitching) {
-
-
-          filterLeaderBoards = this.props.filterLeaderBoardsPitching;
-          leadBoard = filtLeadBoardsPitch(input);
-
-        } else {
-            filterLeaderBoards = this.props.filterLeaderBoardsBatting;
-            leadBoard = filtLeadBoardsBatt(input);
-          }
+      this.setState({fetching:true})
+      this.setState({input})
+      const {
+        filterLeaderBoardsPitching,
+        filterLeaderBoardsBatting
+      } = this.props;
+      const {pitching} = this.state;
 
         try {
-            await filterLeaderBoards(leadBoard);
+            if(pitching) {
+              await filterLeaderBoardsPitching(input)
+            } else {
+              await filterLeaderBoardsBatting(input)
+            }
+
         }catch(e) {
             console.log(e);
         }

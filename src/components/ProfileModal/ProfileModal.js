@@ -1,8 +1,9 @@
 import React from 'react';
-import '../../css/style.css';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
+import '../../css/style.css';
 import {
   getProfile,
   getProfileEvent,
@@ -12,78 +13,77 @@ import {
   getFacilities,
   logOut,
 } from '../../store/routines/routines';
-import {getProf, getProfEvent, getPitchingSumm} from '../../graphQl/graphql';
-import {requestSchool, requestTeams, requestFacilities} from '../../graphQl/profileSettings';
 
 class ProfileModal extends React.Component {
-    setRef = (element) => {
-        this.node = element;
-      };
+  setRef = (element) => {
+    this.node = element;
+  };
 
-      componentDidMount(){
-          document.addEventListener('click', this.handleClick);
-      }
-      componentWillUnmount() {
-          document.removeEventListener('click', this.handleClick);
-      }
+  componentDidMount(){
+    document.addEventListener('click', this.handleClick);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClick);
+  }
 
-      handleClick = (e) => {
-          const {openModal} = this.props;
-          if(! this.node.contains(e.target)) {
-            openModal();
-          }
-         
-      }
-
-      getCurrentProfile = () => {
-        const {
-          id,
-          getProfile,
-          getProfileEvent,
-          getPitchingSummary,
-          openModal,
-          getSchools,
-          getTeams,
-          getFacilities,
-        } = this.props;
-        const idStr = '' + id;
-        const prof = getProf(idStr);
-        const profEvent = getProfEvent(idStr);
-        const pitchSumm = getPitchingSumm(idStr);
-        const schools = requestSchool()
-        const tesms = requestTeams()
-        const facilities = requestFacilities()
-
-        getSchools(schools)
-        getTeams(tesms)
-        getFacilities(facilities)
-        getProfile(prof);
-        getProfileEvent(profEvent);
-        getPitchingSummary(pitchSumm);
-
-        openModal();
-    }
-
-    logOut = () => {
-      localStorage.clear();
-      const {openModal, logOut} = this.props;
+  handleClick = (e) => {
+    const {openModal} = this.props;
+    if(! this.node.contains(e.target)) {
       openModal();
-      logOut();
     }
+         
+  }
 
-    render() {
-      console.log('modal', this.props)
-        return (
-          <div ref={this.setRef} className="main-nav__dropdown">
-            <Link onClick={this.getCurrentProfile} to="/profile" className="main-nav__dropdown-link">My Profile</Link>
-            <Link onClick={this.logOut} to="/logIn" className="main-nav__dropdown-link">Log Out</Link>
-          </div>
-        );
-    }
+  getCurrentProfile = () => {
+    const {
+      id,
+      getProfile,
+      getProfileEvent,
+      getPitchingSummary,
+      openModal,
+      getSchools,
+      getTeams,
+      getFacilities,
+    } = this.props;
+    const idStr = '' + id;
+    getSchools()
+    getTeams()
+    getFacilities()
+    getProfile(idStr);
+    getProfileEvent(idStr);
+    getPitchingSummary(idStr);
+    openModal();
+  }
+
+  logOut = () => {
+    localStorage.clear();
+    const {openModal, logOut} = this.props;
+    openModal();
+    logOut();
+  }
+
+  render() {
+    return (
+      <div ref={this.setRef} className="main-nav__dropdown">
+        <Link onClick={this.getCurrentProfile} to="/profile" className="main-nav__dropdown-link">My Profile</Link>
+        <Link onClick={this.logOut} to="/logIn" className="main-nav__dropdown-link">Log Out</Link>
+      </div>
+    );
+  }
+}
+
+ProfileModal.propTypes = {
+  getProfile: PropTypes.func.isRequired,
+  getProfileEvent: PropTypes.func.isRequired,
+  getPitchingSummary: PropTypes.func.isRequired,
+  getSchools: PropTypes.func.isRequired,
+  getTeams: PropTypes.func.isRequired,
+  getFacilities: PropTypes.func.isRequired,
+  logOut: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = (state) => ({
-  profile: state.profile,
   id: state.user.profId,
 });
 

@@ -1,6 +1,7 @@
 import React from 'react';
-import Profile from './Profile';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Profile from './Profile';
 import {
     getSchools,
     getTeams,
@@ -11,9 +12,7 @@ import {
     getProfileEvent,
     getPitchingSummary,
 } from '../../store/routines/routines';
-import {requestSchool, requestTeams, requestFacilities} from '../../graphQl/profileSettings';
-import {getProf, getProfEvent, getPitchingSumm, favoriteProf} from '../../graphQl/graphql';
-import { bindActionCreators } from 'redux';
+
 
 class ProfileContainer extends React.Component {
     constructor(props) {
@@ -26,9 +25,8 @@ class ProfileContainer extends React.Component {
     async componentDidMount() {
         const {getPitchingSummary, profile} = this.props;
         const {id} = profile.profile;
-        const pitchSumm = getPitchingSumm(id);
         try{
-            await getPitchingSummary(pitchSumm);
+            await getPitchingSummary(id);
         }catch (e) {
             console.log(e)
         }  
@@ -66,12 +64,9 @@ class ProfileContainer extends React.Component {
 
     openForm = () => {
         const {getSchools, getTeams, getFacilities} = this.props
-        const schools = requestSchool()
-        const tesms = requestTeams()
-        const facilities = requestFacilities()
-        getSchools(schools)
-        getTeams(tesms)
-        getFacilities(facilities)
+        getSchools()
+        getTeams()
+        getFacilities()
         this.setState({openedForm: true})
     }
 
@@ -82,13 +77,13 @@ class ProfileContainer extends React.Component {
     changeFavorite = () => {
         const {changeFavorite} = this.props;
         const {id, favorite} = this.props.profile.profile;
-        const favProf = favoriteProf(id, !favorite)
-        changeFavorite(favProf)
+        changeFavorite({id, favorite})
     }
 
 
     render() {
         const {profile, pitchSumm, profEvents} = this.props.profile;
+        const {favorite} = profile;
         const {activeName, profId} = this.props;
         const {activeTab, openedForm} = this.state;
         return (
@@ -108,6 +103,7 @@ class ProfileContainer extends React.Component {
             activeName={activeName}
             changeFavorite={this.changeFavorite}
             activeTab={activeTab}
+            favorite={favorite}
           />
         );
     }

@@ -10,8 +10,6 @@ import {
   getProfilePromiseCreator as getProfile,
 } from '../../store/routines/routines';
 import Spinner from '../Spinner/Spinner';
-import { requestSchool, requestTeams, requestFacilities } from '../../graphQl/profileSettings';
-import {getProf} from '../../graphQl/graphql';
 
 class AuthGuard extends React.Component {
   constructor(props) {
@@ -28,17 +26,13 @@ class AuthGuard extends React.Component {
       getProfile,
       profId,
     } = this.props;
-    const schools = requestSchool();
-    const tesms = requestTeams();
-    const facilities = requestFacilities();
-    const prof = getProf(profId);
 
     try {
       await persisSignIn();
-      await getSchools(schools);
-      await getTeams(tesms);
-      await getFacilities(facilities);
-      await getProfile(prof);
+      await getSchools();
+      await getTeams();
+      await getFacilities();
+      await getProfile(profId);
     } catch (e) {
       console.log(e);
     } finally {

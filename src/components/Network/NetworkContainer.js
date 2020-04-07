@@ -31,12 +31,12 @@ class NetworkContainer extends React.Component {
 
     getNetwork = () => {
       const {getNetwork} = this.props;
-      getNetwork(network);
+      getNetwork();
     }
 
     getSecondNetwork = () => {
       const {getSecondNetwork} = this.props;
-      getSecondNetwork(secondNetwork);
+      getSecondNetwork();
     }
 
     filterOffset = (offset) => {
@@ -50,10 +50,9 @@ class NetworkContainer extends React.Component {
       this.setState({fetching: true})
       this.setState({input})
       const {filterNetwork} = this.props;
-      const network = filtrNetwork(input);
 
       try {
-        await filterNetwork(network);
+        await filterNetwork(input);
       }catch(e) {
         console.log(e);
         }

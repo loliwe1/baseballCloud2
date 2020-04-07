@@ -9,24 +9,18 @@ import {
   getTeamsPromiseCreator as getTeams,
   getFacilitiesPromiseCreator as getFacilities,
 } from '../../store/routines/routines';
-import {currentProfile} from '../../graphQl/graphql';
-import {requestSchool, requestTeams, requestFacilities} from '../../graphQl/profileSettings';
-
 
 class LogInContainer extends React.Component {
 
   signIn = async (v) => {
     const {signIn, getCurrentProfile, getSchools, getTeams, getFacilities, history} = this.props;
-    const schools = requestSchool()
-    const tesms = requestTeams()
-    const facilities = requestFacilities()
 
     try {
       await signIn(v);
-      await getCurrentProfile(currentProfile);
-      await getSchools(schools)
-      await getTeams(tesms)
-      await getFacilities(facilities)
+      await getCurrentProfile();
+      await getSchools()
+      await getTeams()
+      await getFacilities()
       history.push('/profile')
     } catch (e) {
         console.log(e);

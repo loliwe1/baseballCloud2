@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindPromiseCreators } from 'redux-saga-routines';
 import { getBattingLogPromiseCreator as getBattingLog } from '../../../store/routines/routines';
 import BattingLog from './BattingLog';
-import  {battingLog } from '../../../graphQl/graphql';
 
 
 class BattingLogContainer extends React.Component {
@@ -28,10 +27,9 @@ class BattingLogContainer extends React.Component {
     this.setState({fetching: true})
     this.setState({input})
     const {getBattingLog} = this.props;
-    const log = battingLog(input);
 
     try {
-      await getBattingLog(log);
+      await getBattingLog(input);
       } catch (e) {
           console.log(e);
       }

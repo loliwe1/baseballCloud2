@@ -144,7 +144,7 @@ export function* handleChangeFavoriteTrigger(action) {
 
   try {
     const response = yield call(ApiService.changeFavorite, payload);
-    const { favorite } = response.data.data.update_favorite_profile.favorite;
+    const { favorite } = response.data.data.update_favorite_profile;
     yield put(changeFavorite.success(favorite));
   } catch (e) {
     yield put(changeFavorite.failure(e));

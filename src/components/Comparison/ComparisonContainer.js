@@ -35,12 +35,10 @@ class ComparisonContainer extends React.Component {
     chooseProfile = async (v) => {
       const id = '' + v.target.value
       if(!id) return;
-
-      const prof = getProf(id)
       const {getSecondProfile} = this.props;
         
       try {
-        await getSecondProfile(prof)
+        await getSecondProfile(id)
         this.setState({secondProfile: this.props.secondProfile})
       } catch (e) {
         console.log(e)

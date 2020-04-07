@@ -3,7 +3,6 @@ import TopNav from './TopNav';
 import { connect } from 'react-redux';
 import {getNetwork, getLeaderBoard} from '../../store/routines/routines';
 import { bindActionCreators } from 'redux';
-import {network, leaderBoard} from '../../graphQl/graphql';
 
 class TopNavContainer extends React.Component {
     constructor(props){
@@ -17,12 +16,12 @@ class TopNavContainer extends React.Component {
 
     getNetwork = () => {
         const {getNetwork} = this.props;
-        getNetwork(network);
+        getNetwork();
     }
     
     getLeaderBoard = () => {
         const {getLeaderBoard} = this.props;
-        getLeaderBoard(leaderBoard)
+        getLeaderBoard()
     }
 
     render() {

@@ -10,12 +10,6 @@ import {
   changeFavoritePromiseCreator as changeFavorite,
   getLeaderBoardPromiseCreator as getLeaderBoard,
 } from '../../store/routines/routines';
-import {
-  getProf,
-  getProfEvent,
-  getPitchingSumm,
-  favoriteProf,
-} from '../../graphQl/graphql';
 import Leader from './Leader';
 
 class LeaderContainer extends React.Component {
@@ -27,12 +21,9 @@ class LeaderContainer extends React.Component {
       getPitchingSummary,
     } = this.props;
     const idStr = id.toString();
-    const prof = getProf(idStr);
-    const profEvent = getProfEvent(idStr);
-    const pitchSumm = getPitchingSumm(idStr);
-    getProfile(prof);
-    getProfileEvent(profEvent);
-    getPitchingSummary(pitchSumm);
+    getProfile(idStr);
+    getProfileEvent(idStr);
+    getPitchingSummary(idStr);
   }
 
   changeFavorite = () => {
@@ -43,10 +34,9 @@ class LeaderContainer extends React.Component {
       filter,
       input,
     } = this.props;
-    const favProf = favoriteProf(id, !favorite);
 
     try {
-      changeFavorite(favProf)
+      changeFavorite({id, favorite})
         .then(filter(input));
     } catch (e) {
       console.log(e);
