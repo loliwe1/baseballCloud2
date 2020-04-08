@@ -34,7 +34,11 @@ DefaultInput.propTypes = {
   inputClassName: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   iClassName: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
+};
+
+DefaultInput.defaultProps = {
+  onChange: () => {},
 };
 
 export default DefaultInput;

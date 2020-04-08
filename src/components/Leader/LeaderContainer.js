@@ -65,7 +65,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 LeaderContainer.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   getProfile: PropTypes.func.isRequired,
   getProfileEvent: PropTypes.func.isRequired,
   getPitchingSummary: PropTypes.func.isRequired,
@@ -74,6 +74,11 @@ LeaderContainer.propTypes = {
   filter: PropTypes.func.isRequired,
   input: PropTypes.objectOf(PropTypes.any).isRequired,
 };
+
+LeaderContainer.defaultProps = {
+  id: null,
+}
+
 
 
 export default connect(null, mapDispatchToProps)(LeaderContainer);

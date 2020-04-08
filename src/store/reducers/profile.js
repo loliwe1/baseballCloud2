@@ -8,12 +8,12 @@ import {
 } from '../routines/routines';
 
 const initialState = {
-  profile: [],
+  profile: {},
 };
 const profile = (state = initialState, action) => {
   switch (action.type) {
     case getProfile.SUCCESS:
-      return { ...state, profile: action.payload };
+      return { ...state, profile: { ...action.payload } };
     case getProfileEvent.SUCCESS:
       return { ...state, profEvents: action.payload };
     case getPitchingSummary.SUCCESS:

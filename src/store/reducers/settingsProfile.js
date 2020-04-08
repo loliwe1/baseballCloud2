@@ -1,6 +1,10 @@
 import { getSchools, getTeams, getFacilities } from '../routines/routines';
 
-const initialState = {};
+const initialState = {
+  schools: [],
+  teams: [],
+  facilities: [],
+};
 
 const settingProfile = (state = initialState, action) => {
   switch (action.type) {

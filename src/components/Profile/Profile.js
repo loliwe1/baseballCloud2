@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../../css/style.css';
 import '../../css/profile.css';
 import userpick from '../../img/userpic.png';
@@ -94,20 +95,41 @@ const Profile = ({
                     strokeWidth="1"
                     fillOpacity="0"
                   />
-                  <path
-                    className="rc-progress-line-path"
-                    d="M 0.5,0.5 L 99.5,0.5"
-                    strokeLinecap="round"
-                    stroke="#ffd01a"
-                    strokeWidth="1"
-                    fillOpacity="0"
-                    style={{
-                      strokeDasharray: `54.2857px, 100px`,
-                      strokeDashoffset: `0px`,
-                      transition: `strokeDashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s linear 0s, 0.06s`,
-                    }}
-                    />
-                  
+
+                  {( pitcher_summary && pitcher_summary.length !==0 && pitcher_summary[0].velocity) 
+                    ? 
+                    (
+                      <path
+                      className="rc-progress-line-path"
+                      d="M 0.5,0.5 L 99.5,0.5"
+                      strokeLinecap="round"
+                      stroke="#ffd01a"
+                      strokeWidth="1"
+                      fillOpacity="0"
+                      style={{
+                        strokeDasharray: `${pitcher_summary[0].velocity / 2}px, 100px`,
+                        strokeDashoffset: `0px`,
+                        transition: `strokeDashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s linear 0s, 0.06s`,
+                      }}
+                      />
+                    ) 
+                    : 
+                    (
+                      <path
+                      className="rc-progress-line-path"
+                      d="M 0.5,0.5 L 99.5,0.5"
+                      strokeLinecap="round"
+                      stroke="#ffd01a"
+                      strokeWidth="1"
+                      fillOpacity="0"
+                      style={{
+                        strokeDasharray: `${1}px, 100px`,
+                        strokeDashoffset: `0px`,
+                        transition: `strokeDashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s linear 0s, 0.06s`,
+                      }}
+                      />
+                    )
+                  } 
                 </svg>
               </div>
             </div>
@@ -135,20 +157,42 @@ const Profile = ({
                     strokeWidth="1"
                     fillOpacity="0"
                   />
-                  <path
-                    className="rc-progress-line-path"
-                    d="M 0.5,0.5 L 99.5,0.5"
-                    strokeLinecap="round"
-                    stroke="#ffd01a"
-                    strokeWidth="1"
-                    fillOpacity="0"
-                    style={{
-                      strokeDasharray: `54.2857px, 100px`,
-                      strokeDashoffset: `0px`,
-                      transition: `strokeDashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s linear 0s, 0.06s`,
-                    }}
-                  />
-                  
+
+                {( pitcher_summary && pitcher_summary.length !==0 && pitcher_summary[0].spin_rate)
+                  ? 
+                  (
+                    <path
+                      className="rc-progress-line-path"
+                      d="M 0.5,0.5 L 99.5,0.5"
+                      strokeLinecap="round"
+                      stroke="#ffd01a"
+                      strokeWidth="1"
+                      fillOpacity="0"
+                      style={{
+                        strokeDasharray: `${pitcher_summary[0].spin_rate * 2 / 100}px, 100px`,
+                        strokeDashoffset: `0px`,
+                        transition: `strokeDashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s linear 0s, 0.06s`,
+                      }}
+                    />
+                  )
+                  :
+                  (
+                    <path
+                      className="rc-progress-line-path"
+                      d="M 0.5,0.5 L 99.5,0.5"
+                      strokeLinecap="round"
+                      stroke="#ffd01a"
+                      strokeWidth="1"
+                      fillOpacity="0"
+                      style={{
+                        strokeDasharray: `${1}px, 100px`,
+                        strokeDashoffset: `0px`,
+                        transition: `strokeDashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s linear 0s, 0.06s`,
+                      }}
+                    />
+                  )
+                }
+               
                 </svg>
               </div>
             </div>
@@ -177,20 +221,42 @@ const Profile = ({
                     strokeWidth="1"
                     fillOpacity="0"
                   />
-                  <path
-                    className="rc-progress-line-path"
-                    d="M 0.5,0.5 L 99.5,0.5"
-                    strokeLinecap="round"
-                    stroke="#ffd01a"
-                    strokeWidth="1"
-                    fillOpacity="0"
-                    style={{
-                      strokeDasharray: `54.2857px, 100px`,
-                      strokeDashoffset: `0px`,
-                      transition: `strokeDashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s linear 0s, 0.06s`,
+
+                  {( pitcher_summary && pitcher_summary.length !==0 && pitcher_summary[0].pitch_type)
+                  ? 
+                  (
+                    <path
+                      className="rc-progress-line-path"
+                      d="M 0.5,0.5 L 99.5,0.5"
+                      strokeLinecap="round"
+                      stroke="#ffd01a"
+                      strokeWidth="1"
+                      fillOpacity="0"
+                      style={{
+                        strokeDasharray: `${pitcher_summary[0].pitch_type * 2 }px, 100px`,
+                        strokeDashoffset: `0px`,
+                        transition: `strokeDashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s linear 0s, 0.06s`,
                     }}
                   />
-                  
+                  )
+                  :
+                  (
+                    <path
+                      className="rc-progress-line-path"
+                      d="M 0.5,0.5 L 99.5,0.5"
+                      strokeLinecap="round"
+                      stroke="#ffd01a"
+                      strokeWidth="1"
+                      fillOpacity="0"
+                      style={{
+                        strokeDasharray: `${1}px, 100px`,
+                        strokeDashoffset: `0px`,
+                        transition: `strokeDashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s linear 0s, 0.06s`,
+                      }}
+                    />
+                  )
+                }
+
                 </svg>
               </div>
             </div>
@@ -266,5 +332,48 @@ const Profile = ({
   );
 };
 
+Profile.propTypes = {
+  id: PropTypes.string.isRequired,
+  first_name: PropTypes.string,
+  last_name: PropTypes.string,
+  position: PropTypes.string,
+  position2: PropTypes.string,
+  age: PropTypes.number,
+  weight: PropTypes.number,
+  throws_hand: PropTypes.string,
+  bats_hand: PropTypes.string,
+  feet: PropTypes.number,
+  inches: PropTypes.number,
+  pitcher_summary: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
+  openComparison: PropTypes.func.isRequired,
+  openBatting: PropTypes.func.isRequired,
+  openPitching: PropTypes.func.isRequired,
+  activeTab: PropTypes.string.isRequired,
+  pitchingSum: PropTypes.objectOf(PropTypes.any),
+  openedForm: PropTypes.bool.isRequired,
+  openForm: PropTypes.func.isRequired,
+  closeForm: PropTypes.func.isRequired,
+  profId: PropTypes.string.isRequired,
+  favorite: PropTypes.bool,
+  changeFavorite: PropTypes.func.isRequired,
+  openBattingLog: PropTypes.func.isRequired,
+  openPitchingLog: PropTypes.func.isRequired,
+}
+
+Profile.defaultProps = {
+  first_name: null,
+  last_name: null,
+  position: null,
+  position2: null,
+  age: null,
+  weight: null,
+  throws_hand: null,
+  bats_hand: null,
+  feet: null,
+  inches: null,
+  pitcher_summary: null,
+  pitchingSum: null,
+  favorite: null,
+}
 
 export default Profile;

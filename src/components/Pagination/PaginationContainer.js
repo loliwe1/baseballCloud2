@@ -7,8 +7,6 @@ class PaginationContainer extends React.Component {
     super(props);
     this.state = {
       active: 1,
-      total: this.props.total,
-      count: this.props.count,
       arrow: 'network__pagination-link',
       activeArrow: 'network__pagination-link network__pagination-link--disabled',
     };
@@ -17,39 +15,37 @@ class PaginationContainer extends React.Component {
 
   changeActiveButton = async (number) => {
     await this.setState({active: number})
-    const {getOffset} = this.props
-    const {count, active} = this.state
+    const {getOffset, count} = this.props
+    const {active} = this.state
 
     getOffset(count*(active - 1))
-    }
+  }
 
   goToNextButton = () => {
-    if(this.state.count * this.state.active >= this.state.total) return;
+    const {count, total, getOffset} = this.props;
+    const {active} = this.state;
+    if(count * active >= total) return;
 
     this.setState({active: this.state.active += 1})
-
-    const {getOffset} = this.props
-    const {count, active} = this.state
-    getOffset(count*(active - 1))
-    }
+    getOffset(count*(active))
+  }
     
   goToPrevButton = () => {
+    const {count, getOffset} = this.props;
+    const {active} = this.state;
+    
     if(this.state.active === 1) return;
-    this.setState({active: this.state.active -= 1})
 
-    const {getOffset} = this.props
-    const {count, active} = this.state
-    getOffset(count*(active - 1))
-    }
+    const newActive = active - 1;
+
+    getOffset(count*(newActive))
+    this.setState({active: newActive})
+    
+  }
 
   render() {
-    const {
-      active,
-      total,
-      count,
-      arrow,
-      activeArrow,
-    } = this.state;
+    const { count, total } = this.props;
+    const { active, arrow, activeArrow } = this.state;
     const amountButtons = new Array(Math.ceil((total / count))).fill(1);
     return (
       <Pagination
@@ -68,7 +64,14 @@ class PaginationContainer extends React.Component {
 }
 
 PaginationContainer.propTypes = {
-    getOffset: PropTypes.func.isRequired
+    getOffset: PropTypes.func.isRequired,
+    count: PropTypes.number,
+    total: PropTypes.number,
+}
+
+PaginationContainer.defaultProps = {
+  count: null,
+  total: null,
 }
 
 export default PaginationContainer;

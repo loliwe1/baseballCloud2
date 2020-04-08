@@ -54,7 +54,7 @@ const Comparison = ({
               name='selected-player'
               component={ComparisonSearch}
               onChange={searchPlayer}
-              defaultValue={secondProfile? `${secondProfile.first_name} ${secondProfile.last_name}` : ''}
+              defaultValue={secondProfile['first_name'] ? `${secondProfile.first_name} ${secondProfile.last_name}` : ''}
             />
             <div>
             {profileNames && profileNames.length !== 0 && 
@@ -68,8 +68,7 @@ const Comparison = ({
           </div>
           </div>
         )}
-        
-  />
+    />
 </div>
 </div>
 
@@ -79,7 +78,7 @@ const Comparison = ({
       <div
         className="profile-table__info-col"
       >
-        Age: {secondProfile ? `${secondProfile.age}` : '-' }
+        Age: { secondProfile.age || '-' }
       </div>
 </div>
 <div className="profile-table__info-row">
@@ -87,14 +86,14 @@ const Comparison = ({
   <div
     className="profile-table__info-col"
   >
-    Height: {secondProfile ? `${secondProfile.feet} ft ${secondProfile.inches} in` : '-' }</div>
+    Height: {secondProfile['feet'] ? `${secondProfile.feet} ft ${secondProfile.inches} in` : '-' }</div>
 </div>
 <div className="profile-table__info-row">
   <div className="profile-table__info-col">Weight: {weight} lbs</div>
       <div
         className="profile-table__info-col"
       >
-        Weight: {secondProfile ? `${secondProfile.weight} lbs` : '-'}
+        Weight: {secondProfile['weight'] ? `${secondProfile.weight} lbs` : '-'}
       </div>
 </div>
 </div>
@@ -229,16 +228,21 @@ Comparison.propTypes = {
   searchPlayer: PropTypes.func.isRequired,
   profileNames: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   chooseProfile: PropTypes.func.isRequired,
-  secondProfile: PropTypes.objectOf(PropTypes.any).isRequired,
+  secondProfile: PropTypes.object.isRequired,
   topValuesOpen: PropTypes.bool.isRequired,
   openTopValues: PropTypes.func.isRequired,
   showPitchVel: PropTypes.func.isRequired,
   showSpinRate: PropTypes.func.isRequired,
   spinRate: PropTypes.bool.isRequired,
   pitchVel: PropTypes.bool.isRequired,
-  topValues: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
-  secondProfTopValues: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  topValues: PropTypes.string,
+  secondProfTopValues: PropTypes.PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   fetching: PropTypes.bool.isRequired,
 };
+
+Comparison.defaultProps = {
+  topValues: '',
+  secondProfTopValues: null,
+}
 
 export default Comparison;

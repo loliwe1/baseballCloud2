@@ -21,9 +21,7 @@ class FilterInputContainer extends React.Component {
       input,
       placeholder,
       onChange,
-      divClassName,
-      inputClassName,
-      spanClassName,
+      inputType,
     } = this.props;
     const { focused } = this.state;
     return (
@@ -31,12 +29,10 @@ class FilterInputContainer extends React.Component {
         input={input}
         onChange={onChange}
         placeholder={placeholder}
-        divClassName={divClassName}
-        inputClassName={inputClassName}
-        spanClassName={spanClassName}
         focusInput={this.focusInput}
         focused={focused}
         blurInput={this.blurInput}
+        inputType={inputType}
       />
     );
   }
@@ -46,9 +42,7 @@ FilterInputContainer.propTypes = {
   input: PropTypes.objectOf(PropTypes.any).isRequired,
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  divClassName: PropTypes.string.isRequired,
-  inputClassName: PropTypes.string.isRequired,
-  spanClassName: PropTypes.string.isRequired,
+  inputType: PropTypes.string.isRequired,
 };
 
 

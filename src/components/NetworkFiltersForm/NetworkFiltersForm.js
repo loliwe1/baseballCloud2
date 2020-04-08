@@ -4,6 +4,7 @@ import { Form, Field } from 'react-final-form';
 import '../../css/style.css';
 import FilterInput from '../Form/FilterInput';
 import NewFilterSelect from '../Form/NewFilterSelect';
+import { position, favorite, networkShow } from '../../variables/options';
 
 const NetworkFiltersForm = ({
   filterNetworkSchool,
@@ -23,9 +24,7 @@ const NetworkFiltersForm = ({
           type="text"
           placeholder="School"
           onChange={filterNetworkSchool}
-          divClassName="network__filter"
-          inputClassName="network__filter-input network__filter-input--school"
-          spanClassName="network__filter-icon"
+          inputType="school"
         />
 
         <Field
@@ -34,9 +33,7 @@ const NetworkFiltersForm = ({
           type="text"
           placeholder="Team"
           onChange={filterNetworkTeam}
-          divClassName="network__filter"
-          inputClassName="network__filter-input network__filter-input--team"
-          spanClassName="network__filter-icon"
+          inputType="team"
         />
 
         <Field
@@ -44,18 +41,7 @@ const NetworkFiltersForm = ({
           component={NewFilterSelect}
           onChange={filterNetworkPosition}
           title="Position"
-          options={
-              [
-                { value: '', name: 'All' },
-                { value: 'catcher', name: 'Catcher' },
-                { value: 'first_base', name: 'First Base' },
-                { value: 'second_base', name: 'Second Base' },
-                { value: 'shortstop', name: 'Shortstop' },
-                { value: 'third_base', name: 'Third Base' },
-                { value: 'outfield', name: 'Outfield' },
-                { value: 'pitcher', name: 'Pitcher' },
-              ]
-            }
+          options={position}
         />
 
         <Field
@@ -64,38 +50,25 @@ const NetworkFiltersForm = ({
           type="number"
           placeholder="Age"
           onChange={filterNetworkAge}
-          divClassName="network__filter"
-          inputClassName="network__filter-input network__filter-input--age"
-          spanClassName="network__filter-icon"
+          inputType="age"
         />
 
         <Field
-          name="position"
+          name="favorite"
           component={NewFilterSelect}
           onChange={filterNetworkFavorite}
           title="All"
           defTitle=""
-          options={
-                [
-                  { value: '', name: 'All' },
-                  { value: '1', name: 'Favorite' },
-                ]
-              }
+          options={favorite}
         />
 
         <Field
-          name="position"
+          name="show"
           component={NewFilterSelect}
           onChange={filterNetworkCount}
           title="10"
           defTitle="Show"
-          options={
-                [
-                  { value: '10', name: 10 },
-                  { value: '15', name: 15 },
-                  { value: '25', name: 25 },
-                ]
-              }
+          options={networkShow}
         />
 
       </div>

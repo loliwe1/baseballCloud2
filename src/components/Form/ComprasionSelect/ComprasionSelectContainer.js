@@ -63,7 +63,7 @@ class ComprasionSelectContainer extends React.Component {
 }
 
 ComprasionSelectContainer.propTypes = {
-  input: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  input: PropTypes.objectOf(PropTypes.any).isRequired,
   options: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   defTitle: PropTypes.string,
 };

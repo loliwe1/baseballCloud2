@@ -7,7 +7,7 @@ import NetworkFiltersForm from '../NetworkFiltersForm';
 import FilterInputSearchName from '../Form/FilterInputSearchName/FilterInputSearchName';
 import NoInfo from '../NoInfo/NoInfo';
 import Spinner from '../Spinner/Spinner';
-import Pagination from '../Pagination'
+import Pagination from '../Pagination';
 
 const Network = ({
   network,
@@ -122,5 +122,6 @@ Network.propTypes = {
   input: PropTypes.objectOf(PropTypes.any).isRequired,
   getOffset: PropTypes.func.isRequired,
 };
+
 
 export default Network;

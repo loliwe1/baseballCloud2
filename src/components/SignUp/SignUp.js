@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import DefaultInput from '../Form/DefaultInput/DefaultInput';
 
-const SignUp = ({ signUp }) => (
+const SignUp = ({ signUp, error }) => (
   <main className="login-page">
     <div className="modal-signUp">
       <header className="modal-signUp__header">
@@ -96,6 +96,7 @@ const SignUp = ({ signUp }) => (
               <a href="#" className="page-link">Privacy Policy</a>
               .
             </p>
+            {error && <div style={{ color: 'red' }}>{error}</div>}
             <button type="submit" className="modal-submit">Sign Up</button>
           </form>
         )}
@@ -111,6 +112,11 @@ const SignUp = ({ signUp }) => (
 
 SignUp.propTypes = {
   signUp: PropTypes.func.isRequired,
+  error: PropTypes.string,
+};
+
+SignUp.defaultProps = {
+  error: ''
 };
 
 export default SignUp;

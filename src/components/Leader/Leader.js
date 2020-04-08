@@ -28,19 +28,19 @@ const Leader = ({
       className="leaderboards__table-col leaderboards__table-col--batter"
       to={{ pathname: `profile/${id}`, state: id }}
     >
-      {batter_name}
+      {batter_name || '-'}
     </Link>
     <div className="leaderboards__table-col leaderboards__table-col--age">
       {age}
     </div>
     <div className="leaderboards__table-col leaderboards__table-col--school">
-      {school.name}
+      {school.name || '-'}
     </div>
     <div className="leaderboards__table-col leaderboards__table-col--teams">
-      {teams[0].name}
+      {teams[0].name || '-'}
     </div>
     <div className="leaderboards__table-col leaderboards__table-col--velocity">
-      {exit_velocity}
+      {exit_velocity || '-'}
     </div>
     <div className="leaderboards__table-col leaderboards__table-col--angle">
       {launch_angle || '-'}
@@ -61,18 +61,27 @@ const Leader = ({
 );
 
 Leader.propTypes = {
-  batter_name: PropTypes.string.isRequired,
+  batter_name: PropTypes.string,
   age: PropTypes.number.isRequired,
   school: PropTypes.objectOf(PropTypes.any).isRequired,
   teams: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
-  exit_velocity: PropTypes.number.isRequired,
-  launch_angle: PropTypes.number.isRequired,
-  distance: PropTypes.number.isRequired,
-  favorite: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  exit_velocity: PropTypes.number,
+  launch_angle: PropTypes.number,
+  distance: PropTypes.number,
+  favorite: PropTypes.bool.isRequired,
+  id: PropTypes.number,
   getProfile: PropTypes.func.isRequired,
   changeFavorite: PropTypes.func.isRequired,
   number: PropTypes.number.isRequired,
+};
+
+Leader.defaultProps = {
+  launch_angle: 0,
+  batter_name: '',
+  exit_velocity: null,
+  distance: null,
+  id: null,
+
 };
 
 

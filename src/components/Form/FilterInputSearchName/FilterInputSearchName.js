@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const FilterInputSearchName = ({ input, onChange, networkCount }) => (
   <div className="network__table-search">
     <div className="network__search-result">
-      Available Players
+      Available Players&nbsp;
       {networkCount}
     </div>
     <div className="network__search-block">
@@ -36,8 +36,12 @@ const FilterInputSearchName = ({ input, onChange, networkCount }) => (
 
 FilterInputSearchName.propTypes = {
   input: PropTypes.objectOf(PropTypes.any).isRequired,
-  networkCount: PropTypes.number.isRequired,
+  networkCount: PropTypes.number,
   onChange: PropTypes.func.isRequired,
+};
+
+FilterInputSearchName.defaultProps = {
+  networkCount: 0,
 };
 
 export default FilterInputSearchName;

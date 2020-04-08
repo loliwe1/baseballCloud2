@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TopNav from './TopNav';
 import { connect } from 'react-redux';
 import {getNetwork, getLeaderBoard} from '../../store/routines/routines';
@@ -26,7 +27,7 @@ class TopNavContainer extends React.Component {
 
     render() {
       const {modalIsOpen} = this.state
-      const {last_name, first_name, name} = this.props
+      const {name} = this.props
       return (
         <TopNav
           getNetwork={this.getNetwork}
@@ -37,6 +38,18 @@ class TopNavContainer extends React.Component {
         />
         )
     }
+}
+
+TopNavContainer.propTypes = {
+    network: PropTypes.objectOf(PropTypes.any).isRequired,
+    profile: PropTypes.objectOf(PropTypes.any).isRequired,
+    name: PropTypes.string,
+    getNetwork: PropTypes.func.isRequired,
+    getLeaderBoard: PropTypes.func.isRequired,
+}
+
+TopNavContainer.defaultProps = {
+    name: null,
 }
 
 const mapStateToProps = (state) => ({

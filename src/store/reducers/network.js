@@ -1,6 +1,6 @@
 import { getNetwork, getSecondNetwork, filterNetwork } from '../routines/routines';
 
-const initialState = '';
+const initialState = {};
 
 const network = (state = initialState, action) => {
   switch (action.type) {

@@ -93,8 +93,13 @@ const Batting = ({ topValues, avgValues }) => (
 
 
 Batting.propTypes = {
-  topValues: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
-  avgValues: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  topValues: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
+  avgValues: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
+};
+
+Batting.defaultProps = {
+  topValues: [],
+  avgValues: [],
 };
 
 export default Batting;

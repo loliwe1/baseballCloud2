@@ -53,16 +53,21 @@ const Player = ({
 );
 
 Player.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   first_name: PropTypes.string.isRequired,
   last_name: PropTypes.string.isRequired,
-  school: PropTypes.objectOf(PropTypes.any).isRequired,
-  teams: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  school: PropTypes.objectOf(PropTypes.any),
+  teams: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   age: PropTypes.number.isRequired,
   favorite: PropTypes.bool.isRequired,
   getProfile: PropTypes.func.isRequired,
   session: PropTypes.number.isRequired,
   changeFavorite: PropTypes.func.isRequired,
+};
+
+Player.defaultProps = {
+  school: {},
+  teams: [],
 };
 
 export default Player;

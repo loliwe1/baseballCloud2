@@ -78,8 +78,12 @@ TopNav.propTypes = {
   getLeaderBoard: PropTypes.func.isRequired,
   openModal: PropTypes.func.isRequired,
   modalIsOpen: PropTypes.bool.isRequired,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
 };
+
+TopNav.defaultProps = {
+  name: null,
+}
 
 
 export default TopNav;

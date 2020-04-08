@@ -4,6 +4,7 @@ import {
   persisSignIn,
   getCurrentProfile,
   logOut,
+  updateProfile,
 } from '../routines/routines';
 
 const initialState = {
@@ -26,6 +27,7 @@ const user = (state = initialState, action) => {
         name: action.payload.first_name,
       };
     case logOut.TRIGGER: return { ...state, profId: '' };
+    case updateProfile.SUCCESS: return { ...state, name: action.payload.first_name };
     default: return state;
   }
 };

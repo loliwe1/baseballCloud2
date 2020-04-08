@@ -93,7 +93,11 @@ NewFilterSelect.propTypes = {
   showSelect: PropTypes.func.isRequired,
   setRef: PropTypes.func.isRequired,
   changeTitle: PropTypes.func.isRequired,
-  defTitle: PropTypes.string.isRequired,
+  defTitle: PropTypes.string,
+};
+
+NewFilterSelect.defaultProps = {
+  defTitle: '',
 };
 
 export default NewFilterSelect;

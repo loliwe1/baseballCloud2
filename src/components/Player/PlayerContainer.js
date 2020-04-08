@@ -52,14 +52,18 @@ class PlayerContainer extends React.Component {
 }
 
 PlayerContainer.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   first_name: PropTypes.string.isRequired,
   last_name: PropTypes.string.isRequired,
-  school: PropTypes.objectOf(PropTypes.any).isRequired,
-  teams: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  school: PropTypes.objectOf(PropTypes.any),
+  teams: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   age: PropTypes.number.isRequired,
   favorite: PropTypes.bool.isRequired,
-  session: PropTypes.number.isRequired,
+};
+
+PlayerContainer.defaultProps = {
+  school: {},
+  teams: [],
 };
 
 function mapDispatchToProps(dispatch) {

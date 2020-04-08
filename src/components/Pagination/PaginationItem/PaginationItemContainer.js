@@ -16,9 +16,6 @@ class PoginationItemContainer extends React.Component {
       number,
       changeActiveButton,
       active,
-      amountButtons,
-      arrow,
-      activeArrow,
     } = this.props;
     const { button, activeButton } = this.state;
     return (
@@ -28,9 +25,6 @@ class PoginationItemContainer extends React.Component {
         active={active}
         button={button}
         activeButton={activeButton}
-        arrow={arrow}
-        activeArrow={activeArrow}
-        amountButtons={amountButtons}
       />
     );
   }
@@ -40,9 +34,6 @@ PoginationItemContainer.propTypes = {
   number: PropTypes.number.isRequired,
   changeActiveButton: PropTypes.func.isRequired,
   active: PropTypes.number.isRequired,
-  amountButtons: PropTypes.number.isRequired,
-  arrow: PropTypes.string.isRequired,
-  activeArrow: PropTypes.string.isRequired,
 };
 
 export default PoginationItemContainer;

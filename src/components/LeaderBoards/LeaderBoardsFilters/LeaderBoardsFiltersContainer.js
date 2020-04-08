@@ -1,15 +1,19 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import LeaderBoardsFilters from './LeaderBoardsFilters';
 
 
-class LeaderBoardsFiltersContainer extends React.Component{
-    state = {
-        pitching: false,
-        fetching: false,
-        input: {
-            type: 'exit_velocity'
-        }
+class LeaderBoardsFiltersContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pitching: false,
+      fetching: false,
+      input: {
+        type: 'exit_velocity'
+      }
     }
+  }
 
     filterDate = async (v) => {
         const {input} = this.state;
@@ -66,18 +70,22 @@ class LeaderBoardsFiltersContainer extends React.Component{
         filter(input);
     }
 
-    render() {
-        return (
-            <LeaderBoardsFilters
-            filterDate={this.filterDate}
-            filterPosition={this.filterPosition}
-            filterFavorite={this.filterFavorite}
-            filterAge={this.filterAge}
-            filterSchool={this.filterSchool}
-            filterTeam={this.filterTeam}
-            />
-        )
-    }
+  render() {
+    return (
+      <LeaderBoardsFilters
+        filterDate={this.filterDate}
+        filterPosition={this.filterPosition}
+        filterFavorite={this.filterFavorite}
+        filterAge={this.filterAge}
+        filterSchool={this.filterSchool}
+        filterTeam={this.filterTeam}
+      />
+    );
+  }
 }
+
+LeaderBoardsFiltersContainer.propTypes = {
+    filter: PropTypes.func.isRequired,
+};
 
 export default LeaderBoardsFiltersContainer;

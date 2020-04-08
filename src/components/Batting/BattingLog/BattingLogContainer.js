@@ -94,13 +94,17 @@ class BattingLogContainer extends React.Component {
 
 BattingLog.propTypes = {
   battingLog: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
-  profile: PropTypes.objectOf(PropTypes.any).isRequired,
+  profile: PropTypes.objectOf(PropTypes.any),
   count: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
   getOffset: PropTypes.func.isRequired,
   filterName: PropTypes.func.isRequired,
   filterPitchType: PropTypes.func.isRequired,
 };
+
+BattingLog.defaultProps = {
+  profile: {},
+}
 
 const mapStateToProps = (state) => ({
   battingLog: state.battingLog.batting_log,

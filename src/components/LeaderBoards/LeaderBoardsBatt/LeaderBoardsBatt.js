@@ -86,8 +86,8 @@ const LeaderBoardsBatt = ({
 
 LeaderBoardsBatt.propTypes = {
   leaderBoard: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
-  fetching: PropTypes.string.isRequired,
-  filter: PropTypes.bool.isRequired,
+  fetching: PropTypes.bool.isRequired,
+  filter: PropTypes.func.isRequired,
   input: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 

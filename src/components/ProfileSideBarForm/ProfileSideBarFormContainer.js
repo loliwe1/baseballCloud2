@@ -45,38 +45,20 @@ class ProfileSideBarFormContainer extends React.Component {
 
   render() {
     const {
-      first_name,
-      last_name,
-      position,
-      position2,
-      age,
-      weight,
-      throws_hand,
-      bats_hand,
-      feet,
-      inches,
       school,
       closeForm,
       settings,
+      profile
     } = this.props;
     const { schools, teams, facilities } = settings;
     return (
       <ProfileSideBarForm
+        {...profile}
         saveSettings={this.saveSettings}
         closeForm={closeForm}
         schools={schools}
         teams={teams}
         facilities={facilities}
-        first_name={first_name}
-        last_name={last_name}
-        position={position}
-        position2={position2}
-        age={age}
-        weight={weight}
-        throws_hand={throws_hand}
-        bats_hand={bats_hand}
-        feet={feet}
-        inches={inches}
         school={school}
       />
     );
@@ -85,17 +67,31 @@ class ProfileSideBarFormContainer extends React.Component {
 
 ProfileSideBarFormContainer.propTypes = {
   closeForm: PropTypes.func.isRequired,
-  schools: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
-  teams: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
-  facilities: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
-  first_name: PropTypes.string.isRequired,
-  last_name: PropTypes.string.isRequired,
-  age: PropTypes.number.isRequired,
-  weight: PropTypes.number.isRequired,
-  feet: PropTypes.number.isRequired,
-  inches: PropTypes.number.isRequired,
+  schools: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
+  teams: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
+  facilities: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
+  first_name: PropTypes.string,
+  last_name: PropTypes.string,
+  age: PropTypes.number,
+  weight: PropTypes.number,
+  feet: PropTypes.number,
+  inches: PropTypes.number,
   settings: PropTypes.objectOf(PropTypes.any).isRequired,
 };
+
+ProfileSideBarFormContainer.defaultProps = {
+  first_name: null,
+  last_name: null,
+  schools: [],
+  teams: [],
+  facilities: [],
+  age: null,
+  weight: null,
+  feet: null,
+  inches: null,
+
+}
+
 
 const mapStateToProps = (state) => ({
   settings: state.settingProfile,

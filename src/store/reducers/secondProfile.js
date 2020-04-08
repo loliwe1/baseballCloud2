@@ -1,6 +1,6 @@
 import { getSecondProfile } from '../routines/routines';
 
-const initialState = '';
+const initialState = {};
 
 const secondProfile = (state = initialState, action) => {
   switch (action.type) {

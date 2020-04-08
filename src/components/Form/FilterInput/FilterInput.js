@@ -3,20 +3,18 @@ import PropTypes from 'prop-types';
 
 const FilterInput = ({
   input,
-  divClassName,
-  inputClassName,
   placeholder,
-  spanClassName,
   onChange,
   focusInput,
   blurInput,
   focused,
+  inputType,
 }) => {
   const { type } = input;
   return (
-    <div className={divClassName}>
+    <div className="network__filter">
       <input
-        className={inputClassName}
+        className={`network__filter-input network__filter-input--${inputType}`}
         type={type}
         placeholder={placeholder}
         onFocus={focusInput}
@@ -31,7 +29,7 @@ const FilterInput = ({
       {!focused
         ?
         (
-          <span className={spanClassName}>
+          <span className="network__filter-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9">
               <path
                 fill="#48BBFF"
@@ -44,7 +42,7 @@ const FilterInput = ({
 
         :
         (
-          <span className={spanClassName} style={{ transform: 'rotate(180deg)' }}>
+          <span className="network__filter-icon" style={{ transform: 'rotate(180deg)' }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9">
               <path
                 fill="#48BBFF"
@@ -60,14 +58,12 @@ const FilterInput = ({
 
 FilterInput.propTypes = {
   input: PropTypes.objectOf(PropTypes.any).isRequired,
-  divClassName: PropTypes.string.isRequired,
-  inputClassName: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  spanClassName: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  focusInput: PropTypes.string.isRequired,
-  blurInput: PropTypes.string.isRequired,
+  focusInput: PropTypes.func.isRequired,
+  blurInput: PropTypes.func.isRequired,
   focused: PropTypes.bool.isRequired,
+  inputType: PropTypes.string.isRequired,
 };
 
 export default FilterInput;

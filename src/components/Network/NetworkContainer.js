@@ -75,7 +75,6 @@ class NetworkContainer extends React.Component {
     const { fetching } = this.state;
     const { input } = this.state;
     const { profiles_count } = input;
-
     return (
       <Network
         network={network}
@@ -95,7 +94,7 @@ class NetworkContainer extends React.Component {
 }
 
 NetworkContainer.propTypes = {
-  network: PropTypes.objectOf(PropTypes.any).isRequired,
+  network: PropTypes.objectOf(PropTypes.any).isRequired,  
 }
 
 const mapStateToProps = (state) => ({

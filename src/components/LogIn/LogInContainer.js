@@ -11,6 +11,10 @@ import {
 } from '../../store/routines/routines';
 
 class LogInContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {error: ''};
+  }
 
   signIn = async (v) => {
     const {signIn, getCurrentProfile, getSchools, getTeams, getFacilities, history} = this.props;
@@ -23,17 +27,16 @@ class LogInContainer extends React.Component {
       await getFacilities()
       history.push('/profile')
     } catch (e) {
+        this.setState({error: e.message})
         console.log(e);
       }
   }
 
-  saveEmail = (v) => {
-    console.log(v.target.value)
-  }
 
   render() {
+    const {error} = this.state;
     return (
-      <LogIn signIn={this.signIn} saveEmail={this.saveEmail} />
+      <LogIn signIn={this.signIn} error={error} />
     );
   }
 }

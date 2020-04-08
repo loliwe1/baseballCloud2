@@ -21,7 +21,6 @@ class LeaderBoardsTabsContainer extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         const {activeTab, activeButton, button} = this.state;
         return (
             <LeaderBoardsTabs

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Profile from './Profile';
@@ -19,6 +20,7 @@ class ProfileContainer extends React.Component {
         super(props);
         this.state = {
             activeTab: 'Comparison',
+            openedForm: false,
         };
     }
 
@@ -83,7 +85,6 @@ class ProfileContainer extends React.Component {
 
     render() {
         const {profile, pitchSumm, profEvents} = this.props.profile;
-        const {favorite} = profile;
         const {activeName, profId} = this.props;
         const {activeTab, openedForm} = this.state;
         return (
@@ -103,10 +104,18 @@ class ProfileContainer extends React.Component {
             activeName={activeName}
             changeFavorite={this.changeFavorite}
             activeTab={activeTab}
-            favorite={favorite}
           />
         );
     }
+}
+
+ProfileContainer.propTypes = {
+  profile: PropTypes.objectOf(PropTypes.any),
+  profId: PropTypes.string.isRequired,
+  activeName: PropTypes.string,
+}
+ProfileContainer.defaultProps = {
+    activeName: null,
 }
 
 const mapStateToPros = state => ({

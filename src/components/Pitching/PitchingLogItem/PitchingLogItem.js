@@ -111,20 +111,28 @@ const PitchingLogItem = ({
 PitchingLogItem.propTypes = {
   date: PropTypes.string.isRequired,
   pitchType: PropTypes.string.isRequired,
-  pitchCall: PropTypes.string.isRequired,
+  pitchCall: PropTypes.string,
   velocity: PropTypes.number.isRequired,
   spinRate: PropTypes.number.isRequired,
-  spinAxis: PropTypes.number.isRequired,
-  tilt: PropTypes.string.isRequired,
+  spinAxis: PropTypes.number,
+  tilt: PropTypes.number.isRequired,
   releaseHeight: PropTypes.number.isRequired,
   releaseSide: PropTypes.number.isRequired,
-  extension: PropTypes.number.isRequired,
-  verticalBreak: PropTypes.number.isRequired,
-  horizontalBreak: PropTypes.number.isRequired,
+  extension: PropTypes.string.isRequired,
+  verticalBreak: PropTypes.number,
+  horizontalBreak: PropTypes.number,
   heightAtPlate: PropTypes.number.isRequired,
   batterName: PropTypes.string.isRequired,
   changeActive: PropTypes.func.isRequired,
-  active: PropTypes.number.isRequired,
+  active: PropTypes.bool.isRequired,
 };
+
+PitchingLogItem.defaultProps = {
+  pitchCall: '',
+  spinAxis: null,
+  verticalBreak: null,
+  horizontalBreak: null,
+};
+
 
 export default PitchingLogItem;

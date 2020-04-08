@@ -12,9 +12,13 @@ import {
 } from '../../store/routines/routines';
 
 class SignUpContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {error: ''};
+  }
     
   signUp = async (v) => {
-    const {signUp, getCurrentProfile, getSchools, getTeams, getFacilities } = this.props;
+    const {signUp, getCurrentProfile, getSchools, getTeams, getFacilities, history } = this.props;
     const role = 'player';
 
     try {
@@ -23,14 +27,18 @@ class SignUpContainer extends React.Component {
       await getSchools()
       await getTeams()
       await getFacilities()
+      history.push('/profile')
+
     }catch(e) {
+      this.setState({error: e.message})
       console.log(e)
     }   
   }
 
   render() {
+    const {error} = this.state;
     return (
-      <SignUp signUp={this.signUp} />
+      <SignUp signUp={this.signUp} error={error} />
     );
   }
 }

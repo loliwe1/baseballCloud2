@@ -80,8 +80,12 @@ const Pitching = ({ pitchingSum }) => {
 };
 
 Pitching.propTypes = {
-  average_values: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  average_values: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   pitchingSum: PropTypes.objectOf(PropTypes.any).isRequired,
+};
+
+Pitching.defaultProps = {
+  average_values: [],
 };
 
 export default Pitching;

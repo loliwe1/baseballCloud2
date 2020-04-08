@@ -19,6 +19,7 @@ import {
   requiredThrows,
   requiredBats,
   requiredAge,
+  required,
 } from '../../validations';
 
 
@@ -34,6 +35,11 @@ const ProfileSideBarForm = ({
   weight,
   feet,
   inches,
+  throws_hand,
+  bats_hand,
+  position,
+  position2,
+  school,
 }) => (
   <aside className="profile-aside">
     <div className="profile-info__userpic">
@@ -84,37 +90,48 @@ const ProfileSideBarForm = ({
           <div className="profileSelectWrap">
             <div>
               <Field
-                className="profileSelect"
                 name="position"
-                component="select"
-                  // validate={required}
-                defaultValue="catcher"
+                validate={required}
+                defaultValue={position}
               >
-                <option value="catcher">Catcher</option>
-                <option value="first_base">First Base</option>
-                <option value="second_base">Second Base</option>
-                <option value="shortstop">Shortstop</option>
-                <option value="third_base">Third Base</option>
-                <option value="outfield">Outfield</option>
-                <option value="pitcher">pitcher</option>
+                {({ input, meta }) => (
+                  <div>
+                    <select {...input} defaultValue="catcher" className="profileSelect">
+                      <option value="-">-</option>
+                      <option value="catcher">Catcher</option>
+                      <option value="first_base">First Base</option>
+                      <option value="second_base">Second Base</option>
+                      <option value="shortstop">Shortstop</option>
+                      <option value="third_base">Third Base</option>
+                      <option value="outfield">Outfield</option>
+                      <option value="pitcher">pitcher</option>
+                    </select>
+                    <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                  </div>
+                )}
               </Field>
             </div>
             <div>
               <Field
-                className="profileSelect"
                 name="position2"
-                component="select"
-                  // validate={required}
-                defaultValue="catcher"
+                validate={required}
+                defaultValue={position2}
               >
-                <option value="-">-</option>
-                <option value="catcher">Catcher</option>
-                <option value="first_base">First Base</option>
-                <option value="second_base">Second Base</option>
-                <option value="shortstop">Shortstop</option>
-                <option value="third_base">Third Base</option>
-                <option value="outfield">Outfield</option>
-                <option value="pitcher">pitcher</option>
+                {({ input, meta }) => (
+                  <div>
+                    <select {...input} defaultValue="catcher" className="profileSelect">
+                      <option value="-">-</option>
+                      <option value="catcher">Catcher</option>
+                      <option value="first_base">First Base</option>
+                      <option value="second_base">Second Base</option>
+                      <option value="shortstop">Shortstop</option>
+                      <option value="third_base">Third Base</option>
+                      <option value="outfield">Outfield</option>
+                      <option value="pitcher">pitcher</option>
+                    </select>
+                    <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                  </div>
+                )}
               </Field>
             </div>
           </div>
@@ -202,24 +219,34 @@ const ProfileSideBarForm = ({
             </div>
             <div className="profileFormWrap">
               <Field
-                className="userNameForm height"
                 name="throws_hand"
-                component="select"
                 validate={requiredThrows}
-                defaultValue="l"
+                defaultValue={throws_hand}
               >
-                <option value="l">L</option>
-                <option value="r">R</option>
+                {({ input, meta }) => (
+                  <div>
+                    <select {...input} className="userNameForm height">
+                      <option value="l">L</option>
+                      <option value="r">R</option>
+                    </select>
+                    <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                  </div>
+                )}
               </Field>
               <Field
-                className="userNameForm height"
                 name="bats_hand"
-                component="select"
                 validate={requiredBats}
-                defaultValue="l"
+                defaultValue={bats_hand}
               >
-                <option value="l">L</option>
-                <option value="r">R</option>
+                {({ input, meta }) => (
+                  <div>
+                    <select {...input} defaultValue="l" className="userNameForm height">
+                      <option value="l">L</option>
+                      <option value="r">R</option>
+                    </select>
+                    <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                  </div>
+                )}
               </Field>
             </div>
           </div>
@@ -228,36 +255,57 @@ const ProfileSideBarForm = ({
             <hr />
           </div>
           <div>
-            <Field className="profileSelect" name="school" component="select">
-              { schools &&
+            <Field
+              name="school"
+              validate={required}
+            >
+              {({ input, meta }) => (
+                <div>
+                  <select {...input} className="profileSelect">
+                    { schools &&
                       schools.map((school, i) => (
-                        <option selected key={i} value={school.id}>{school.name}</option>
+                        <option key={i} value={school.id}>{school.name}</option>
                       ))}
+                  </select>
+                  <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                </div>
+              )}
             </Field>
             <Field
-              className="profileSelect"
               name="school_year"
-              component="select"
-              // validate={required}
+              validate={required}
               defaultValue="sophomore"
             >
-              <option value="sophomore">Sophomore</option>
-              <option value="freshman">Freshman</option>
-              <option value="junior">Junior</option>
-              <option value="senior">Senior</option>
-              <option value="none">None</option>
+
+              {({ input, meta }) => (
+                <div>
+                  <select {...input} className="profileSelect">
+                    <option value="sophomore">Sophomore</option>
+                    <option value="freshman">Freshman</option>
+                    <option value="junior">Junior</option>
+                    <option value="senior">Senior</option>
+                    <option value="none">None</option>
+                  </select>
+                  <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                </div>
+              )}
             </Field>
             <Field
-              className="profileSelect"
               name="teams"
-              component="select"
+              validate={required}
               type="select"
-              multiple
             >
-              { teams &&
-                teams.map((team, i) => (
-                  <option selected key={i} value={team.id}>{team.name}</option>
-                ))}
+              {({ input, meta }) => (
+                <div>
+                  <select multiple {...input} className="profileSelect">
+                    { teams &&
+                      teams.map((team, i) => (
+                        <option key={i} value={team.id}>{team.name}</option>
+                      ))}
+                  </select>
+                  <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                </div>
+              )}
             </Field>
           </div>
           <div>
@@ -266,16 +314,24 @@ const ProfileSideBarForm = ({
               <hr />
             </div>
             <Field
-              className="profileSelect"
               name="facilities"
-              component="select"
-              type="select"
               multiple
+              validate={required}
+              type="select"
             >
-              { facilities &&
-                  facilities.map((facilit, i) => (
-                    <option key={i} value={facilit.id}>{facilit.u_name}</option>
-                  ))}
+
+              {({ input, meta }) => (
+                <div>
+                  <select multiple {...input} className="profileSelect">
+                    { facilities &&
+                        facilities.map((facilit, i) => (
+                          <option key={i} value={facilit.id}>{facilit.u_name}</option>
+                        ))}
+                  </select>
+                  <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                </div>
+              )}
+
             </Field>
           </div>
           <div className="personalInfo">
@@ -288,7 +344,6 @@ const ProfileSideBarForm = ({
             component="textarea"
             placeholder="biography"
             defaultValue="test123"
-            // validate={required}
           />
           {submitError && <div>{submitError}</div>}
           <div className="profileFormWrap">
@@ -312,12 +367,23 @@ ProfileSideBarForm.propTypes = {
   schools: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   teams: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   facilities: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
-  first_name: PropTypes.string.isRequired,
-  last_name: PropTypes.string.isRequired,
-  age: PropTypes.number.isRequired,
-  weight: PropTypes.number.isRequired,
-  feet: PropTypes.number.isRequired,
-  inches: PropTypes.number.isRequired,
+  first_name: PropTypes.string,
+  last_name: PropTypes.string,
+  age: PropTypes.number,
+  weight: PropTypes.number,
+  feet: PropTypes.number,
+  inches: PropTypes.number,
+};
+
+
+ProfileSideBarForm.defaultProps = {
+  age: null,
+  weight: null,
+  feet: null,
+  inches: null,
+  first_name: null,
+  last_name: null,
+
 };
 
 

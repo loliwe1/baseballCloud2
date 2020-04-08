@@ -6,7 +6,7 @@ import { Form, Field } from 'react-final-form';
 import DefaultInput from '../Form/DefaultInput/DefaultInput';
 
 
-const LogIn = ({ signIn, saveEmail }) => (
+const LogIn = ({ signIn, error }) => (
   <main className="login-page">
     <h1 className="visually-hidden">
       BaseballCloud app
@@ -34,7 +34,6 @@ const LogIn = ({ signIn, saveEmail }) => (
               divClassName="modal-signIn__input-wrap input-wrap"
               inputClassName="modal-signIn__input modal-input"
               iClassName="fa fa-user input-user"
-              onChange={saveEmail}
             />
             <Field
               name="password"
@@ -45,6 +44,7 @@ const LogIn = ({ signIn, saveEmail }) => (
               inputClassName="modal-signIn__input modal-input"
               iClassName="fa fa-lock input-lock"
             />
+            {error && <div style={{ color: 'red' }}>{error}</div>}
             <button type="submit" className="modal-submit">Sign In</button>
           </form>
         )}
@@ -62,7 +62,11 @@ const LogIn = ({ signIn, saveEmail }) => (
 
 LogIn.propTypes = {
   signIn: PropTypes.func.isRequired,
-  saveEmail: PropTypes.func.isRequired,
+  error: PropTypes.string,
+};
+
+LogIn.defaultProps = {
+  error: '',
 };
 
 export default LogIn;

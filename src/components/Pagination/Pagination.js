@@ -15,7 +15,7 @@ const Pagination = ({
   goToPrevButton,
 }) => (
   <>
-    {total > count && amountButtons &&
+    {(total > count && amountButtons.length > 0) &&
     (
     <ul className="network__table-pagination">
       <li className="network__pagination-item">
@@ -56,13 +56,11 @@ Pagination.propTypes = {
   active: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
   count: PropTypes.number.isRequired,
-  amountButtons: PropTypes.number.isRequired,
+  amountButtons: PropTypes.arrayOf(PropTypes.number).isRequired,
   changeActiveButton: PropTypes.func.isRequired,
   arrow: PropTypes.string.isRequired,
   activeArrow: PropTypes.string.isRequired,
   goToNextButton: PropTypes.func.isRequired,
   goToPrevButton: PropTypes.func.isRequired,
 };
-
-
 export default Pagination;

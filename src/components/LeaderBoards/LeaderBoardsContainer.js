@@ -118,6 +118,14 @@ class LeaderBoardsContainer extends React.Component {
   }
 }
 
+LeaderBoardsContainer.propTypes = {
+  leaderBoard: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  filterLeaderBoardsBatting: PropTypes.func.isRequired,
+  filterLeaderBoardsPitching: PropTypes.func.isRequired,
+  getLeaderBoard: PropTypes.func.isRequired,
+  getLeaderBoardPitch: PropTypes.func.isRequired,
+}
+
 const mapStateToProps = (state) => ({
   leaderBoard: state.leaderBoard,
 });

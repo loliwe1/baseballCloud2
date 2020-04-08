@@ -78,9 +78,9 @@ const BattingLog = ({
         { fetching ?
           <div style={{ height: '300px' }}><Spinner /></div>
           : !fetching && battingLog && battingLog.length !== 0
-            ? battingLog.map((v) => (
+            ? battingLog.map((v, i) => (
               <BattingLogItem
-                key={v.pitcher_datraks_id}
+                key={i}
                 date={v.date}
                 pitcherName={v.pitcher_name}
                 pitcherHandedness={v.pitcher_handedness}

@@ -129,7 +129,7 @@ export function* handleUpdateProfileTrigger(action) {
   try {
     yield call(Storage.getHeaders);
     const response = yield call(ApiService.updateProfile, payload);
-    const { profile } = response.data.data.update_profile.profile;
+    const { profile } = response.data.data.update_profile;
     yield put(updateProfile.success(profile));
   } catch (e) {
     yield put(updateProfile.failure(e));

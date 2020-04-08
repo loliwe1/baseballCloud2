@@ -50,19 +50,28 @@ class BattingLogItemContainer extends React.Component {
 }
 
 BattingLogItemContainer.propTypes = {
-    active: PropTypes.bool.isRequired,
-    changeActive: PropTypes.func.isRequired,
     date: PropTypes.string.isRequired,
     pitcherName: PropTypes.string.isRequired,
     pitcherHandedness: PropTypes.string.isRequired,
-    pitchType: PropTypes.string.isRequired,
-    pitchCall: PropTypes.string.isRequired,
-    exitVelocity: PropTypes.number.isRequired,
-    launchAngle: PropTypes.number.isRequired,
-    direction: PropTypes.string.isRequired,
-    distance: PropTypes.number.isRequired,
-    hitSpinRate: PropTypes.number.isRequired,
-    hangTime: PropTypes.number.isRequired,
+    pitchType: PropTypes.string,
+    pitchCall: PropTypes.string,
+    exitVelocity: PropTypes.number,
+    launchAngle: PropTypes.number,
+    direction: PropTypes.number,
+    distance: PropTypes.string,
+    hitSpinRate: PropTypes.number,
+    hangTime: PropTypes.string,
   };
+
+BattingLogItemContainer.deffaultProps = {
+    exitVelocity: null,
+    launchAngle: null,
+    direction: null,
+    distance: '',
+    hitSpinRate: null,
+    hangTime: '',
+    pitchType: '',
+    pitchCall: null,
+}
 
 export default BattingLogItemContainer;

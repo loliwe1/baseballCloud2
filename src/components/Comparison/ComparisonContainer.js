@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 import { bindPromiseCreators } from 'redux-saga-routines';
-import {playerName, getProf} from '../../graphQl/graphql';
 import {
   searchPlayerPromiseCreator as searchPlayer,
   getSecondProfilePromiseCreator as getSecondProfile,
@@ -15,7 +14,7 @@ class ComparisonContainer extends React.Component {
     super(props);
     this.state = {
       playersListOpened: false,
-      secondProfile: this.props.secondProfile,
+      // secondProfile: this.props.secondProfile,
       profileList: false,
       topValuesOpen: false,
       pitchVel: false,
@@ -50,9 +49,8 @@ class ComparisonContainer extends React.Component {
       const {profile, searchPlayer} = this.props;
       const {position} = profile;
       const player_name = e.target.value
-      const profNames = playerName(player_name, position)
 
-      await searchPlayer(profNames)
+      await searchPlayer({player_name, position})
       this.setState({fetching: false})
     }
 
@@ -82,10 +80,10 @@ class ComparisonContainer extends React.Component {
       weight,
       profileNames,
       topValues,
+      secondProfile,
     } = this.props;
     const {
       profileList,
-      secondProfile,
       topValuesOpen,
       pitchVel,
       spinRate,
@@ -128,9 +126,13 @@ ComparisonContainer.propTypes = {
   feet: PropTypes.number.isRequired,
   inches: PropTypes.number.isRequired,
   weight: PropTypes.number.isRequired,
-  profileNames: PropTypes.number.isRequired,
-  topValues: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  profileNames: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  topValues: PropTypes.string,
 };
+
+ComparisonContainer.defaultProps = {
+  topValues: ''
+}
 
 
 const mapStateToProps = (state) => ({
