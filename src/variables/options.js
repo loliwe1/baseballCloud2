@@ -35,4 +35,4 @@ export const leaderBoardDate = [
   { value: '', name: 'All' },
   { value: 'last_week', name: 'Last Week' },
   { value: 'last_month', name: 'Last Month' },
-]
+];

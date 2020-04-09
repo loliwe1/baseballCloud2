@@ -37,7 +37,7 @@ module.exports = {
     'import/prefer-default-export': 0,
     'camelcase': 0,
     'jsx-a11y/anchor-is-valid': 0,
-    'no-param-reassign': ["error", { "props": false }]
+    'no-param-reassign': ["error", { "props": false }],
   },
   "parser": "babel-eslint",
 };
