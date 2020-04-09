@@ -6,7 +6,7 @@ import PitchingItemAvg from '../PitchingItem/PitchingItemAvg';
 import NoInfo from '../NoInfo/NoInfo';
 
 const Pitching = ({ pitchingSum }) => {
-  const {top_values, average_values} = pitchingSum;
+  const { top_values, average_values } = pitchingSum;
   return (
     <li className="profile-table__tab profile-table__tab--pitching">
       {(pitchingSum && top_values.length === 0) ?

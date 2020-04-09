@@ -1,12 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NetworkFiltersForm from './NetworkFiltersForm';
 
 class NetworkFiltersFormContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fetching: true,
-      input:{
+      input: {
         profiles_count: 10,
         offset: 0,
       },
@@ -14,56 +14,74 @@ class NetworkFiltersFormContainer extends React.Component {
   }
 
   filterNetworkAge = async (v) => {
-    const {filter} = this.props
-    const {input} = this.state;
-    input.age = + v.target.value;
-    !input.age && delete input.age;
-        
+    const { filter } = this.props;
+    const { input } = this.state;
+    input.age = +v.target.value;
+
+    if (!input.age) {
+      delete input.age;
+    }
+
     filter(input);
   }
 
   filterNetworkSchool = async (v) => {
-    const {filter} = this.props
-    const {input} = this.state;
+    const { filter } = this.props;
+    const { input } = this.state;
     input.school = v.target.value;
-    !input.school && delete input.school;
-    
+
+    if (!input.school) {
+      delete input.school;
+    }
+
     filter(input);
   }
 
   filterNetworkTeam = async (v) => {
-    const {filter} = this.props
-    const {input} = this.state;
+    const { filter } = this.props;
+    const { input } = this.state;
     input.team = v.target.value;
-    !input.team && delete input.team;
+
+    if (!input.team) {
+      delete input.team;
+    }
 
     filter(input);
   }
 
   filterNetworkPosition = async (v) => {
-    const {filter} = this.props
-    const {input} = this.state;
+    const { filter } = this.props;
+    const { input } = this.state;
     input.position = v.target.value;
-    !input.position && delete input.position;
-        
+
+    if (!input.position) {
+      delete input.position;
+    }
+
     filter(input);
   }
 
   filterNetworkFavorite = async (v) => {
-    const {filter} = this.props
-    const {input} = this.state;
-    input.favorite = + v.target.value;
-    !input.favorite && delete input.favorite;
-        
+    const { filter } = this.props;
+    const { input } = this.state;
+    input.favorite = +v.target.value;
+
+    if (!input.favorite) {
+      delete input.favorite;
+    }
+
     filter(input);
   }
-    
+
   filterNetworkCount = async (v) => {
-    const {filter} = this.props
-    const {input} = this.state;
-    input.profiles_count = + v.target.value;
-    !input.profiles_count && delete input.profiles_count;
-        
+    const { filter } = this.props;
+    const { input } = this.state;
+    input.profiles_count = +v.target.value;
+
+    if (!input.profiles_count) {
+      delete input.profiles_count;
+    }
+
     filter(input);
   }
 
@@ -81,6 +99,10 @@ class NetworkFiltersFormContainer extends React.Component {
     );
   }
 }
+
+NetworkFiltersFormContainer.propTypes = {
+  filter: PropTypes.func.isRequired,
+};
 
 
 export default NetworkFiltersFormContainer;

@@ -22,7 +22,7 @@ const BattingLog = ({
   <li className="profile-table__tab profile-table__tab--session">
 
     <Form
-      onSubmit={() => console.log(1)}
+      onSubmit={() => {}}
       render={() => (
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '25px' }}>
           <Field

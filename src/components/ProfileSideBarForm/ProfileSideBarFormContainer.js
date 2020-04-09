@@ -2,36 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FORM_ERROR } from 'final-form'
 import ProfileSideBarForm from './ProfileSideBarForm';
 import { updateProfile } from '../../store/routines/routines';
 
 class ProfileSideBarFormContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { formOpen: false };
-  }
-
   saveSettings = (v) => {
     let team;
     let school;
     let facil;
-    const {schools, teams, facilities} = this.props.settings;
-    const {closeForm, updateProfile, userId} = this.props;
+    const {
+      closeForm,
+      updateProfile,
+      userId,
+      settings,
+    } = this.props;
+    const { schools, teams, facilities } = settings;
 
-    if(v.school) {
-      school = schools.find((s)=> s.id ===  v.school)
-      v.school = school
+    if (v.school) {
+      school = schools.find((s) => s.id === v.school);
+      v.school = school;
     }
 
-    if(v.teams) {
-      team = v.teams.map(id => teams.find(t => t.id === id))
-      v.teams = team
+    if (v.teams) {
+      team = v.teams.map((id) => teams.find((t) => t.id === id));
+      v.teams = team;
     }
 
-    if(v.facilities) {
-      facil = v.facilities.map(id => facilities.find(t => t.id === id))
-      v.facilities = facil
+    if (v.facilities) {
+      facil = v.facilities.map((id) => facilities.find(t => t.id === id));
+      v.facilities = facil;
     }
 
     v.id = userId;
@@ -77,6 +76,8 @@ ProfileSideBarFormContainer.propTypes = {
   feet: PropTypes.number,
   inches: PropTypes.number,
   settings: PropTypes.objectOf(PropTypes.any).isRequired,
+  updateProfile: PropTypes.func.isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 ProfileSideBarFormContainer.defaultProps = {

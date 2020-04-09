@@ -25,7 +25,9 @@ const Player = ({
           state: id,
         }}
       >
-        {first_name} {last_name}
+        {first_name}
+        &nbsp;
+        {last_name}
       </Link>
     </div>
     <div className="network__table-col network__table-col--sessions">

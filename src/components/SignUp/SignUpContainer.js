@@ -14,29 +14,35 @@ import {
 class SignUpContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {error: ''};
+    this.state = { error: '' };
   }
-    
+
   signUp = async (v) => {
-    const {signUp, getCurrentProfile, getSchools, getTeams, getFacilities, history } = this.props;
+    const {
+      signUp,
+      getCurrentProfile,
+      getSchools,
+      getTeams,
+      getFacilities,
+      history,
+    } = this.props;
     const role = 'player';
 
     try {
-      await signUp({...v, role})
+      await signUp({ ...v, role });
       await getCurrentProfile();
-      await getSchools()
-      await getTeams()
-      await getFacilities()
-      history.push('/profile')
-
-    }catch(e) {
-      this.setState({error: e.message})
-      console.log(e)
-    }   
+      await getSchools();
+      await getTeams();
+      await getFacilities();
+      history.push('/profile');
+    } catch (e) {
+      this.setState({ error: e.message });
+      console.log(e);
+    }
   }
 
   render() {
-    const {error} = this.state;
+    const { error } = this.state;
     return (
       <SignUp signUp={this.signUp} error={error} />
     );
@@ -49,6 +55,7 @@ SignUpContainer.propTypes = {
   getSchools: PropTypes.func.isRequired,
   getTeams: PropTypes.func.isRequired,
   getFacilities: PropTypes.func.isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 const mapDispathToProps = (dispatch) => bindPromiseCreators({

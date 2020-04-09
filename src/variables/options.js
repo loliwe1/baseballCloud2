@@ -15,9 +15,9 @@ export const favorite = [
 ];
 
 export const networkShow = [
-  { value: '10', name: 10 },
-  { value: '15', name: 15 },
-  { value: '25', name: 25 },
+  { value: '10', name: '10' },
+  { value: '15', name: '15' },
+  { value: '25', name: '25' },
 ];
 
 export const leaderBoardPosition = [

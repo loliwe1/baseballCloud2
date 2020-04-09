@@ -116,7 +116,7 @@ SignUp.propTypes = {
 };
 
 SignUp.defaultProps = {
-  error: ''
+  error: '',
 };
 
 export default SignUp;

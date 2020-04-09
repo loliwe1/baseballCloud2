@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../../css/style.css';
+import userpick from '../../img/userpic.png';
 
 const ProfileSideBar = ({
-  userpick,
   first_name,
   last_name,
   position,
@@ -23,41 +23,41 @@ const ProfileSideBar = ({
   <aside className="profile-aside">
     <div className="profile-info">
       {profId === id ?
-      (
-        <button type="button" className="profile-info__edit-btn" onClick={openForm}>
-          <span className="profile-info__edit-img">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              width="38"
-              height="38"
-              viewBox="0 0 38 38"
-            >
-              <defs>
-                <circle id="b" cx="15" cy="15" r="15"/>
-                <filter id="a" width="140%" height="140%" x="-20%" y="-20%" filterUnits="objectBoundingBox">
-                  <feOffset in="SourceAlpha" result="shadowOffsetOuter1" />
-                  <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2" />
-                  <feColorMatrix
-                    in="shadowBlurOuter1"
-                    values="0 0 0 0 0.282352941 0 0 0 0 0.733333333 0 0 0 0 1 0 0 0 0.8 0"
+        (
+          <button type="button" className="profile-info__edit-btn" onClick={openForm}>
+            <span className="profile-info__edit-img">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+                width="38"
+                height="38"
+                viewBox="0 0 38 38"
+              >
+                <defs>
+                  <circle id="b" cx="15" cy="15" r="15" />
+                  <filter id="a" width="140%" height="140%" x="-20%" y="-20%" filterUnits="objectBoundingBox">
+                    <feOffset in="SourceAlpha" result="shadowOffsetOuter1" />
+                    <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2" />
+                    <feColorMatrix
+                      in="shadowBlurOuter1"
+                      values="0 0 0 0 0.282352941 0 0 0 0 0.733333333 0 0 0 0 1 0 0 0 0.8 0"
+                    />
+                  </filter>
+                </defs>
+                <g fill="none" fillRule="evenodd">
+                  <g transform="translate(4 4)">
+                    <use fill="#000" filter="url(#a)" xlinkHref="#b" />
+                    <use fill="#48BBFF" xlinkHref="#b" />
+                  </g>
+                  <path
+                    fill="#FFF"
+                    fillRule="nonzero"
+                    d="M20.462 15.003l2.441 2.453-6.18 6.209-2.439-2.453 6.178-6.21zm4.293-.592l-1.088-1.094a1.077 1.077 0 0 0-1.526 0l-1.043 1.048 2.44 2.453 1.217-1.222a.84.84 0 0 0 0-1.185zM13.007 24.66c-.045.2.136.38.336.332l2.72-.663-2.44-2.453-.616 2.784z"
                   />
-                </filter>
-              </defs>
-              <g fill="none" fillRule="evenodd">
-                <g transform="translate(4 4)">
-                  <use fill="#000" filter="url(#a)" xlinkHref="#b" />
-                  <use fill="#48BBFF" xlinkHref="#b" />
                 </g>
-                <path
-                  fill="#FFF"
-                  fillRule="nonzero"
-                  d="M20.462 15.003l2.441 2.453-6.18 6.209-2.439-2.453 6.178-6.21zm4.293-.592l-1.088-1.094a1.077 1.077 0 0 0-1.526 0l-1.043 1.048 2.44 2.453 1.217-1.222a.84.84 0 0 0 0-1.185zM13.007 24.66c-.045.2.136.38.336.332l2.72-.663-2.44-2.453-.616 2.784z"
-                />
-              </g>
-            </svg>
-          </span>
-        </button>
+              </svg>
+            </span>
+          </button>
         )
         : !favorite ?
           (
@@ -67,7 +67,8 @@ const ProfileSideBar = ({
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
                   height="30"
-                  viewBox="0 0 24 24">
+                  viewBox="0 0 24 24"
+                >
                   <path
                     fill="#99acba"
                     fillRule="nonzero"
@@ -98,17 +99,19 @@ const ProfileSideBar = ({
             </button>
           )}
       <div className="profile-info__userpic">
-        <img src={userpick} alt="userpic" width="100" height="100" className="profile-info__userpic-img"/>
+        <img src={userpick} alt="userpic" width="100" height="100" className="profile-info__userpic-img" />
       </div>
       <div className="profile-info__personal">
         <div className="profile-info__name">
-          {first_name} {last_name}
+          {first_name}
+          &nbsp;
+          {last_name}
         </div>
         <div className="profile-info__position">
           {position}
         </div>
         <div className="profile-info__position">
-          {position2 ? position2 : position}
+          {position2 || position}
         </div>
       </div>
     </div>
@@ -138,7 +141,7 @@ const ProfileSideBar = ({
           <span className="profile-info__item-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="23" viewBox="0 0 12 23">
               <g fill="#48BBFF" fillRule="nonzero">
-                <ellipse cx="6" cy="1.643" rx="1.636" ry="1.643"/>
+                <ellipse cx="6" cy="1.643" rx="1.636" ry="1.643" />
                 <path
                   d="M11.992 12.151c-.548-5.964-3.48-7.154-3.48-7.154s-2.834-1.651-5.817.452C.76 7.156.314 9.76.008 12.276c-.154 1.279 1.909 1.264 2.062 0 .182-1.501.443-3.01 1.212-4.294l-.004 1.45-.014 6.965v5.527c0 .594.45 1.076 1.08 1.076.63 0 1.142-.482 1.142-1.076v-7.9h1.01v7.925c0 1.289 2.061 1.289 2.061 0v-5.552l.087-6.98.002-1.675C9.47 9.05 9.742 10.604 9.93 12.15c.155 1.264 2.217 1.279 2.063 0z"
                 />
@@ -149,8 +152,11 @@ const ProfileSideBar = ({
         </div>
         <div className="profile-info__item-value">
           {feet}
+          &nbsp;
           ft
+          &nbsp;
           {inches}
+          &nbsp;
           in
         </div>
       </li>

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NetworkTabs from './NetworkTabs';
 
 class NetworkTabsContainer extends React.Component {
@@ -15,14 +16,14 @@ class NetworkTabsContainer extends React.Component {
 
 
   getNetwork = () => {
-    const {getNetwork, network} = this.props;
-    this.setState({activeTab: 1});
+    const { getNetwork, network } = this.props;
+    this.setState({ activeTab: 1 });
     getNetwork(network);
   }
 
   getSecondNetwork = () => {
-    const {getSecondNetwork} = this.props;
-    this.setState({activeTab: 2});
+    const { getSecondNetwork } = this.props;
+    this.setState({ activeTab: 2 });
     getSecondNetwork();
   }
 
@@ -48,7 +49,7 @@ class NetworkTabsContainer extends React.Component {
   }
 }
 
-NetworkTabs.propTypes = {
+NetworkTabsContainer.propTypes = {
   getNetwork: PropTypes.func.isRequired,
   getSecondNetwork: PropTypes.func.isRequired,
   network: PropTypes.objectOf(PropTypes.any).isRequired,

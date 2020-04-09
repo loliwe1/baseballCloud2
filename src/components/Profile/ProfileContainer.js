@@ -4,108 +4,100 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Profile from './Profile';
 import {
-    getSchools,
-    getTeams,
-    getFacilities,
-    getCurrentProfile,
-    changeFavorite,
-    getProfile,
-    getProfileEvent,
-    getPitchingSummary,
+  getSchools,
+  getTeams,
+  getFacilities,
+  getCurrentProfile,
+  changeFavorite,
+  getProfile,
+  getProfileEvent,
+  getPitchingSummary,
 } from '../../store/routines/routines';
 
 
 class ProfileContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeTab: 'Comparison',
-            openedForm: false,
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeTab: 'Comparison',
+      openedForm: false,
+    };
+  }
 
-    async componentDidMount() {
-        const {getPitchingSummary, profile} = this.props;
-        const {id} = profile.profile;
-        try{
-            await getPitchingSummary(id);
-        }catch (e) {
-            console.log(e)
-        }  
+  async componentDidMount() {
+    const { getPitchingSummary, profile } = this.props;
+    const { id } = profile.profile;
+    try {
+      await getPitchingSummary(id);
+    } catch (e) {
+      console.log(e);
     }
-    
+  }
+
     openBatting = () => {
-        this.setState({
-            activeTab : 'Batting'
-        })
+      this.setState({ activeTab: 'Batting' });
     }
 
 
     openPitching = () => {
-      this.setState({activeTab: 'Pitching'})
-
+      this.setState({ activeTab: 'Pitching' });
     }
 
     openPitchingLog = () => {
-        this.setState({
-            activeTab: 'PitchingLog'
-        })
+      this.setState({ activeTab: 'PitchingLog' });
     }
 
     openComparison = () => {
-        this.setState({
-            activeTab: 'Comparison'
-        })
+      this.setState({ activeTab: 'Comparison' });
     }
 
     openBattingLog = () => {
-        this.setState({
-            activeTab: 'BattingLog'
-        })
+      this.setState({ activeTab: 'BattingLog' });
     }
 
     openForm = () => {
-        const {getSchools, getTeams, getFacilities} = this.props
-        getSchools()
-        getTeams()
-        getFacilities()
-        this.setState({openedForm: true})
+      const { getSchools, getTeams, getFacilities } = this.props;
+      getSchools();
+      getTeams();
+      getFacilities();
+      this.setState({ openedForm: true });
     }
 
     closeForm = () => {
-        this.setState({openedForm: false})
+      this.setState({ openedForm: false });
     }
 
     changeFavorite = () => {
-        const {changeFavorite} = this.props;
-        const {id, favorite} = this.props.profile.profile;
-        changeFavorite({id, favorite})
+      const { changeFavorite, profile } = this.props;
+      const { id, favorite } = profile.profile;
+      changeFavorite({ id, favorite });
     }
 
 
     render() {
-        const {profile, pitchSumm, profEvents} = this.props.profile;
-        const {activeName, profId} = this.props;
-        const {activeTab, openedForm} = this.state;
-        return (
-          <Profile
-            {...profile}
-            pitchingSum={pitchSumm}
-            profEvents={profEvents}
-            openComparison={this.openComparison}
-            openBatting={this.openBatting}
-            openPitching={this.openPitching}
-            openBattingLog={this.openBattingLog}
-            openPitchingLog={this.openPitchingLog}
-            openedForm={openedForm}
-            openForm={this.openForm}
-            closeForm={this.closeForm}
-            profId={profId}
-            activeName={activeName}
-            changeFavorite={this.changeFavorite}
-            activeTab={activeTab}
-          />
-        );
+      const { profile } = this.props;
+      const { pitchSumm, profEvents } = profile;
+      const { activeName, profId } = this.props;
+      const { activeTab, openedForm } = this.state;
+      return (
+        <Profile
+          {...profile.profile}
+          pitchingSum={pitchSumm}
+          profEvents={profEvents}
+          openComparison={this.openComparison}
+          openBatting={this.openBatting}
+          openPitching={this.openPitching}
+          openBattingLog={this.openBattingLog}
+          openPitchingLog={this.openPitchingLog}
+          openedForm={openedForm}
+          openForm={this.openForm}
+          closeForm={this.closeForm}
+          profId={profId}
+          activeName={activeName}
+          changeFavorite={this.changeFavorite}
+          activeTab={activeTab}
+        />
+      );
     }
 }
 
@@ -113,27 +105,37 @@ ProfileContainer.propTypes = {
   profile: PropTypes.objectOf(PropTypes.any),
   profId: PropTypes.string.isRequired,
   activeName: PropTypes.string,
-}
-ProfileContainer.defaultProps = {
-    activeName: null,
-}
+  changeFavorite: PropTypes.func.isRequired,
+  getSchools: PropTypes.func.isRequired,
+  getTeams: PropTypes.func.isRequired,
+  getFacilities: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  getProfile: PropTypes.func.isRequired,
+  getProfileEvent: PropTypes.func.isRequired,
+  getPitchingSummary: PropTypes.func.isRequired,
+};
 
-const mapStateToPros = state => ({
-    profile: state.profile,
-    profId: state.user.profId,
-    activeName: state.user.name
+ProfileContainer.defaultProps = {
+  activeName: null,
+  profile: {},
+};
+
+const mapStateToPros = (state) => ({
+  profile: state.profile,
+  profId: state.user.profId,
+  activeName: state.user.name,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getSchools,
-    getTeams,
-    getFacilities,
-    getCurrentProfile,
-    changeFavorite,
-    getProfile,
-    getProfileEvent,
-    getPitchingSummary,
+  getSchools,
+  getTeams,
+  getFacilities,
+  getCurrentProfile,
+  changeFavorite,
+  getProfile,
+  getProfileEvent,
+  getPitchingSummary,
 
-},dispatch);
+}, dispatch);
 
 export default connect(mapStateToPros, mapDispatchToProps)(ProfileContainer);

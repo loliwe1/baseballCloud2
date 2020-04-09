@@ -39,7 +39,6 @@ const ProfileSideBarForm = ({
   bats_hand,
   position,
   position2,
-  school,
 }) => (
   <aside className="profile-aside">
     <div className="profile-info__userpic">
@@ -373,6 +372,10 @@ ProfileSideBarForm.propTypes = {
   weight: PropTypes.number,
   feet: PropTypes.number,
   inches: PropTypes.number,
+  throws_hand: PropTypes.string,
+  bats_hand: PropTypes.string,
+  position: PropTypes.string,
+  position2: PropTypes.string,
 };
 
 
@@ -383,6 +386,10 @@ ProfileSideBarForm.defaultProps = {
   inches: null,
   first_name: null,
   last_name: null,
+  throws_hand: null,
+  bats_hand: null,
+  position: null,
+  position2: null,
 
 };
 

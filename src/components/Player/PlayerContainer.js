@@ -13,26 +13,45 @@ import {
 } from '../../store/routines/routines';
 
 class PlayerContainer extends React.Component {
-
   getProfile = () => {
-    const {id, getProfile, getProfileEvent, getPitchingSummary} = this.props;
+    const {
+      id,
+      getProfile,
+      getProfileEvent,
+      getPitchingSummary,
+    } = this.props;
     getProfile(id);
     getProfileEvent(id);
     getPitchingSummary(id);
   }
 
   changeFavorite = () => {
-    const {id, favorite, changeFavorite, getNetwork, filter, input,} = this.props;
-    try{
-        changeFavorite({id, favorite})
-            .then(filter(input));
-    }catch(e){
-            console.log(e);
+    const {
+      id,
+      favorite,
+      changeFavorite,
+      filter,
+      input,
+    } = this.props;
+    try {
+      changeFavorite({ id, favorite })
+        .then(filter(input));
+    } catch (e) {
+      console.log(e);
     }
   }
 
   render() {
-    const {id, first_name, last_name, school, teams, age, favorite, events} = this.props;
+    const {
+      id,
+      first_name,
+      last_name,
+      school,
+      teams,
+      age,
+      favorite,
+      events,
+    } = this.props;
     const session = events.length;
     return (
       <Player
@@ -59,11 +78,19 @@ PlayerContainer.propTypes = {
   teams: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   age: PropTypes.number.isRequired,
   favorite: PropTypes.bool.isRequired,
+  events: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
+  getProfile: PropTypes.func.isRequired,
+  getProfileEvent: PropTypes.func.isRequired,
+  getPitchingSummary: PropTypes.func.isRequired,
+  changeFavorite: PropTypes.func.isRequired,
+  filter: PropTypes.func.isRequired,
+  input: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 PlayerContainer.defaultProps = {
   school: {},
   teams: [],
+  events: [],
 };
 
 function mapDispatchToProps(dispatch) {

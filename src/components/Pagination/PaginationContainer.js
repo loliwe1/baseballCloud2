@@ -14,33 +14,32 @@ class PaginationContainer extends React.Component {
 
 
   changeActiveButton = async (number) => {
-    await this.setState({active: number})
-    const {getOffset, count} = this.props
-    const {active} = this.state
+    await this.setState({ active: number });
+    const { getOffset, count } = this.props;
+    const { active } = this.state;
 
-    getOffset(count*(active - 1))
+    getOffset(count * (active - 1));
   }
 
-  goToNextButton = () => {
-    const {count, total, getOffset} = this.props;
-    const {active} = this.state;
-    if(count * active >= total) return;
+  goToNextButton = async () => {
+    const { count, total, getOffset } = this.props;
+    const { active } = this.state;
+    if (count * active >= total) return;
+    await getOffset(count * (active));
 
-    this.setState({active: this.state.active += 1})
-    getOffset(count*(active))
+    await this.setState((prevState) => ({ active: prevState.active + 1 }));
   }
-    
+
   goToPrevButton = () => {
-    const {count, getOffset} = this.props;
-    const {active} = this.state;
-    
-    if(this.state.active === 1) return;
+    const { count, getOffset } = this.props;
+    const { active } = this.state;
+
+    if (active === 1) return;
 
     const newActive = active - 1;
 
-    getOffset(count*(newActive))
-    this.setState({active: newActive})
-    
+    getOffset(count * (newActive - 1));
+    this.setState({ active: newActive });
   }
 
   render() {
@@ -64,14 +63,14 @@ class PaginationContainer extends React.Component {
 }
 
 PaginationContainer.propTypes = {
-    getOffset: PropTypes.func.isRequired,
-    count: PropTypes.number,
-    total: PropTypes.number,
-}
+  getOffset: PropTypes.func.isRequired,
+  count: PropTypes.number,
+  total: PropTypes.number,
+};
 
 PaginationContainer.defaultProps = {
   count: null,
   total: null,
-}
+};
 
 export default PaginationContainer;

@@ -83,7 +83,7 @@ TopNav.propTypes = {
 
 TopNav.defaultProps = {
   name: null,
-}
+};
 
 
 export default TopNav;

@@ -10,11 +10,11 @@ const PoginationItem = ({
   changeActiveButton,
 }) => (
   <li className="network__pagination-item">
-    <a 
+    <a
       role="button"
-      href='#'
-      className={active === number ? activeButton: button}
-      onClick={()=> changeActiveButton(number)}
+      href="#"
+      className={active === number ? activeButton : button}
+      onClick={() => changeActiveButton(number)}
     >
       {number}
     </a>
@@ -27,6 +27,6 @@ PoginationItem.propTypes = {
   button: PropTypes.string.isRequired,
   activeButton: PropTypes.string.isRequired,
   changeActiveButton: PropTypes.func.isRequired,
-}
+};
 
 export default PoginationItem;

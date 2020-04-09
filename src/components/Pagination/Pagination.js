@@ -23,10 +23,10 @@ const Pagination = ({
           href="#"
           role="button"
           onClick={goToPrevButton}
-          className={active===1 ? activeArrow : arrow}
+          className={active === 1 ? activeArrow : arrow}
         >
           «
-      </a>
+        </a>
       </li>
       { (amountButtons && amountButtons.length !== 0) &&
       amountButtons.map((v, i) => (
@@ -41,7 +41,7 @@ const Pagination = ({
         <a
           href="#"
           role="button"
-          className={active === amountButtons.length ? activeArrow: arrow}
+          className={active === amountButtons.length ? activeArrow : arrow}
           onClick={goToNextButton}
         >
           »

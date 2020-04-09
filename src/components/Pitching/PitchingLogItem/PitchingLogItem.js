@@ -115,13 +115,13 @@ PitchingLogItem.propTypes = {
   velocity: PropTypes.number.isRequired,
   spinRate: PropTypes.number.isRequired,
   spinAxis: PropTypes.number,
-  tilt: PropTypes.number.isRequired,
+  tilt: PropTypes.number,
   releaseHeight: PropTypes.number.isRequired,
   releaseSide: PropTypes.number.isRequired,
   extension: PropTypes.string.isRequired,
   verticalBreak: PropTypes.number,
   horizontalBreak: PropTypes.number,
-  heightAtPlate: PropTypes.number.isRequired,
+  heightAtPlate: PropTypes.number,
   batterName: PropTypes.string.isRequired,
   changeActive: PropTypes.func.isRequired,
   active: PropTypes.bool.isRequired,
@@ -132,6 +132,8 @@ PitchingLogItem.defaultProps = {
   spinAxis: null,
   verticalBreak: null,
   horizontalBreak: null,
+  tilt: null,
+  heightAtPlate: null,
 };
 
 

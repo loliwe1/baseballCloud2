@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { bindPromiseCreators } from 'redux-saga-routines';
 import {
   searchPlayerPromiseCreator as searchPlayer,
@@ -13,8 +13,6 @@ class ComparisonContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      playersListOpened: false,
-      // secondProfile: this.props.secondProfile,
       profileList: false,
       topValuesOpen: false,
       pitchVel: false,
@@ -23,100 +21,95 @@ class ComparisonContainer extends React.Component {
     };
   }
 
-    componentDidMount(){
-      this.setState({secondProfile: ''})
-    }
-    
-    openTopValues = () => {
-      this.setState({topValuesOpen: !this.state.topValuesOpen})
-    }
+  openTopValues = () => {
+    this.setState((prevState) => ({ topValuesOpen: !prevState.topValuesOpen }));
+  }
 
-    chooseProfile = async (v) => {
-      const id = '' + v.target.value
-      if(!id) return;
-      const {getSecondProfile} = this.props;
-        
-      try {
-        await getSecondProfile(id)
-        this.setState({secondProfile: this.props.secondProfile})
-      } catch (e) {
-        console.log(e)
-        }
+  chooseProfile = async (v) => {
+    const id = v.target.value.toString();
+    if (!id) return;
+    const { getSecondProfile } = this.props;
+
+    try {
+      await getSecondProfile(id);
+    } catch (e) {
+      console.log(e);
     }
+  }
 
-    searchPlayer= async(e) => {
-      this.setState({profileList: true , fetching: true})
-      const {profile, searchPlayer} = this.props;
-      const {position} = profile;
-      const player_name = e.target.value
+    searchPlayer= async (e) => {
+      this.setState({ profileList: true, fetching: true });
+      const { profile, searchPlayer } = this.props;
+      const { position } = profile;
+      const player_name = e.target.value;
 
-      await searchPlayer({player_name, position})
-      this.setState({fetching: false})
+      await searchPlayer({ player_name, position });
+      this.setState({ fetching: false });
     }
 
     showPitchVel = () => {
       this.setState({
         pitchVel: true,
         spinRate: false,
-      })
-      this.openTopValues()
+      });
+      this.openTopValues();
     }
 
     showSpinRate = () => {
       this.setState({
         pitchVel: false,
         spinRate: true,
-      })
-      this.openTopValues()
+      });
+      this.openTopValues();
     }
 
-  render() {
-    const {
-      age,
-      first_name,
-      last_name,
-      feet,
-      inches,
-      weight,
-      profileNames,
-      topValues,
-      secondProfile,
-    } = this.props;
-    const {
-      profileList,
-      topValuesOpen,
-      pitchVel,
-      spinRate,
-      fetching,
-    } = this.state;
-    const { top_values } = topValues || [];
-    const { pitching_top_values } = secondProfile || [];
+    render() {
+      const {
+        age,
+        first_name,
+        last_name,
+        feet,
+        inches,
+        weight,
+        profileNames,
+        topValues,
+        secondProfile,
+      } = this.props;
+      const {
+        profileList,
+        topValuesOpen,
+        pitchVel,
+        spinRate,
+        fetching,
+      } = this.state;
+      const { top_values } = topValues || [];
+      const { pitching_top_values } = secondProfile || [];
 
-    return (
-      <Comparison
-        searchPlayer={this.searchPlayer}
-        profileNames={profileNames}
-        chooseProfile={this.chooseProfile}
-        age={age}
-        first_name={first_name}
-        last_name={last_name}
-        feet={feet}
-        inches={inches}
-        weight={weight}
-        secondProfile={secondProfile}
-        profileList={profileList}
-        openTopValues={this.openTopValues}
-        topValuesOpen={topValuesOpen}
-        pitchVel={pitchVel}
-        spinRate={spinRate}
-        topValues={top_values}
-        showSpinRate={this.showSpinRate}
-        showPitchVel={this.showPitchVel}
-        secondProfTopValues={pitching_top_values}
-        fetching={fetching}
-      />
-    );
-  }
+      return (
+        <Comparison
+          searchPlayer={this.searchPlayer}
+          profileNames={profileNames}
+          chooseProfile={this.chooseProfile}
+          age={age}
+          first_name={first_name}
+          last_name={last_name}
+          feet={feet}
+          inches={inches}
+          weight={weight}
+          secondProfile={secondProfile}
+          profileList={profileList}
+          openTopValues={this.openTopValues}
+          topValuesOpen={topValuesOpen}
+          pitchVel={pitchVel}
+          spinRate={spinRate}
+          topValues={top_values}
+          showSpinRate={this.showSpinRate}
+          showPitchVel={this.showPitchVel}
+          secondProfTopValues={pitching_top_values}
+          fetching={fetching}
+        />
+      );
+    }
 }
 
 ComparisonContainer.propTypes = {
@@ -128,12 +121,16 @@ ComparisonContainer.propTypes = {
   weight: PropTypes.number.isRequired,
   profileNames: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   topValues: PropTypes.string,
+  secondProfile: PropTypes.objectOf(PropTypes.any),
+  getSecondProfile: PropTypes.func.isRequired,
+  profile: PropTypes.objectOf(PropTypes.any).isRequired,
+  searchPlayer: PropTypes.func.isRequired,
 };
 
 ComparisonContainer.defaultProps = {
-  topValues: ''
-}
-
+  topValues: '',
+  secondProfile: {},
+};
 
 const mapStateToProps = (state) => ({
   profile: state.profile.profile,

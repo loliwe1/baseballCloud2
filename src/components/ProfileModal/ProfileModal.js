@@ -15,23 +15,23 @@ import {
 } from '../../store/routines/routines';
 
 class ProfileModal extends React.Component {
-  setRef = (element) => {
-    this.node = element;
-  };
-
-  componentDidMount(){
+  componentDidMount() {
     document.addEventListener('click', this.handleClick);
   }
+
   componentWillUnmount() {
     document.removeEventListener('click', this.handleClick);
   }
 
+  setRef = (element) => {
+    this.node = element;
+  };
+
   handleClick = (e) => {
-    const {openModal} = this.props;
-    if(! this.node.contains(e.target)) {
+    const { openModal } = this.props;
+    if (!this.node.contains(e.target)) {
       openModal();
     }
-         
   }
 
   getCurrentProfile = () => {
@@ -45,10 +45,10 @@ class ProfileModal extends React.Component {
       getTeams,
       getFacilities,
     } = this.props;
-    const idStr = '' + id;
-    getSchools()
-    getTeams()
-    getFacilities()
+    const idStr = id.toString();
+    getSchools();
+    getTeams();
+    getFacilities();
     getProfile(idStr);
     getProfileEvent(idStr);
     getPitchingSummary(idStr);
@@ -57,7 +57,7 @@ class ProfileModal extends React.Component {
 
   logOut = () => {
     localStorage.clear();
-    const {openModal, logOut} = this.props;
+    const { openModal, logOut } = this.props;
     openModal();
     logOut();
   }
@@ -81,7 +81,8 @@ ProfileModal.propTypes = {
   getFacilities: PropTypes.func.isRequired,
   logOut: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-}
+  openModal: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   id: state.user.profId,

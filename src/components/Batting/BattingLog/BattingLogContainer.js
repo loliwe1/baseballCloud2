@@ -11,7 +11,7 @@ class BattingLogContainer extends React.Component {
     super(props);
     this.state = {
       input: {
-        profile_id: this.props.profile.profile_id,
+        profile_id: '',
         count: 10,
         offset: 0,
       },
@@ -24,52 +24,55 @@ class BattingLogContainer extends React.Component {
   }
 
   filter = async (input) => {
-    this.setState({fetching: true})
-    this.setState({input})
-    const {getBattingLog} = this.props;
+    this.setState({ fetching: true, input });
+    const { getBattingLog } = this.props;
 
     try {
       await getBattingLog(input);
-      } catch (e) {
-          console.log(e);
-      }
-      finally {
-        this.setState({fetching: false})
-      }
+    } catch (e) {
+      console.log(e);
+    } finally {
+      this.setState({ fetching: false });
+    }
   }
 
-    
   filterOffset = (offset) => {
-    const {input} = this.state
-    const {id} = this.props.profile;
+    const { input } = this.state;
+    const { profile } = this.props;
+    const { id } = profile;
 
     input.offset = offset;
     input.profile_id = id;
 
-    this.filter(input)
+    this.filter(input);
   }
 
   filterName = (e) => {
-    const {input} = this.state;
-    const {id} = this.props.profile;
+    const { input } = this.state;
+    const { profile } = this.props;
+    const { id } = profile;
 
     input.profile_id = id;
-    input.pitcher_name = e.target.value
-    !e.target.value && delete input.pitcher_name
+    input.pitcher_name = e.target.value;
 
-    this.setState({input})
-    this.filter(input)
+    if (!e.target.value) {
+      delete input.pitcher_name;
+    }
+
+    this.setState({ input });
+    this.filter(input);
   }
 
   filterPitchType = (e) => {
-    const {input} = this.state;
-    const {id} = this.props.profile;
+    const { input } = this.state;
+    const { profile } = this.props;
+    const { id } = profile;
 
     input.profile_id = id;
-    input.pitch_type = e.target.value
+    input.pitch_type = e.target.value;
 
-    this.setState({input})
-    this.filter(input)
+    this.setState({ input });
+    this.filter(input);
   }
 
 
@@ -92,19 +95,16 @@ class BattingLogContainer extends React.Component {
   }
 }
 
-BattingLog.propTypes = {
+BattingLogContainer.propTypes = {
   battingLog: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   profile: PropTypes.objectOf(PropTypes.any),
-  count: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
-  getOffset: PropTypes.func.isRequired,
-  filterName: PropTypes.func.isRequired,
-  filterPitchType: PropTypes.func.isRequired,
+  getBattingLog: PropTypes.func.isRequired,
 };
 
-BattingLog.defaultProps = {
+BattingLogContainer.defaultProps = {
   profile: {},
-}
+};
 
 const mapStateToProps = (state) => ({
   battingLog: state.battingLog.batting_log,

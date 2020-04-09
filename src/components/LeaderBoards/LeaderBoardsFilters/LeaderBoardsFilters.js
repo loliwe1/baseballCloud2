@@ -4,7 +4,7 @@ import '../../../css/style.css';
 import { Form, Field } from 'react-final-form';
 import FilterInput from '../../Form/FilterInput';
 import NewFilterSelect from '../../Form/NewFilterSelect';
-import { leaderBoardPosition, leaderBoardDate, favorite} from '../../../variables/options';
+import { leaderBoardPosition, leaderBoardDate, favorite } from '../../../variables/options';
 
 const LeaderBoardsFilters = ({
   filterDate,
@@ -16,7 +16,7 @@ const LeaderBoardsFilters = ({
 }) => (
 
   <Form
-    onSubmit={() => console.log(1)}
+    onSubmit={() => {}}
     render={() => (
       <div className="leaderboards__filter-list">
 

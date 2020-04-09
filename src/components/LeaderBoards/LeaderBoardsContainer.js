@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { bindPromiseCreators } from 'redux-saga-routines';
 import PropTypes from 'prop-types';
 import LeaderBoards from './LeaderBoards';
-import {filtLeadBoardsBatt, filtLeadBoardsPitch} from '../../graphQl/graphql';
 import {
   getLeaderBoard,
   getLeaderBoardPitch,
@@ -24,75 +23,73 @@ class LeaderBoardsContainer extends React.Component {
       title: 'Exit Velocity',
     };
   }
-    
-    componentDidMount = async () => {
-        const {input} = this.state;
-        await this.filter(input);
-        
-        this.setState({fetching: false})
+
+  componentDidMount = async () => {
+    const { input } = this.state;
+    await this.filter(input);
+
+    this.setState({ fetching: false });
+  }
+
+  openPitch = async () => {
+    const { pitching } = this.state;
+    if (pitching) return;
+
+    const { input } = this.state;
+    input.type = 'pitch_velocity';
+    await this.setState({
+      pitching: true,
+      input,
+      title: 'Pitch Velocity',
+    });
+
+    this.filter(input);
+  }
+
+  openBatting = async () => {
+    const { pitching } = this.state;
+    if (!pitching) return;
+
+    const { input } = this.state;
+    input.type = 'exit_velocity';
+
+    await this.setState({
+      pitching: false,
+      input,
+      title: 'Exit Velocity',
+    });
+
+    this.filter(input);
+  }
+
+  filter = async (input) => {
+    this.setState({ fetching: true });
+    this.setState({ input });
+    const {
+      filterLeaderBoardsPitching,
+      filterLeaderBoardsBatting,
+    } = this.props;
+    const { pitching } = this.state;
+
+    try {
+      if (pitching) {
+        await filterLeaderBoardsPitching(input);
+      } else {
+        await filterLeaderBoardsBatting(input);
+      }
+    } catch (e) {
+      console.log(e);
+    } finally {
+      this.setState({ fetching: false });
     }
+  }
 
-    openPitch = async () => {
-      if(this.state.pitching) return;
+  filterVelocity = async (v) => {
+    const { input } = this.state;
+    input.type = v.target.value;
 
-      const {input} = this.state;
-      input.type = 'pitch_velocity';
-      await this.setState({
-        pitching: true,
-        input,
-        title: 'Pitch Velocity',
-      });
-
-      this.filter(input);
-        
-    }
-    openBatting = async() => {
-      if(! this.state.pitching) return;
-
-      const {input} = this.state;
-      input.type = 'exit_velocity';
-
-      await this.setState({
-          pitching: false, 
-          input,
-          title: 'Exit Velocity'
-        });
-
-      this.filter(input);
-
-    }
-
-    filter = async (input) => {
-      this.setState({fetching:true})
-      this.setState({input})
-      const {
-        filterLeaderBoardsPitching,
-        filterLeaderBoardsBatting
-      } = this.props;
-      const {pitching} = this.state;
-
-        try {
-            if(pitching) {
-              await filterLeaderBoardsPitching(input)
-            } else {
-              await filterLeaderBoardsBatting(input)
-            }
-
-        }catch(e) {
-            console.log(e);
-        }
-        finally {
-            this.setState({fetching:false})
-        }
-    }
-
-    filterVelocity = async (v) => {
-        const {input} = this.state;
-        console.log(this.props)
-        input.type = v.target.value;
-
-        this.filter(input);
-    }
+    this.filter(input);
+  }
 
   render() {
     const { leaderBoard } = this.props;
@@ -122,9 +119,7 @@ LeaderBoardsContainer.propTypes = {
   leaderBoard: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   filterLeaderBoardsBatting: PropTypes.func.isRequired,
   filterLeaderBoardsPitching: PropTypes.func.isRequired,
-  getLeaderBoard: PropTypes.func.isRequired,
-  getLeaderBoardPitch: PropTypes.func.isRequired,
-}
+};
 
 const mapStateToProps = (state) => ({
   leaderBoard: state.leaderBoard,
@@ -145,6 +140,6 @@ function mapDispatchToProps(dispatch) {
 
 LeaderBoardsContainer.propTypes = {
   leaderBoard: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LeaderBoardsContainer);

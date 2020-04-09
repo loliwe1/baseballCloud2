@@ -8,8 +8,6 @@ import {
   getSecondNetworkPromiseCreator as getSecondNetwork,
   filterNetworkPromiseCreator as filterNetwork,
 } from '../../store/routines/routines';
-import {network, secondNetwork, filtrNetwork} from '../../graphQl/graphql';
-
 
 class NetworkContainer extends React.Component {
   constructor(props) {
@@ -24,51 +22,52 @@ class NetworkContainer extends React.Component {
   }
 
 
-    componentDidMount() {
-      const {input} = this.state;
-      this.filter(input);
+  componentDidMount() {
+    const { input } = this.state;
+    this.filter(input);
+  }
+
+  getNetwork = () => {
+    const { getNetwork } = this.props;
+    getNetwork();
+  }
+
+  getSecondNetwork = () => {
+    const { getSecondNetwork } = this.props;
+    getSecondNetwork();
+  }
+
+  filterOffset = (offset) => {
+    const { input } = this.state;
+    input.offset = offset;
+
+    this.filter(input);
+  }
+
+  filter = async (input) => {
+    this.setState({ fetching: true });
+    this.setState({ input });
+    const { filterNetwork } = this.props;
+
+    try {
+      await filterNetwork(input);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      this.setState({ fetching: false });
+    }
+  }
+
+  filterNetworkName = async (v) => {
+    const { input } = this.state;
+    input.player_name = v.target.value;
+
+    if (!input.player_name) {
+      delete input.player_name;
     }
 
-    getNetwork = () => {
-      const {getNetwork} = this.props;
-      getNetwork();
-    }
-
-    getSecondNetwork = () => {
-      const {getSecondNetwork} = this.props;
-      getSecondNetwork();
-    }
-
-    filterOffset = (offset) => {
-      const {input} = this.state;
-      input.offset = offset;
-
-      this.filter(input)
-    }
-
-    filter = async (input) => {
-      this.setState({fetching: true})
-      this.setState({input})
-      const {filterNetwork} = this.props;
-
-      try {
-        await filterNetwork(input);
-      }catch(e) {
-        console.log(e);
-        }
-      finally {
-        this.setState({fetching: false})
-      }
-    }
-    
-    filterNetworkName = async (v) => {
-      const {input} = this.state;
-      input.player_name = v.target.value;
-      !input.player_name && delete input.player_name;
-          
-      this.filter(input);
-
-    }
+    this.filter(input);
+  }
 
   render() {
     const { network } = this.props;
@@ -94,8 +93,11 @@ class NetworkContainer extends React.Component {
 }
 
 NetworkContainer.propTypes = {
-  network: PropTypes.objectOf(PropTypes.any).isRequired,  
-}
+  network: PropTypes.objectOf(PropTypes.any).isRequired,
+  getNetwork: PropTypes.func.isRequired,
+  getSecondNetwork: PropTypes.func.isRequired,
+  filterNetwork: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   network: state.network,

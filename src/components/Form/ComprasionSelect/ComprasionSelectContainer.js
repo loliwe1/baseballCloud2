@@ -9,27 +9,6 @@ class ComprasionSelectContainer extends React.Component {
       selectShowed: true,
     };
   }
-    
-  showSelect = () => {
-    this.setState({
-      selectShowed: !this.state.selectShowed,
-    })
-  }
-
-  handleClick = (e) => {
-    if(!this.node.contains(e.target)) {
-      this.setState({selectShowed: false})
-    }
-  }
-
-  setRef = (element) => {
-    this.node = element
-  }
-
-  onChange = (e) => {
-    const {onChange} = this.props;
-    onChange(e)
-  }
 
   componentDidMount() {
     document.addEventListener('click', this.handleClick);
@@ -37,6 +16,25 @@ class ComprasionSelectContainer extends React.Component {
 
   componentWillUnmount() {
     document.removeEventListener('click', this.handleClick);
+  }
+
+  showSelect = () => {
+    this.setState((prevState) => ({ selectShowed: !prevState.selectShowed }));
+  }
+
+  handleClick = (e) => {
+    if (!this.node.contains(e.target)) {
+      this.setState({ selectShowed: false });
+    }
+  }
+
+  setRef = (element) => {
+    this.node = element;
+  }
+
+  onChange = (e) => {
+    const { onChange } = this.props;
+    onChange(e);
   }
 
   render() {
@@ -66,6 +64,7 @@ ComprasionSelectContainer.propTypes = {
   input: PropTypes.objectOf(PropTypes.any).isRequired,
   options: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   defTitle: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };
 
 ComprasionSelectContainer.defaultProps = {

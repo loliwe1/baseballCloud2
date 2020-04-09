@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
 import LeaderBoardsFilters from './LeaderBoardsFilters';
 
@@ -7,68 +7,84 @@ class LeaderBoardsFiltersContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pitching: false,
-      fetching: false,
       input: {
-        type: 'exit_velocity'
-      }
-    }
+        type: 'exit_velocity',
+      },
+    };
   }
 
-    filterDate = async (v) => {
-        const {input} = this.state;
-        const {filter} = this.props;
-        input.date = v.target.value;
-        !input.date && delete input.date;
+  filterDate = async (v) => {
+    const { input } = this.state;
+    const { filter } = this.props;
+    input.date = v.target.value;
 
-        filter(input);
+    if (!input.date) {
+      delete input.date;
     }
 
-    filterPosition = async (v) => {
-        const {input} = this.state;
-        const {filter} = this.props;
-        input.position = v.target.value;
-        !input.position && delete input.position;
+    filter(input);
+  }
 
-        filter(input);
+  filterPosition = async (v) => {
+    const { input } = this.state;
+    const { filter } = this.props;
+    input.position = v.target.value;
+
+    if (!input.position) {
+      delete input.position;
     }
 
-    filterFavorite = async (v) => {
-        const {input} = this.state;
-        const {filter} = this.props;
-        input.favorite = + v.target.value;
-        !input.favorite && delete input.favorite;
+    filter(input);
+  }
 
-        filter(input);
+  filterFavorite = async (v) => {
+    const { input } = this.state;
+    const { filter } = this.props;
+    input.favorite = +v.target.value;
+
+    if (!input.favorite) {
+      delete input.favorite;
     }
 
+    filter(input);
+  }
 
-    filterAge = async (v) => {
-        const {input} = this.state;
-        const {filter} = this.props;
-        input.age = + v.target.value;
-        !input.age && delete input.age;
 
-        filter(input);
+  filterAge = async (v) => {
+    const { input } = this.state;
+    const { filter } = this.props;
+    input.age = +v.target.value;
+
+    if (!input.age) {
+      delete input.age;
     }
 
-    filterSchool = async (v) => {
-        const {input} = this.state;
-        const {filter} = this.props;
-        input.school = v.target.value;
-        !input.school && delete input.school;
+    filter(input);
+  }
 
-        filter(input);
+  filterSchool = async (v) => {
+    const { input } = this.state;
+    const { filter } = this.props;
+    input.school = v.target.value;
+
+    if (!input.school) {
+      delete input.school;
     }
 
-    filterTeam = async (v) => {
-        const {input} = this.state;
-        const {filter} = this.props;
-        input.team = v.target.value;
-        !input.team && delete input.team;
+    filter(input);
+  }
 
-        filter(input);
+  filterTeam = async (v) => {
+    const { input } = this.state;
+    const { filter } = this.props;
+    input.team = v.target.value;
+
+    if (!input.team) {
+      delete input.team;
     }
+
+    filter(input);
+  }
 
   render() {
     return (
@@ -85,7 +101,7 @@ class LeaderBoardsFiltersContainer extends React.Component {
 }
 
 LeaderBoardsFiltersContainer.propTypes = {
-    filter: PropTypes.func.isRequired,
+  filter: PropTypes.func.isRequired,
 };
 
 export default LeaderBoardsFiltersContainer;

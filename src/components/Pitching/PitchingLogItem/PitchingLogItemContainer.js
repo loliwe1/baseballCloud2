@@ -10,7 +10,7 @@ class PitchingLogItemContainer extends React.Component {
 
 
   changeActive = () => {
-    this.setState({active: !this.state.active})
+    this.setState((prevState) => ({ active: !prevState.active }));
   }
 
   render() {
@@ -63,14 +63,15 @@ PitchingLogItemContainer.propTypes = {
   velocity: PropTypes.number.isRequired,
   spinRate: PropTypes.number.isRequired,
   spinAxis: PropTypes.number,
-  tilt: PropTypes.number.isRequired,
+  tilt: PropTypes.number,
   releaseHeight: PropTypes.number.isRequired,
   releaseSide: PropTypes.number.isRequired,
   extension: PropTypes.string.isRequired,
   verticalBreak: PropTypes.number,
   horizontalBreak: PropTypes.number,
-  heightAtPlate: PropTypes.number.isRequired,
+  heightAtPlate: PropTypes.number,
   batterName: PropTypes.string.isRequired,
+  batterHandedness: PropTypes.string,
 };
 
 PitchingLogItemContainer.defaultProps = {
@@ -78,6 +79,9 @@ PitchingLogItemContainer.defaultProps = {
   spinAxis: null,
   verticalBreak: null,
   horizontalBreak: null,
-}
+  tilt: null,
+  heightAtPlate: null,
+  batterHandedness: null,
+};
 
 export default PitchingLogItemContainer;

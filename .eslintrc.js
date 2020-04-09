@@ -35,5 +35,9 @@ module.exports = {
     'quote-props': 0,
     'import/no-named-as-default': 0,
     'import/prefer-default-export': 0,
+    'camelcase': 0,
+    'jsx-a11y/anchor-is-valid': 0,
+    'no-param-reassign': ["error", { "props": false }]
   },
+  "parser": "babel-eslint",
 };

@@ -31,7 +31,7 @@ const LeaderBoards = ({
       <div className="leaderboards__table-sort">
         <LeaderBoardsTabs openBatting={openBatting} openPitch={openPitch} />
         <Form
-          onSubmit={() => console.log(1)}
+          onSubmit={() => {}}
           render={() => (
             <div className="leaderboards__sort">
               {!pitching ?

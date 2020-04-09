@@ -16,7 +16,7 @@ const NetworkTabs = ({
       <a href="#" role="button" className={activeTab === 1 ? activeArrow : arrow}>«</a>
     </li>
     <li className="network__pagination-item">
-      <a 
+      <a
         href="#"
         role="button"
         className={activeTab === 1 ? activeButton : button}

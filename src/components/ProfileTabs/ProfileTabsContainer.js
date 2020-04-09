@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindPromiseCreators } from 'redux-saga-routines';
 import ProfileTabs from './ProfileTabs';
-import {battingSummary, battingLog, pitchingLog} from '../../graphQl/graphql';
 import {
   getBattingSummaryPromiseCreator as getBattingSummary,
   getBattingLogPromiseCreator as getBattingLog,
@@ -22,77 +21,76 @@ class ProfileTabsContainer extends React.Component {
       pitchingListShowed: false,
     };
   }
-    
+
   openPitching = () => {
-    const {openPitching} = this.props;
-    this.setState({activeTab: 'Pitching'});
+    const { openPitching } = this.props;
+    this.setState({ activeTab: 'Pitching' });
 
     openPitching();
-  }  
+  }
 
   openComparison = () => {
-    const {openComparison} = this.props;
-    this.setState({activeTab: 'Comparison'});
+    const { openComparison } = this.props;
+    this.setState({ activeTab: 'Comparison' });
 
     openComparison();
-  } 
+  }
 
   openBatting = async () => {
-    const {openBatting, getBattingSummary, profile} = this.props;
-    const {id} = profile
-    this.setState({activeTab: 'Batting'});
+    const { openBatting, getBattingSummary, profile } = this.props;
+    const { id } = profile;
+    this.setState({ activeTab: 'Batting' });
 
-    try{
+    try {
       openBatting();
-      await getBattingSummary(id)
+      await getBattingSummary(id);
     } catch (e) {
-        console.log(e)
-      }
-
-  } 
+      console.log(e);
+    }
+  }
 
   openBattingLog = async () => {
-    const {openBattingLog, getBattingLog, profile} = this.props;
-    const {id} = profile;
-    this.setState({activeTab: 'Batting'});
-    const input = {profile_id:id, count: 10, offset:0}
+    const { openBattingLog, getBattingLog, profile } = this.props;
+    const { id } = profile;
+    this.setState({ activeTab: 'Batting' });
+    const input = { profile_id: id, count: 10, offset: 0 };
     try {
       await getBattingLog(input);
       openBattingLog();
     } catch (e) {
-        console.log(e)
-      }
+      console.log(e);
+    }
   }
 
 
   openPitchingLog = async () => {
-    const {openPitchingLog, getPitchingLog, profile} = this.props;
-    const {id} = profile;
-    const input = {profile_id:id, count: 10, offset:0}
-    this.setState({activeTab: 'Pitching'});
+    const { openPitchingLog, getPitchingLog, profile } = this.props;
+    const { id } = profile;
+    const input = { profile_id: id, count: 10, offset: 0 };
+    this.setState({ activeTab: 'Pitching' });
 
     try {
       await getPitchingLog(input);
       openPitchingLog();
-    }catch(e) {
-      console.log(e)
+    } catch (e) {
+      console.log(e);
     }
   }
 
   showBattingList = () => {
-    this.setState({battingListShowed: true})
+    this.setState({ battingListShowed: true });
   }
 
   hideBattingList = () => {
-    this.setState({battingListShowed: false})
+    this.setState({ battingListShowed: false });
   }
 
   showPitchingList = () => {
-    this.setState({pitchingListShowed: true})
+    this.setState({ pitchingListShowed: true });
   }
 
   hidePitchingList = () => {
-    this.setState({pitchingListShowed: false})
+    this.setState({ pitchingListShowed: false });
   }
 
   render() {
@@ -125,7 +123,12 @@ ProfileTabsContainer.propTypes = {
   getBattingLog: PropTypes.func.isRequired,
   getPitchingLog: PropTypes.func.isRequired,
   profile: PropTypes.objectOf(PropTypes.any).isRequired,
-}
+  openBattingLog: PropTypes.func.isRequired,
+  openPitchingLog: PropTypes.func.isRequired,
+  openBatting: PropTypes.func.isRequired,
+  openPitching: PropTypes.func.isRequired,
+  openComparison: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   profile: state.profile.profile,

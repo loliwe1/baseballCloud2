@@ -36,7 +36,7 @@ class LeaderContainer extends React.Component {
     } = this.props;
 
     try {
-      changeFavorite({id, favorite})
+      changeFavorite({ id, favorite })
         .then(filter(input));
     } catch (e) {
       console.log(e);
@@ -77,8 +77,6 @@ LeaderContainer.propTypes = {
 
 LeaderContainer.defaultProps = {
   id: null,
-}
-
-
+};
 
 export default connect(null, mapDispatchToProps)(LeaderContainer);

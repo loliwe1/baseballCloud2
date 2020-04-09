@@ -4,7 +4,12 @@ import LeaderContainer from '../../Leader/LeaderContainer';
 import NoInfo from '../../NoInfo/NoInfo';
 import Spinner from '../../Spinner/Spinner';
 
-const LeaderBoardsPitch = ({ leaderBoard, fetching, filter, input }) => (
+const LeaderBoardsPitch = ({
+  leaderBoard,
+  fetching,
+  filter,
+  input,
+}) => (
   <div className="leaderboards__table-content">
     <div className="leaderboards__table-header">
       <div className="leaderboards__table-col leaderboards__table-col--rank">
