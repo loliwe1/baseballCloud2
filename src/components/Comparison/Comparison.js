@@ -47,7 +47,7 @@ const Comparison = ({
   <img src={userpick} width="40" height="40" alt="userpic"
     className="profile-table__select-img"/>
     <Form
-      onSubmit={()=> console.log(1)}
+      onSubmit={() => {} }
       render = {() => (
           <div>
             <Field

@@ -15,7 +15,7 @@ const NetworkFiltersForm = ({
   filterNetworkCount,
 }) => (
   <Form
-    onSubmit={() => console.log(1)}
+    onSubmit={() => {}}
     render={() => (
       <div className="network__filters">
         <Field

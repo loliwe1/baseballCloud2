@@ -296,7 +296,7 @@ const ProfileSideBarForm = ({
             >
               {({ input, meta }) => (
                 <div>
-                  <select multiple {...input} className="profileSelect">
+                  <select {...input} multiple value={[]} className="profileSelect">
                     { teams &&
                       teams.map((team, i) => (
                         <option key={i} value={team.id}>{team.name}</option>
@@ -314,14 +314,13 @@ const ProfileSideBarForm = ({
             </div>
             <Field
               name="facilities"
-              multiple
               validate={required}
               type="select"
             >
 
               {({ input, meta }) => (
                 <div>
-                  <select multiple {...input} className="profileSelect">
+                  <select {...input} multiple value={[]} className="profileSelect">
                     { facilities &&
                         facilities.map((facilit, i) => (
                           <option key={i} value={facilit.id}>{facilit.u_name}</option>
