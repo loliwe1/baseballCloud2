@@ -26,6 +26,7 @@ export function* handleSignInTrigger(action) {
   try {
     const response = yield call(ApiService.signIn, payload);
     yield call(Storage.saveHeaders, response);
+
     const user = response.data.data;
     yield put(signIn.success(user));
   } catch (e) {

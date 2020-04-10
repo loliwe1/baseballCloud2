@@ -4,7 +4,7 @@ import '../../../css/style.css';
 import { Form, Field } from 'react-final-form';
 import FilterInput from '../../Form/FilterInput';
 import NewFilterSelect from '../../Form/NewFilterSelect';
-import { leaderBoardPosition, leaderBoardDate, favorite } from '../../../ussets/options';
+import { POSITION, DATE, FAVORITE } from '../../../assets/options';
 
 const LeaderBoardsFilters = ({
   filterDate,
@@ -25,7 +25,7 @@ const LeaderBoardsFilters = ({
           component={NewFilterSelect}
           onChange={filterDate}
           title="Date"
-          options={leaderBoardDate}
+          options={DATE}
         />
 
         <Field
@@ -51,7 +51,7 @@ const LeaderBoardsFilters = ({
           component={NewFilterSelect}
           onChange={filterPosition}
           title="Position"
-          options={leaderBoardPosition}
+          options={POSITION}
         />
 
         <Field
@@ -68,7 +68,7 @@ const LeaderBoardsFilters = ({
           component={NewFilterSelect}
           onChange={filterFavorite}
           title="All"
-          options={favorite}
+          options={FAVORITE}
         />
 
       </div>

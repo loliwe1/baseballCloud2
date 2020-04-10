@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Field } from 'react-final-form';
 import '../../css/style.css';
 import '../../css/modal.css';
 import userpick from '../../img/userpic.png';
-import ComparisonSearch from '../Form/ComparisonSearch/ComparisonSearch';
-import ComprasionSelect from '../Form/ComprasionSelect';
 import Spinner from '../Spinner/Spinner';
+import ComparisonForm from './ComparisonForm/ComparisonForm';
+import ComparsionTopTable from './ComparsionTopTable/ComparsionTopTable';
+import ComprasionSortButton from './ComprasionSortButton/ComprasionSortButton';
+import ComparsionBottomTable from './ComparsionBottomTable/ComparsionBottomTable';
 
 
 const Comparison = ({
@@ -67,76 +68,23 @@ const Comparison = ({
             alt="userpic"
             className="profile-table__select-img"
           />
-          <Form
-            onSubmit={() => {}}
-            render={() => (
-              <div>
-                <Field
-                  name="selected-player"
-                  component={ComparisonSearch}
-                  onChange={searchPlayer}
-                  defaultValue={secondProfile.first_name ? `${secondProfile.first_name} ${secondProfile.last_name}` : ''}
-                />
-                <div>
-                  {profileNames && profileNames.length !== 0 &&
-                  (
-                    <Field
-                      name="prof"
-                      component={ComprasionSelect}
-                      onChange={chooseProfile}
-                      options={profileNames.map((v) => ({ value: v.id, name: `${v.first_name} ${v.last_name}` }))}
-                    />
-                  )}
-                </div>
-              </div>
-            )}
+          <ComparisonForm
+            searchPlayer={searchPlayer}
+            profileNames={profileNames}
+            chooseProfile={chooseProfile}
+            secondProfile={secondProfile}
           />
         </div>
       </div>
 
-      <div className="profile-table__info-table">
-        <div className="profile-table__info-row">
-          <div className="profile-table__info-col">
-            Age:
-            &nbsp;
-            {age}
-          </div>
-          <div className="profile-table__info-col">
-            Age:
-            &nbsp;
-            { secondProfile.age || '-' }
-          </div>
-        </div>
-        <div className="profile-table__info-row">
-          <div className="profile-table__info-col">
-            Height:
-            {feet}
-            &nbsp;
-            ft
-            &nbsp;
-            {inches}
-            &nbsp;
-            in
-          </div>
-          <div className="profile-table__info-col">
-            Height:
-            &nbsp;
-            {secondProfile.feet ? `${secondProfile.feet} ft ${secondProfile.inches} in` : '-' }
-          </div>
-        </div>
-        <div className="profile-table__info-row">
-          <div className="profile-table__info-col">
-            Weight:
-            &nbsp;
-            {weight}
-            &nbsp;lbs
-          </div>
-          <div className="profile-table__info-col">
-            Weight:
-            {secondProfile.weight ? `${secondProfile.weight} lbs` : '-'}
-          </div>
-        </div>
-      </div>
+      <ComparsionTopTable
+        age={age}
+        feet={feet}
+        inches={inches}
+        weight={weight}
+        secondProfile={secondProfile}
+      />
+
       <div className="profile-table__values">
         <div
           className="profile-table__sorting"
@@ -144,41 +92,11 @@ const Comparison = ({
             display: 'flex', flexDirection: 'column', justifyContent: 'center',
           }}
         >
-          <button
-            type="button"
-            className="profile-table__sorting-btn"
-            onClick={openTopValues}
-            style={{ width: '250px' }}
-          >
-            Top Pitching Values -&nbsp;
-            <span className="js-value">
-              {!spinRate ? 'Velocity' : 'Spin Rate'}
-            </span>
-            {!topValuesOpen ?
-              (
-                <span className="profile-table__sorting-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9">
-                    <path
-                      fill="#48BBFF"
-                      fillRule="nonzero"
-                      d="M13.469.432a1.081 1.081 0 0 1 1.565 0 1.165 1.165 0 0 1 0 1.615L8.78 8.43a1.083 1.083 0 0 1-1.567 0L.962 2.047a1.168 1.168 0 0 1 0-1.615 1.081 1.081 0 0 1 1.564 0L8 5.667 13.469.432z"
-                    />
-                  </svg>
-                </span>
-              )
-              :
-              (
-                <span className="profile-table__sorting-icon" style={{ transform: 'rotate(180deg)' }}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9">
-                    <path
-                      fill="#48BBFF"
-                      fillRule="nonzero"
-                      d="M13.469.432a1.081 1.081 0 0 1 1.565 0 1.165 1.165 0 0 1 0 1.615L8.78 8.43a1.083 1.083 0 0 1-1.567 0L.962 2.047a1.168 1.168 0 0 1 0-1.615 1.081 1.081 0 0 1 1.564 0L8 5.667 13.469.432z"
-                    />
-                  </svg>
-                </span>
-              )}
-          </button>
+          <ComprasionSortButton
+            spinRate={spinRate}
+            openTopValues={openTopValues}
+            topValuesOpen={topValuesOpen}
+          />
           {topValuesOpen &&
             (
               <div
@@ -190,86 +108,12 @@ const Comparison = ({
               </div>
             )}
         </div>
-
-        <div className="profile-table__values-table">
-          <div className="profile-table__values-row">
-            <div className="profile-table__values-col profile-table__values-col--name">Fastball</div>
-            <div className="profile-table__values-col">
-              {topValues && topValues.length !== 0 ?
-                topValues.map((v) => (
-                  (v.pitch_type === 'Fastball' && spinRate) ? v.spin_rate :
-                    (v.pitch_type === 'Fastball' && pitchVel) ? v.velocity : ''
-                ))
-                : '-'}
-            </div>
-
-            <div className="profile-table__values-col">
-              {secondProfTopValues && secondProfTopValues.length !== 0 ?
-                secondProfTopValues.map((v) => (
-                  (v.pitch_type === 'Fastball' && spinRate) ? v.spin_rate :
-                    (v.pitch_type === 'Fastball' && pitchVel) ? v.velocity : ''
-                ))
-                : '-'}
-            </div>
-          </div>
-          <div className="profile-table__values-row">
-            <div className="profile-table__values-col profile-table__values-col--name">Curveball</div>
-            <div className="profile-table__values-col">
-              {topValues && topValues.length !== 0 ?
-                topValues.map((v) => (
-                  (v.pitch_type === 'Curveball' && spinRate) ? v.spin_rate :
-                    (v.pitch_type === 'Curveball' && pitchVel) ? v.velocity : ''
-                ))
-                : '-'}
-            </div>
-            <div className="profile-table__values-col">
-              {secondProfTopValues && secondProfTopValues.length !== 0 ?
-                secondProfTopValues.map((v) => (
-                  (v.pitch_type === 'Curveball' && spinRate) ? v.spin_rate :
-                    (v.pitch_type === 'Curveball' && pitchVel) ? v.velocity : ''
-                ))
-                : '-'}
-            </div>
-          </div>
-          <div className="profile-table__values-row">
-            <div className="profile-table__values-col profile-table__values-col--name">Changeup</div>
-            <div className="profile-table__values-col">
-              {topValues && topValues.length !== 0 ?
-                topValues.map((v) => (
-                  (v.pitch_type === 'Changeup' && spinRate) ? v.spin_rate :
-                    (v.pitch_type === 'Changeup' && pitchVel) ? v.velocity : ''
-                ))
-                : '-'}
-            </div>
-            <div className="profile-table__values-col">
-              {secondProfTopValues && secondProfTopValues.length !== 0 ?
-                secondProfTopValues.map((v) => (
-                  (v.pitch_type === 'Changeup' && spinRate) ? v.spin_rate :
-                    (v.pitch_type === 'Changeup' && pitchVel) ? v.velocity : ''
-                ))
-                : '-'}
-            </div>
-          </div>
-          <div className="profile-table__values-row">
-            <div className="profile-table__values-col profile-table__values-col--name">Slider</div>
-            <div className="profile-table__values-col">
-              {topValues && topValues.length !== 0 ?
-                topValues.map((v) => (
-                  (v.pitch_type === 'Slider' && spinRate) ? v.spin_rate :
-                    (v.pitch_type === 'Slider' && pitchVel) ? v.velocity : ''
-                ))
-                : '-'}
-            </div>
-            <div className="profile-table__values-col">
-              {secondProfTopValues && secondProfTopValues.length !==0 ? 
-                secondProfTopValues.map((v) => (
-                  (v.pitch_type === 'Slider' && spinRate) ? v.spin_rate :
-                    (v.pitch_type === 'Slider' && pitchVel) ? v.velocity : ''
-                ))
-                : '-'}
-            </div>
-          </div>
-        </div>
+        <ComparsionBottomTable
+          pitchVel={pitchVel}
+          topValues={topValues}
+          secondProfTopValues={secondProfTopValues}
+          spinRate={spinRate}
+        />
       </div>
     </div>
   </li>

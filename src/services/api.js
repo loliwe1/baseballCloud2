@@ -14,8 +14,12 @@ class Api {
       axios.post(`${this.apiUrl}/api/v1/auth`, data).then(this.setAuthorizationHeader)
     )
 
-    signIn = (data) => (
-      axios.post(`${this.apiUrl}/api/v1/auth/sign_in`, data).then(this.setAuthorizationHeader)
+    signIn = async (data) => (
+      axios.post(`${this.apiUrl}/api/v1/auth/sign_in`, data)
+        .then(this.setAuthorizationHeader)
+        .catch((e) => {
+          throw e.response.data.errors;
+        })
     )
 
     persisSignIn = ({ token, client, uid }) => (axios.get(`${this.apiUrl}/api/v1/auth/validate_token`, {

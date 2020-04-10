@@ -4,7 +4,7 @@ import { Form, Field } from 'react-final-form';
 import '../../css/style.css';
 import FilterInput from '../Form/FilterInput';
 import NewFilterSelect from '../Form/NewFilterSelect';
-import { position, favorite, networkShow } from '../../ussets/options';
+import { POSITION, FAVORITE, SHOW } from '../../assets/options';
 
 const NetworkFiltersForm = ({
   filterNetworkSchool,
@@ -41,7 +41,7 @@ const NetworkFiltersForm = ({
           component={NewFilterSelect}
           onChange={filterNetworkPosition}
           title="Position"
-          options={position}
+          options={POSITION}
         />
 
         <Field
@@ -59,7 +59,7 @@ const NetworkFiltersForm = ({
           onChange={filterNetworkFavorite}
           title="All"
           defTitle=""
-          options={favorite}
+          options={FAVORITE}
         />
 
         <Field
@@ -68,7 +68,7 @@ const NetworkFiltersForm = ({
           onChange={filterNetworkCount}
           title="10"
           defTitle="Show"
-          options={networkShow}
+          options={SHOW}
         />
 
       </div>

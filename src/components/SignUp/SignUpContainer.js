@@ -14,7 +14,16 @@ import {
 class SignUpContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { error: '' };
+    this.state = {
+      error: '',
+      role: 'player',
+    };
+  }
+
+  changeActiveTab = (active) => {
+    const { role } = this.state;
+    if (role === active) return;
+    this.setState({ role: active });
   }
 
   signUp = async (v) => {
@@ -42,9 +51,14 @@ class SignUpContainer extends React.Component {
   }
 
   render() {
-    const { error } = this.state;
+    const { error, role } = this.state;
     return (
-      <SignUp signUp={this.signUp} error={error} />
+      <SignUp
+        signUp={this.signUp}
+        error={error}
+        role={role}
+        changeActiveTab={this.changeActiveTab}
+      />
     );
   }
 }

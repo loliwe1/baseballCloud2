@@ -44,7 +44,7 @@ const LogIn = ({ signIn, error }) => (
               inputClassName="modal-signIn__input modal-input"
               iClassName="fa fa-lock input-lock"
             />
-            {error && <div style={{ color: 'red' }}>{error}</div>}
+            {error && <div style={{ color: '#F05F62' }}>{error}</div>}
             <button type="submit" className="modal-submit">Sign In</button>
           </form>
         )}

@@ -7,27 +7,16 @@ const override = css`
   display: block;
   margin: 0 auto;
 `;
-class Spinner extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-    };
-  }
 
-  render() {
-    const { loading } = this.state;
-    return (
-      <div className="sweet-loading">
-        <PulseLoader
-          css={override}
-          size={15}
-          color="#109AE4"
-          loading={loading}
-        />
-      </div>
-    );
-  }
-}
+const Spinner = () => (
+  <div className="sweet-loading">
+    <PulseLoader
+      css={override}
+      size={15}
+      color="#109AE4"
+      loading
+    />
+  </div>
+);
 
 export default Spinner;

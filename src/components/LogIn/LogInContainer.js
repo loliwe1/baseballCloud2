@@ -35,8 +35,7 @@ class LogInContainer extends React.Component {
       await getFacilities();
       history.push('/profile');
     } catch (e) {
-      this.setState({ error: e.message });
-      console.log(e);
+      this.setState({ error: e[0] });
     }
   }
 

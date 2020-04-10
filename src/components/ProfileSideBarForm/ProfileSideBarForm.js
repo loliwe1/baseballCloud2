@@ -20,8 +20,9 @@ import {
   requiredBats,
   requiredAge,
   required,
-} from '../../ussets/validations';
-
+} from '../../assets/validations';
+import { PROFILE_POSITION, PROFILE_SCHOOLS } from '../../assets/options';
+import ProfileSideBarInput from '../Form/ProfileSideBarInput/ProfileSideBarInput';
 
 const ProfileSideBarForm = ({
   saveSettings,
@@ -55,36 +56,18 @@ const ProfileSideBarForm = ({
               name="first_name"
               validate={requiredFirstName}
               defaultValue={first_name}
-            >
-              {({ input, meta }) => (
-                <div>
-                  <input
-                    className="userNameForm"
-                    {...input}
-                    type="text"
-                    placeholder="firstname*"
-                  />
-                  {meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
+              component={ProfileSideBarInput}
+              inputType="small"
+              placeholder="firstname*"
+            />
             <Field
               name="last_name"
               defaultValue={last_name}
               validate={requiredLastName}
-            >
-              {({ input, meta }) => (
-                <div>
-                  <input
-                    className="userNameForm"
-                    {...input}
-                    type="text"
-                    placeholder="lastname*"
-                  />
-                  {meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
+              component={ProfileSideBarInput}
+              placeholder="lastname*"
+              inputType="small"
+            />
           </div>
           <div className="profileSelectWrap">
             <div>
@@ -96,16 +79,11 @@ const ProfileSideBarForm = ({
                 {({ input, meta }) => (
                   <div>
                     <select {...input} defaultValue="catcher" className="profileSelect">
-                      <option value="-">-</option>
-                      <option value="catcher">Catcher</option>
-                      <option value="first_base">First Base</option>
-                      <option value="second_base">Second Base</option>
-                      <option value="shortstop">Shortstop</option>
-                      <option value="third_base">Third Base</option>
-                      <option value="outfield">Outfield</option>
-                      <option value="pitcher">pitcher</option>
+                      {PROFILE_POSITION.map((v, i) => (
+                        <option key={i} value={v.value}>{v.name}</option>
+                      ))}
                     </select>
-                    <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                    <div>{ meta.submitFailed && <span style={{ color: 'red' }}>{meta.error}</span> }</div>
                   </div>
                 )}
               </Field>
@@ -119,16 +97,11 @@ const ProfileSideBarForm = ({
                 {({ input, meta }) => (
                   <div>
                     <select {...input} defaultValue="catcher" className="profileSelect">
-                      <option value="-">-</option>
-                      <option value="catcher">Catcher</option>
-                      <option value="first_base">First Base</option>
-                      <option value="second_base">Second Base</option>
-                      <option value="shortstop">Shortstop</option>
-                      <option value="third_base">Third Base</option>
-                      <option value="outfield">Outfield</option>
-                      <option value="pitcher">pitcher</option>
+                      {PROFILE_POSITION.map((v, i) => (
+                        <option key={i} value={v.value}>{v.name}</option>
+                      ))}
                     </select>
-                    <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                    <div>{ meta.submitFailed && <span style={{ color: 'red' }}>{meta.error}</span> }</div>
                   </div>
                 )}
               </Field>
@@ -146,75 +119,34 @@ const ProfileSideBarForm = ({
                 name="age"
                 defaultValue={age}
                 validate={composeValidators(maxAge, requiredAge)}
-              >
-                {({ input, meta }) => (
-                  <div>
-                    <input
-                      className="profileInput"
-                      {...input}
-                      type="text"
-                      placeholder="age*"
-                    />
-                    {meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}
-                  </div>
-                )}
-              </Field>
+                component={ProfileSideBarInput}
+                placeholder="age*"
+              />
               <div className="profileFormWrap">
                 <Field
                   name="feet"
-                  placeholder="feet"
+                  placeholder="feet*"
                   defaultValue={feet}
                   validate={composeValidators(requiredFeet, minFeet, maxFeet, mustBeNumber)}
-                >
-                  {({ input, meta }) => (
-                    <div>
-                      <input
-                        className="userNameForm"
-                        {...input}
-                        type="text"
-                        placeholder="feet*"
-                      />
-                      {meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}
-                    </div>
-                  )}
-                </Field>
-
+                  component={ProfileSideBarInput}
+                  inputType="small"
+                />
                 <Field
-                  className="userNameForm"
-                  name="inches"
+                  name="inches*"
                   defaultValue={inches}
                   validate={composeValidators(validInches, mustBeNumber)}
-                >
-                  {({ input, meta }) => (
-                    <div>
-                      <input
-                        className="userNameForm"
-                        {...input}
-                        type="text"
-                        placeholder="inches*"
-                      />
-                      {meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}
-                    </div>
-                  )}
-                </Field>
+                  component={ProfileSideBarInput}
+                  inputType="small"
+                  placeholder="inches*"
+                />
               </div>
               <Field
                 name="weight"
                 defaultValue={weight}
                 validate={composeValidators(minWeight, maxWeight)}
-              >
-                {({ input, meta }) => (
-                  <div>
-                    <input
-                      className="profileInput"
-                      {...input}
-                      type="text"
-                      placeholder="weight*"
-                    />
-                    {meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}
-                  </div>
-                )}
-              </Field>
+                component={ProfileSideBarInput}
+                placeholder="weight*"
+              />
             </div>
             <div className="profileFormWrap">
               <Field
@@ -224,11 +156,11 @@ const ProfileSideBarForm = ({
               >
                 {({ input, meta }) => (
                   <div>
-                    <select {...input} className="userNameForm height">
+                    <select {...input} className="profileInput--small height">
                       <option value="l">L</option>
                       <option value="r">R</option>
                     </select>
-                    <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                    <div>{ meta.submitFailed && <span style={{ color: 'red' }}>{meta.error}</span> }</div>
                   </div>
                 )}
               </Field>
@@ -239,11 +171,11 @@ const ProfileSideBarForm = ({
               >
                 {({ input, meta }) => (
                   <div>
-                    <select {...input} defaultValue="l" className="userNameForm height">
+                    <select {...input} defaultValue="l" className="profileInput--small height">
                       <option value="l">L</option>
                       <option value="r">R</option>
                     </select>
-                    <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                    <div>{ meta.submitFailed && <span style={{ color: 'red' }}>{meta.error}</span> }</div>
                   </div>
                 )}
               </Field>
@@ -266,7 +198,7 @@ const ProfileSideBarForm = ({
                         <option key={i} value={school.id}>{school.name}</option>
                       ))}
                   </select>
-                  <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                  <div>{ meta.submitFailed && <span style={{ color: 'red' }}>{meta.error}</span> }</div>
                 </div>
               )}
             </Field>
@@ -279,13 +211,11 @@ const ProfileSideBarForm = ({
               {({ input, meta }) => (
                 <div>
                   <select {...input} className="profileSelect">
-                    <option value="sophomore">Sophomore</option>
-                    <option value="freshman">Freshman</option>
-                    <option value="junior">Junior</option>
-                    <option value="senior">Senior</option>
-                    <option value="none">None</option>
+                    {PROFILE_SCHOOLS.map((v, i) => (
+                      <option key={i} value={v.value}>{v.name}</option>
+                    ))}
                   </select>
-                  <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                  <div>{ meta.submitFailed && <span style={{ color: 'red' }}>{meta.error}</span> }</div>
                 </div>
               )}
             </Field>
@@ -302,7 +232,7 @@ const ProfileSideBarForm = ({
                         <option key={i} value={team.id}>{team.name}</option>
                       ))}
                   </select>
-                  <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                  <div>{ meta.submitFailed && <span style={{ color: 'red' }}>{meta.error}</span> }</div>
                 </div>
               )}
             </Field>
@@ -326,7 +256,7 @@ const ProfileSideBarForm = ({
                           <option key={i} value={facilit.id}>{facilit.u_name}</option>
                         ))}
                   </select>
-                  <div>{meta.error && meta.touched && <span style={{ color: 'red' }}>{meta.error}</span>}</div>
+                  <div>{ meta.submitFailed && <span style={{ color: 'red' }}>{meta.error}</span> }</div>
                 </div>
               )}
 
@@ -341,7 +271,7 @@ const ProfileSideBarForm = ({
             name="biography"
             component="textarea"
             placeholder="biography"
-            defaultValue="test123"
+            defaultValue="Describe yourself in a few words"
           />
           {submitError && <div>{submitError}</div>}
           <div className="profileFormWrap">
