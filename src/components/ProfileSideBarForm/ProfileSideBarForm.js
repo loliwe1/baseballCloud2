@@ -20,7 +20,7 @@ import {
   requiredBats,
   requiredAge,
   required,
-} from '../../validations';
+} from '../../ussets/validations';
 
 
 const ProfileSideBarForm = ({

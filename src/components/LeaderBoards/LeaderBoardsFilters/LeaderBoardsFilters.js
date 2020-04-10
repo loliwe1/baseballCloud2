@@ -4,7 +4,7 @@ import '../../../css/style.css';
 import { Form, Field } from 'react-final-form';
 import FilterInput from '../../Form/FilterInput';
 import NewFilterSelect from '../../Form/NewFilterSelect';
-import { leaderBoardPosition, leaderBoardDate, favorite } from '../../../variables/options';
+import { leaderBoardPosition, leaderBoardDate, favorite } from '../../../ussets/options';
 
 const LeaderBoardsFilters = ({
   filterDate,

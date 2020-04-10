@@ -4,7 +4,7 @@ import { Form, Field } from 'react-final-form';
 import '../../css/style.css';
 import FilterInput from '../Form/FilterInput';
 import NewFilterSelect from '../Form/NewFilterSelect';
-import { position, favorite, networkShow } from '../../variables/options';
+import { position, favorite, networkShow } from '../../ussets/options';
 
 const NetworkFiltersForm = ({
   filterNetworkSchool,

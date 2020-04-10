@@ -37,79 +37,79 @@ class ComparisonContainer extends React.Component {
     }
   }
 
-    searchPlayer= async (e) => {
-      this.setState({ profileList: true, fetching: true });
-      const { profile, searchPlayer } = this.props;
-      const { position } = profile;
-      const player_name = e.target.value;
+  searchPlayer= async (e) => {
+    this.setState({ profileList: true, fetching: true });
+    const { profile, searchPlayer } = this.props;
+    const { position } = profile;
+    const player_name = e.target.value;
 
-      await searchPlayer({ player_name, position });
-      this.setState({ fetching: false });
-    }
+    await searchPlayer({ player_name, position });
+    this.setState({ fetching: false });
+  }
 
-    showPitchVel = () => {
-      this.setState({
-        pitchVel: true,
-        spinRate: false,
-      });
-      this.openTopValues();
-    }
+  showPitchVel = () => {
+    this.setState({
+      pitchVel: true,
+      spinRate: false,
+    });
+    this.openTopValues();
+  }
 
-    showSpinRate = () => {
-      this.setState({
-        pitchVel: false,
-        spinRate: true,
-      });
-      this.openTopValues();
-    }
+  showSpinRate = () => {
+    this.setState({
+      pitchVel: false,
+      spinRate: true,
+    });
+    this.openTopValues();
+  }
 
-    render() {
-      const {
-        age,
-        first_name,
-        last_name,
-        feet,
-        inches,
-        weight,
-        profileNames,
-        topValues,
-        secondProfile,
-      } = this.props;
-      const {
-        profileList,
-        topValuesOpen,
-        pitchVel,
-        spinRate,
-        fetching,
-      } = this.state;
-      const { top_values } = topValues || [];
-      const { pitching_top_values } = secondProfile || [];
+  render() {
+    const {
+      age,
+      first_name,
+      last_name,
+      feet,
+      inches,
+      weight,
+      profileNames,
+      topValues,
+      secondProfile,
+    } = this.props;
+    const {
+      profileList,
+      topValuesOpen,
+      pitchVel,
+      spinRate,
+      fetching,
+    } = this.state;
+    const { top_values } = topValues || [];
+    const { pitching_top_values } = secondProfile || [];
 
-      return (
-        <Comparison
-          searchPlayer={this.searchPlayer}
-          profileNames={profileNames}
-          chooseProfile={this.chooseProfile}
-          age={age}
-          first_name={first_name}
-          last_name={last_name}
-          feet={feet}
-          inches={inches}
-          weight={weight}
-          secondProfile={secondProfile}
-          profileList={profileList}
-          openTopValues={this.openTopValues}
-          topValuesOpen={topValuesOpen}
-          pitchVel={pitchVel}
-          spinRate={spinRate}
-          topValues={top_values}
-          showSpinRate={this.showSpinRate}
-          showPitchVel={this.showPitchVel}
-          secondProfTopValues={pitching_top_values}
-          fetching={fetching}
-        />
-      );
-    }
+    return (
+      <Comparison
+        searchPlayer={this.searchPlayer}
+        profileNames={profileNames}
+        chooseProfile={this.chooseProfile}
+        age={age}
+        first_name={first_name}
+        last_name={last_name}
+        feet={feet}
+        inches={inches}
+        weight={weight}
+        secondProfile={secondProfile}
+        profileList={profileList}
+        openTopValues={this.openTopValues}
+        topValuesOpen={topValuesOpen}
+        pitchVel={pitchVel}
+        spinRate={spinRate}
+        topValues={top_values}
+        showSpinRate={this.showSpinRate}
+        showPitchVel={this.showPitchVel}
+        secondProfTopValues={pitching_top_values}
+        fetching={fetching}
+      />
+    );
+  }
 }
 
 ComparisonContainer.propTypes = {
