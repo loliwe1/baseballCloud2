@@ -7,8 +7,6 @@ class PaginationContainer extends React.Component {
     super(props);
     this.state = {
       active: 1,
-      arrow: 'network__pagination-link',
-      activeArrow: 'network__pagination-link network__pagination-link--disabled',
     };
   }
 
@@ -44,7 +42,7 @@ class PaginationContainer extends React.Component {
 
   render() {
     const { count, total } = this.props;
-    const { active, arrow, activeArrow } = this.state;
+    const { active } = this.state;
     const amountButtons = new Array(Math.ceil((total / count))).fill(1);
     return (
       <Pagination
@@ -53,8 +51,6 @@ class PaginationContainer extends React.Component {
         count={count}
         amountButtons={amountButtons}
         changeActiveButton={this.changeActiveButton}
-        arrow={arrow}
-        activeArrow={activeArrow}
         goToNextButton={this.goToNextButton}
         goToPrevButton={this.goToPrevButton}
       />

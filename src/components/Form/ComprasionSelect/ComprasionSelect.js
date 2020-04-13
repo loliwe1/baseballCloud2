@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import '../../../css/modal.css';
 
 const ComprasionSelect = ({
-  input,
   onChange,
   options,
   selectShowed,
@@ -12,8 +11,7 @@ const ComprasionSelect = ({
 
 }) => (
   <div className="network__filter" ref={setRef}>
-    {selectShowed &&
-      (
+    {selectShowed && (
       <select
         size={options.length}
         className="modalWrap"
@@ -23,12 +21,7 @@ const ComprasionSelect = ({
           top: '-20px',
           left: '-20px',
         }}
-        onChange={(e) => {
-          if (onChange) {
-            onChange(e);
-          }
-          input.onChange(e);
-        }}
+        onChange={onChange}
       >
         {options.map((opt, i) => (
           <option
@@ -41,12 +34,11 @@ const ComprasionSelect = ({
           </option>
         ))}
       </select>
-      )}
+    )}
   </div>
 );
 
 ComprasionSelect.propTypes = {
-  input: PropTypes.objectOf(PropTypes.any).isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   selectShowed: PropTypes.bool.isRequired,

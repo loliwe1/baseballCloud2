@@ -11,7 +11,11 @@ class Api {
     }
 
     signUp = (data) => (
-      axios.post(`${this.apiUrl}/api/v1/auth`, data).then(this.setAuthorizationHeader)
+      axios.post(`${this.apiUrl}/api/v1/auth`, data)
+        .then(this.setAuthorizationHeader)
+        .catch((e) => {
+          throw e.response.data.errors;
+        })
     )
 
     signIn = async (data) => (

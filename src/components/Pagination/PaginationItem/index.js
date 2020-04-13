@@ -1,3 +1,3 @@
-import PoginationItemContainer from './PaginationItemContainer';
+import PaginationItem from './PaginationItem';
 
-export default PoginationItemContainer;
+export default PaginationItem;

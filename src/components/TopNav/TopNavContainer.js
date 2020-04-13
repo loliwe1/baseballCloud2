@@ -12,47 +12,51 @@ class TopNavContainer extends React.Component {
     this.state = { modalIsOpen: false };
   }
 
-    openModal = () => {
-      this.setState((prevState) => ({ modalIsOpen: !prevState.modalIsOpen }));
-    }
+  openModal = () => {
+    this.setState((prevState) => ({ modalIsOpen: !prevState.modalIsOpen }));
+  }
 
-    getNetwork = () => {
-      const { getNetwork } = this.props;
-      getNetwork();
-    }
+  getNetwork = () => {
+    const { getNetwork } = this.props;
+    getNetwork();
+  }
 
-    getLeaderBoard = () => {
-      const { getLeaderBoard } = this.props;
-      getLeaderBoard();
-    }
+  getLeaderBoard = () => {
+    const { getLeaderBoard } = this.props;
+    getLeaderBoard();
+  }
 
-    render() {
-      const { modalIsOpen } = this.state;
-      const { name } = this.props;
-      return (
-        <TopNav
-          getNetwork={this.getNetwork}
-          getLeaderBoard={this.getLeaderBoard}
-          openModal={this.openModal}
-          modalIsOpen={modalIsOpen}
-          name={name}
-        />
-      );
-    }
+  render() {
+    const { modalIsOpen } = this.state;
+    const { name, user } = this.props;
+    return (
+      <TopNav
+        getNetwork={this.getNetwork}
+        getLeaderBoard={this.getLeaderBoard}
+        openModal={this.openModal}
+        modalIsOpen={modalIsOpen}
+        name={name}
+        user={user}
+      />
+    );
+  }
 }
 
 TopNavContainer.propTypes = {
   name: PropTypes.string,
   getNetwork: PropTypes.func.isRequired,
   getLeaderBoard: PropTypes.func.isRequired,
+  user: PropTypes.string,
 };
 
 TopNavContainer.defaultProps = {
   name: null,
+  user: null,
 };
 
 const mapStateToProps = (state) => ({
   name: state.user.name,
+  user: state.user.profId,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({

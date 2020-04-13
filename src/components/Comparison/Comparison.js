@@ -49,18 +49,17 @@ const Comparison = ({
           </a>
         </div>
         <div className="profile-table__select-player" style={{ position: 'relative' }}>
-          {fetching &&
-            (
-              <div style={{
-                marginRight: '10px',
-                position: 'absolute',
-                top: '10px',
-                left: '-60px',
-              }}
-              >
-                <Spinner style={{ minHeight: '0' }} />
-              </div>
-            )}
+          {fetching && (
+            <div style={{
+              marginRight: '10px',
+              position: 'absolute',
+              top: '10px',
+              left: '-60px',
+            }}
+            >
+              <Spinner style={{ minHeight: '0' }} />
+            </div>
+          )}
           <img
             src={userpick}
             width="40"
@@ -97,16 +96,15 @@ const Comparison = ({
             openTopValues={openTopValues}
             topValuesOpen={topValuesOpen}
           />
-          {topValuesOpen &&
-            (
-              <div
-                className="modalWrap"
-                style={{ margin: '7px 0px 0px 52px' }}
-              >
-                <button type="button" onClick={showPitchVel} className="modalWrap-link">Pitch Velocity</button>
-                <button type="button" onClick={showSpinRate} className="modalWrap-link">Spin Rate</button>
-              </div>
-            )}
+          {topValuesOpen && (
+            <div
+              className="modalWrap"
+              style={{ margin: '7px 0px 0px 52px' }}
+            >
+              <button type="button" onClick={showPitchVel} className="modalWrap-link">Pitch Velocity</button>
+              <button type="button" onClick={showSpinRate} className="modalWrap-link">Spin Rate</button>
+            </div>
+          )}
         </div>
         <ComparsionBottomTable
           pitchVel={pitchVel}

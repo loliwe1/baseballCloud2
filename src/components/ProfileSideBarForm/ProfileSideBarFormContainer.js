@@ -29,25 +29,21 @@ class ProfileSideBarFormContainer extends React.Component {
     }
 
     if (v.facilities) {
-      facil = v.facilities.map((id) => facilities.find(t => t.id === id));
+      facil = v.facilities.map((id) => facilities.find((t) => t.id === id));
       v.facilities = facil;
     }
 
     v.id = userId;
-    v.age = Number(v.age);
-    v.feet = Number(v.feet);
-    v.inches = Number(v.inches);
-    v.weight = Number(v.weight);
+
     updateProfile(v);
     closeForm();
   }
 
   render() {
     const {
-      school,
       closeForm,
       settings,
-      profile
+      profile,
     } = this.props;
     const { schools, teams, facilities } = settings;
     return (
@@ -58,7 +54,6 @@ class ProfileSideBarFormContainer extends React.Component {
         schools={schools}
         teams={teams}
         facilities={facilities}
-        school={school}
       />
     );
   }
@@ -67,6 +62,7 @@ class ProfileSideBarFormContainer extends React.Component {
 ProfileSideBarFormContainer.propTypes = {
   closeForm: PropTypes.func.isRequired,
   schools: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
+  profile: PropTypes.objectOf(PropTypes.any).isRequired,
   teams: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   facilities: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   first_name: PropTypes.string,
@@ -90,8 +86,7 @@ ProfileSideBarFormContainer.defaultProps = {
   weight: null,
   feet: null,
   inches: null,
-
-}
+};
 
 
 const mapStateToProps = (state) => ({

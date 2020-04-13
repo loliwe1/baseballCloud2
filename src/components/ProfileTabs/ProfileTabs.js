@@ -8,8 +8,6 @@ const ProfileTabs = ({
   openBatting,
   openComparison,
   activeTab,
-  button,
-  activeButton,
   showBattingList,
   battingListShowed,
   hideBattingList,
@@ -23,12 +21,11 @@ const ProfileTabs = ({
     <div
       onMouseEnter={showPitchingList}
       onMouseLeave={hidePitchingList}
-      className={activeTab === 'Pitching' ? activeButton : button}
+      className={`profile-table__toggle ${activeTab === 'Pitching' && 'profile-table__toggle--active'}`}
       style={{ position: 'relative' }}
     >
       Pitching
-      {pitchingListShowed &&
-      (
+      {pitchingListShowed && (
         <div className="modalWrap" style={{ top: 20, left: -5 }}>
           <button type="button" onClick={openPitching} className="modalWrap-link">Summary</button>
           <button type="button" onClick={openPitchingLog} className="modalWrap-link">Log</button>
@@ -38,13 +35,11 @@ const ProfileTabs = ({
     <div
       onMouseEnter={showBattingList}
       onMouseLeave={hideBattingList}
-      className={activeTab === 'Batting' ? activeButton : button}
+      className={`profile-table__toggle ${activeTab === 'Batting' && 'profile-table__toggle--active'}`}
       style={{ position: 'relative' }}
     >
       Batting
-      {battingListShowed &&
-
-      (
+      {battingListShowed && (
       <div className="modalWrap" style={{ top: 20, left: -5 }}>
         <button type="button" onClick={openBatting} className="modalWrap-link">Summary</button>
         <button type="button" onClick={openBattingLog} className="modalWrap-link">Log</button>
@@ -52,7 +47,11 @@ const ProfileTabs = ({
       )}
     </div>
 
-    <button type="button" onClick={openComparison} className={activeTab === 'Comparison' ? activeButton : button}>
+    <button
+      type="button"
+      onClick={openComparison}
+      className={`profile-table__toggle ${activeTab === 'Comparison' && 'profile-table__toggle--active'}`}
+    >
       Comparison
     </button>
   </div>
@@ -63,8 +62,6 @@ ProfileTabs.propTypes = {
   openBatting: PropTypes.func.isRequired,
   openComparison: PropTypes.func.isRequired,
   activeTab: PropTypes.string.isRequired,
-  button: PropTypes.string.isRequired,
-  activeButton: PropTypes.string.isRequired,
   showBattingList: PropTypes.func.isRequired,
   battingListShowed: PropTypes.bool.isRequired,
   hideBattingList: PropTypes.func.isRequired,

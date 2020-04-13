@@ -33,7 +33,12 @@ class ComprasionSelectContainer extends React.Component {
   }
 
   onChange = (e) => {
-    const { onChange } = this.props;
+    const { onChange, input } = this.props;
+    if (onChange) {
+      onChange(e);
+    }
+
+    input.onChange(e);
     onChange(e);
   }
 

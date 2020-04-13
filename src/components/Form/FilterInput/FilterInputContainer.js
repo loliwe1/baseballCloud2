@@ -16,18 +16,26 @@ class FilterInputContainer extends React.Component {
     this.setState({ focused: false });
   }
 
+  onChange = (e) => {
+    const { onChange, input } = this.props;
+    if (onChange) {
+      onChange(e);
+    }
+    input.onChange(e);
+  }
+
+
   render() {
     const {
       input,
       placeholder,
-      onChange,
       inputType,
     } = this.props;
     const { focused } = this.state;
     return (
       <FilterInput
         input={input}
-        onChange={onChange}
+        onChange={this.onChange}
         placeholder={placeholder}
         focusInput={this.focusInput}
         focused={focused}

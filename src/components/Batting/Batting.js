@@ -33,8 +33,8 @@ const Batting = ({ topValues, avgValues }) => (
           <div>Launch Angle</div>
           <div>Exit Velocity</div>
         </div>
-        {topValues && topValues.length !== 0
-          ? topValues.map((v, i) => (
+        {topValues && topValues.length !== 0 ? (
+          topValues.map((v, i) => (
             <BattingItem
               key={i}
               pitchType={v.pitch_type}
@@ -43,8 +43,9 @@ const Batting = ({ topValues, avgValues }) => (
               exitVelocity={v.exit_velocity}
             />
           ))
-          :
-          <NoInfo />}
+        ) : (
+          <NoInfo />
+        )}
       </div>
     </div>
     <div>
@@ -74,8 +75,8 @@ const Batting = ({ topValues, avgValues }) => (
           <div>Launch Angle</div>
           <div>Exit Velocity</div>
         </div>
-        {avgValues && avgValues.length !== 0
-          ? avgValues.map((v, i) => (
+        {avgValues && avgValues.length !== 0 ? (
+          avgValues.map((v, i) => (
             <BattingItem
               key={i}
               pitchType={v.pitch_type}
@@ -84,8 +85,9 @@ const Batting = ({ topValues, avgValues }) => (
               exitVelocity={v.exit_velocity}
             />
           ))
-          :
-          <NoInfo />}
+        ) : (
+          <NoInfo />
+        )}
       </div>
     </div>
   </li>

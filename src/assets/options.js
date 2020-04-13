@@ -44,3 +44,25 @@ export const DATE = [
   { value: 'last_week', name: 'Last Week' },
   { value: 'last_month', name: 'Last Month' },
 ];
+
+export const HAND = [
+  { value: 'l', name: 'L' },
+  { value: 'r', name: 'R' },
+];
+
+export const FACILITIES = [
+  {
+    id: '32',
+    email: 'facility@example.com',
+    name: 'Example',
+  },
+];
+
+export const PITCHING = [
+  { value: '', name: 'None' },
+  { value: 'Four Seam Fastball', name: 'Four Seam Fastball' },
+  { value: 'Two Seam Fastball', name: 'Two Seam Fastball' },
+  { value: 'Curveball', name: 'Curveball' },
+  { value: 'Changeup', name: 'Changeup' },
+  { value: 'Slider', name: 'Slider' },
+];

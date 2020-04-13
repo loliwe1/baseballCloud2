@@ -31,18 +31,14 @@ const LogIn = ({ signIn, error }) => (
               component={DefaultInput}
               type="email"
               placeholder="Email"
-              divClassName="modal-signIn__input-wrap input-wrap"
-              inputClassName="modal-signIn__input modal-input"
-              iClassName="fa fa-user input-user"
+              iconType="user"
             />
             <Field
               name="password"
               component={DefaultInput}
               type="password"
               placeholder="Password"
-              divClassName="modal-signIn__input-wrap input-wrap"
-              inputClassName="modal-signIn__input modal-input"
-              iClassName="fa fa-lock input-lock"
+              iconType="lock"
             />
             {error && <div style={{ color: '#F05F62' }}>{error}</div>}
             <button type="submit" className="modal-submit">Sign In</button>

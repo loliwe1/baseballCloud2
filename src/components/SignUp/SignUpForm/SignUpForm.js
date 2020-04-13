@@ -2,8 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
 import DefaultInput from '../../Form/DefaultInput/DefaultInput';
+import {
+  required,
+  minPassLength,
+  composeValidators,
+} from '../../../assets/validations';
 
-const SignUpForm = ({ signUp, error }) => (
+
+const SignUpForm = ({ signUp, error, clearError }) => (
   <Form
     onSubmit={signUp}
     render={({ handleSubmit }) => (
@@ -11,30 +17,27 @@ const SignUpForm = ({ signUp, error }) => (
         <Field
           name="email"
           component={DefaultInput}
+          validate={required}
+          onChange={clearError}
           type="email"
           placeholder="Email"
-          divClassName="modal-signUp__input-wrap input-wrap"
-          inputClassName="modal-signIn__input modal-input"
-          iClassName="fa fa-user input-user"
+          iconType="user"
         />
-        {error && <div style={{ color: '#F05F62' }}>{error}</div>}
+        {error && <div style={{ color: '#F05F62', marginBottom: '12px', fontSize: '16px' }}>{error}</div>}
         <Field
           name="password"
           component={DefaultInput}
+          validate={composeValidators(required, minPassLength)}
           type="password"
           placeholder="Password"
-          divClassName="modal-signUp__input-wrap input-wrap"
-          inputClassName="modal-signIn__input modal-input"
-          iClassName="fa fa-lock input-lock"
+          iconType="lock"
         />
         <Field
           name="password_confirmation"
           component={DefaultInput}
           type="password"
           placeholder="Confirm Password"
-          divClassName="modal-signUp__input-wrap input-wrap"
-          inputClassName="modal-signIn__input modal-input"
-          iClassName="fa fa-check input-check"
+          iconType="check"
         />
         <p className="modal-signUp__desc">
           By clicking Sign Up, you agree to our&nbsp;
@@ -52,6 +55,7 @@ const SignUpForm = ({ signUp, error }) => (
 SignUpForm.propTypes = {
   signUp: PropTypes.func.isRequired,
   error: PropTypes.string.isRequired,
+  clearError: PropTypes.func.isRequired,
 };
 
 export default SignUpForm;

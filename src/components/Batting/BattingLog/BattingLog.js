@@ -75,27 +75,29 @@ const BattingLog = ({
           <div>Pitch Type</div>
           <div>Pitch Call</div>
         </div>
-        { fetching ?
+        { fetching ? (
           <div style={{ height: '300px' }}><Spinner /></div>
-          : !fetching && battingLog && battingLog.length !== 0
-            ? battingLog.map((v, i) => (
-              <BattingLogItem
-                key={i}
-                date={v.date}
-                pitcherName={v.pitcher_name}
-                pitcherHandedness={v.pitcher_handedness}
-                pitchType={v.pitch_type}
-                pitchCall={v.pitch_call}
-                exitVelocity={v.exit_velocity}
-                launchAngle={v.launch_angle}
-                direction={v.direction}
-                distance={v.distance}
-                hitSpinRate={v.hit_spin_rate}
-                hangTime={v.hang_time}
-                pitcherDatraksId={v.pitcher_datraks_id}
-              />
-            ))
-            : <NoInfo />}
+        ) : !fetching && battingLog && battingLog.length !== 0 ? (
+          battingLog.map((v, i) => (
+            <BattingLogItem
+              key={i}
+              date={v.date}
+              pitcherName={v.pitcher_name}
+              pitcherHandedness={v.pitcher_handedness}
+              pitchType={v.pitch_type}
+              pitchCall={v.pitch_call}
+              exitVelocity={v.exit_velocity}
+              launchAngle={v.launch_angle}
+              direction={v.direction}
+              distance={v.distance}
+              hitSpinRate={v.hit_spin_rate}
+              hangTime={v.hang_time}
+              pitcherDatraksId={v.pitcher_datraks_id}
+            />
+          ))
+        ) : (
+          <NoInfo />
+        ) }
       </div>
     </div>
     <Pagination count={count} total={total} getOffset={getOffset} />

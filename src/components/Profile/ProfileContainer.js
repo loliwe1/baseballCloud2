@@ -34,71 +34,71 @@ class ProfileContainer extends React.Component {
     }
   }
 
-    openBatting = () => {
-      this.setState({ activeTab: 'Batting' });
-    }
+  openBatting = () => {
+    this.setState({ activeTab: 'Batting' });
+  }
 
 
-    openPitching = () => {
-      this.setState({ activeTab: 'Pitching' });
-    }
+  openPitching = () => {
+    this.setState({ activeTab: 'Pitching' });
+  }
 
-    openPitchingLog = () => {
-      this.setState({ activeTab: 'PitchingLog' });
-    }
+  openPitchingLog = () => {
+    this.setState({ activeTab: 'PitchingLog' });
+  }
 
-    openComparison = () => {
-      this.setState({ activeTab: 'Comparison' });
-    }
+  openComparison = () => {
+    this.setState({ activeTab: 'Comparison' });
+  }
 
-    openBattingLog = () => {
-      this.setState({ activeTab: 'BattingLog' });
-    }
+  openBattingLog = () => {
+    this.setState({ activeTab: 'BattingLog' });
+  }
 
-    openForm = () => {
-      const { getSchools, getTeams, getFacilities } = this.props;
-      getSchools();
-      getTeams();
-      getFacilities();
-      this.setState({ openedForm: true });
-    }
+  openForm = () => {
+    const { getSchools, getTeams, getFacilities } = this.props;
+    getSchools();
+    getTeams();
+    getFacilities();
+    this.setState({ openedForm: true });
+  }
 
-    closeForm = () => {
-      this.setState({ openedForm: false });
-    }
+  closeForm = () => {
+    this.setState({ openedForm: false });
+  }
 
-    changeFavorite = () => {
-      const { changeFavorite, profile } = this.props;
-      const { id, favorite } = profile.profile;
-      changeFavorite({ id, favorite });
-    }
+  changeFavorite = () => {
+    const { changeFavorite, profile } = this.props;
+    const { id, favorite } = profile.profile;
+    changeFavorite({ id, favorite });
+  }
 
 
-    render() {
-      const { profile } = this.props;
-      const { pitchSumm, profEvents } = profile;
-      const { activeName, profId } = this.props;
-      const { activeTab, openedForm } = this.state;
-      return (
-        <Profile
-          {...profile.profile}
-          pitchingSum={pitchSumm}
-          profEvents={profEvents}
-          openComparison={this.openComparison}
-          openBatting={this.openBatting}
-          openPitching={this.openPitching}
-          openBattingLog={this.openBattingLog}
-          openPitchingLog={this.openPitchingLog}
-          openedForm={openedForm}
-          openForm={this.openForm}
-          closeForm={this.closeForm}
-          profId={profId}
-          activeName={activeName}
-          changeFavorite={this.changeFavorite}
-          activeTab={activeTab}
-        />
-      );
-    }
+  render() {
+    const { profile } = this.props;
+    const { pitchSumm, profEvents } = profile;
+    const { activeName, profId } = this.props;
+    const { activeTab, openedForm } = this.state;
+    return (
+      <Profile
+        {...profile.profile}
+        pitchingSum={pitchSumm}
+        profEvents={profEvents}
+        openComparison={this.openComparison}
+        openBatting={this.openBatting}
+        openPitching={this.openPitching}
+        openBattingLog={this.openBattingLog}
+        openPitchingLog={this.openPitchingLog}
+        openedForm={openedForm}
+        openForm={this.openForm}
+        closeForm={this.closeForm}
+        profId={profId}
+        activeName={activeName}
+        changeFavorite={this.changeFavorite}
+        activeTab={activeTab}
+      />
+    );
+  }
 }
 
 ProfileContainer.propTypes = {

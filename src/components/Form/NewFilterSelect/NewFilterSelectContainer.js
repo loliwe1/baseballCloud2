@@ -37,46 +37,50 @@ class NewFilterSelectContainer extends React.Component {
     this.setState((prevState) => ({ selectShowed: !prevState.selectShowed }));
   }
 
-    showSelect = () => {
-      this.setState((prevState) => ({ selectShowed: !prevState.selectShowed }));
-    }
+  showSelect = () => {
+    this.setState((prevState) => ({ selectShowed: !prevState.selectShowed }));
+  }
 
-    handleClick = (e) => {
-      if (!this.node.contains(e.target)) {
-        this.setState({ selectShowed: false });
-      }
+  handleClick = (e) => {
+    if (!this.node.contains(e.target)) {
+      this.setState({ selectShowed: false });
     }
+  }
 
-    setRef = (element) => {
-      this.node = element;
-    }
+  setRef = (element) => {
+    this.node = element;
+  }
 
-    onChange = (e) => {
-      const { onChange } = this.props;
+  onChange = (e) => {
+    const { onChange, input } = this.props;
+    if (onChange) {
       onChange(e);
     }
+    input.onChange(e);
+  }
 
-    render() {
-      const {
-        input,
-        options,
-        defTitle,
-      } = this.props;
-      const { selectShowed, title } = this.state;
-      return (
-        <NewFilterSelect
-          input={input}
-          onChange={this.onChange}
-          options={options}
-          title={title}
-          showSelect={this.showSelect}
-          selectShowed={selectShowed}
-          setRef={this.setRef}
-          changeTitle={this.changeTitle}
-          defTitle={defTitle}
-        />
-      );
-    }
+
+  render() {
+    const {
+      input,
+      options,
+      defTitle,
+    } = this.props;
+    const { selectShowed, title } = this.state;
+    return (
+      <NewFilterSelect
+        input={input}
+        onChange={this.onChange}
+        options={options}
+        title={title}
+        showSelect={this.showSelect}
+        selectShowed={selectShowed}
+        setRef={this.setRef}
+        changeTitle={this.changeTitle}
+        defTitle={defTitle}
+      />
+    );
+  }
 }
 
 NewFilterSelectContainer.propTypes = {

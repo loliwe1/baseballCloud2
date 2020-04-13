@@ -17,6 +17,7 @@ const SignUp = ({
   error,
   role,
   changeActiveTab,
+  clearError,
 }) => (
   <main className="login-page">
     <div className="modal-signUp">
@@ -32,7 +33,7 @@ const SignUp = ({
 
       </header>
 
-      <SignUpForm signUp={signUp} error={error} />
+      <SignUpForm signUp={signUp} error={error} clearError={clearError} />
 
       <p className="modal-signUp__singIn-desc">
         Already registered?
@@ -47,10 +48,12 @@ SignUp.propTypes = {
   error: PropTypes.string,
   role: PropTypes.string.isRequired,
   changeActiveTab: PropTypes.func.isRequired,
+  clearError: PropTypes.func,
 };
 
 SignUp.defaultProps = {
   error: '',
+  clearError: () => {},
 };
 
 export default SignUp;

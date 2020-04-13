@@ -26,6 +26,10 @@ class SignUpContainer extends React.Component {
     this.setState({ role: active });
   }
 
+  clearError = () => {
+    this.setState({ error: '' });
+  }
+
   signUp = async (v) => {
     const {
       signUp,
@@ -45,8 +49,7 @@ class SignUpContainer extends React.Component {
       await getFacilities();
       history.push('/profile');
     } catch (e) {
-      this.setState({ error: e.message });
-      console.log(e);
+      this.setState({ error: e.full_messages[0] });
     }
   }
 
@@ -58,6 +61,7 @@ class SignUpContainer extends React.Component {
         error={error}
         role={role}
         changeActiveTab={this.changeActiveTab}
+        clearError={this.clearError}
       />
     );
   }

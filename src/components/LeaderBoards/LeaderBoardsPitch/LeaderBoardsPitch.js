@@ -42,8 +42,7 @@ const LeaderBoardsPitch = ({
     </div>
 
     {fetching
-      ?
-      (
+      ? (
         <div style={{
           height: '300px',
           display: 'flex',
@@ -53,15 +52,11 @@ const LeaderBoardsPitch = ({
         >
           <Spinner />
         </div>
-      )
-
-      : (leaderBoard && leaderBoard.length === 0)
-        ?
-          <NoInfo />
-        :
-        (
-          <div className="leaderboards__table-items">
-            { leaderBoard &&
+      ) : (leaderBoard && leaderBoard.length === 0) ? (
+        <NoInfo />
+      ) : (
+        <div className="leaderboards__table-items">
+          { leaderBoard &&
             leaderBoard.map((leader, index) => (
               <LeaderContainer
                 batter_name={leader.pitcher_name}
@@ -79,8 +74,8 @@ const LeaderBoardsPitch = ({
                 number={index + 1}
               />
             ))}
-          </div>
-        )}
+        </div>
+      )}
   </div>
 );
 

@@ -30,7 +30,7 @@ const Network = ({
     </header>
 
     <Form
-      onSubmit={() => console.log(1)}
+      onSubmit={() => {}}
       render={() => (
         <Field
           name="table-search"
@@ -64,8 +64,7 @@ const Network = ({
           </div>
         </div>
         {fetching
-          ?
-          (
+          ? (
             <div style={{
               height: '300px',
               display: 'flex',
@@ -75,14 +74,11 @@ const Network = ({
             >
               <Spinner />
             </div>
-          )
-          : (network.profiles && network.profiles.length === 0)
-            ?
-              <NoInfo />
-            :
-            (
-              <div className="network__table-content">
-                {network &&
+          ) : (network.profiles && network.profiles.length === 0) ? (
+            <NoInfo />
+          ) : (
+            <div className="network__table-content">
+              {network &&
                   network.profiles.map((player) => (
                     <PlayerContainer
                       key={player.id}
@@ -98,11 +94,10 @@ const Network = ({
                       input={input}
                     />
                   ))}
-              </div>
-            )}
+            </div>
+          )}
       </div>
-      {network.total_count &&
-      (
+      {network.total_count && (
         <Pagination
           getOffset={getOffset}
           total={network.total_count}

@@ -43,8 +43,7 @@ const LeaderBoardsBatt = ({
     </div>
 
     {fetching
-      ?
-      (
+      ? (
         <div style={{
           height: '300px',
           display: 'flex',
@@ -54,14 +53,11 @@ const LeaderBoardsBatt = ({
         >
           <Spinner />
         </div>
-      )
-      : (leaderBoard && leaderBoard.length === 0)
-        ?
-          <NoInfo />
-        :
-        (
-          <div className="leaderboards__table-items">
-            { leaderBoard &&
+      ) : (leaderBoard && leaderBoard.length === 0) ? (
+        <NoInfo />
+      ) : (
+        <div className="leaderboards__table-items">
+          { leaderBoard &&
             leaderBoard.map((leader, index) => (
               <LeaderContainer
                 batter_name={leader.batter_name}
@@ -79,8 +75,8 @@ const LeaderBoardsBatt = ({
                 number={index + 1}
               />
             ))}
-          </div>
-        )}
+        </div>
+      )}
   </div>
 );
 

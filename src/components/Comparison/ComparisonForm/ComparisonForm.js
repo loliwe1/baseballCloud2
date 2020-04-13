@@ -21,8 +21,7 @@ const ComparisonForm = ({
           defaultValue={secondProfile.first_name ? `${secondProfile.first_name} ${secondProfile.last_name}` : ''}
         />
         <div>
-          {profileNames && profileNames.length !== 0 &&
-          (
+          {profileNames && profileNames.length !== 0 && (
             <Field
               name="prof"
               component={ComprasionSelect}

@@ -5,15 +5,13 @@ import '../../../css/style.css';
 const PoginationItem = ({
   number,
   active,
-  button,
-  activeButton,
   changeActiveButton,
 }) => (
   <li className="network__pagination-item">
     <a
       role="button"
       href="#"
-      className={active === number ? activeButton : button}
+      className={`network__pagination-link ${active === number && 'network__pagination-link--active'}`}
       onClick={() => changeActiveButton(number)}
     >
       {number}
@@ -24,8 +22,6 @@ const PoginationItem = ({
 PoginationItem.propTypes = {
   number: PropTypes.number.isRequired,
   active: PropTypes.number.isRequired,
-  button: PropTypes.string.isRequired,
-  activeButton: PropTypes.string.isRequired,
   changeActiveButton: PropTypes.func.isRequired,
 };
 

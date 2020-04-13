@@ -34,59 +34,52 @@ const LeaderBoards = ({
           onSubmit={() => {}}
           render={() => (
             <div className="leaderboards__sort">
-              {!pitching ?
-                (
-                  <Field
-                    name="batting"
-                    component={NewFilterSelect}
-                    onChange={filterVelocity}
-                    title={title}
-                    options={
-                  [
-                    { value: 'exit_velocity', name: 'Exit Velocity' },
-                    { value: 'carry_distance', name: 'Carry Distance' },
-                  ]
+              {!pitching ? (
+                <Field
+                  name="batting"
+                  component={NewFilterSelect}
+                  onChange={filterVelocity}
+                  title={title}
+                  options={
+                    [
+                      { value: 'exit_velocity', name: 'Exit Velocity' },
+                      { value: 'carry_distance', name: 'Carry Distance' },
+                    ]
                 }
-                  />
-                )
-                :
-                (
-                  <Field
-                    name="pitching"
-                    component={NewFilterSelect}
-                    onChange={filterVelocity}
-                    title={title}
-                    options={
-                  [
-                    { value: 'pitch_velocity', name: 'Pitch Velocity' },
-                    { value: 'spin_rate', name: 'Spin Rate' },
-                  ]
+                />
+              ) : (
+                <Field
+                  name="pitching"
+                  component={NewFilterSelect}
+                  onChange={filterVelocity}
+                  title={title}
+                  options={
+                    [
+                      { value: 'pitch_velocity', name: 'Pitch Velocity' },
+                      { value: 'spin_rate', name: 'Spin Rate' },
+                    ]
                 }
-                  />
-                )}
+                />
+              )}
             </div>
           )}
         />
       </div>
-      {!pitching
-        ?
-        (
-          <LeaderBoardsBatt
-            leaderBoard={leaderBoard}
-            fetching={fetching}
-            filter={filter}
-            input={input}
-          />
-        )
-        :
-        (
-          <LeaderBoardsPitch
-            leaderBoard={leaderBoard}
-            fetching={fetching}
-            filter={filter}
-            input={input}
-          />
-        )}
+      {!pitching ? (
+        <LeaderBoardsBatt
+          leaderBoard={leaderBoard}
+          fetching={fetching}
+          filter={filter}
+          input={input}
+        />
+      ) : (
+        <LeaderBoardsPitch
+          leaderBoard={leaderBoard}
+          fetching={fetching}
+          filter={filter}
+          input={input}
+        />
+      )}
     </div>
   </main>
 );

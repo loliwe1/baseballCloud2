@@ -14,8 +14,6 @@ class ProfileTabsContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeButton: 'profile-table__toggle  profile-table__toggle--active',
-      button: 'profile-table__toggle',
       activeTab: 'Comparison',
       battingListShowed: false,
       pitchingListShowed: false,

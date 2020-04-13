@@ -44,11 +44,7 @@ const Player = ({
     </div>
     <div className="network__table-col network__table-col--favorite">
       <button type="button" className="network__table-like" onClick={changeFavorite}>
-        {!favorite
-          ?
-            <i className="network__blue-icon fa fa-heart-o" aria-hidden="true" />
-          :
-            <i className="network__blue-icon fa fa-heart" aria-hidden="true" />}
+        <i className={`network__blue-icon fa fa-heart${!favorite ? '-o' : ''}`} aria-hidden="true" />
       </button>
     </div>
   </div>
