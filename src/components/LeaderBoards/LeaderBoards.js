@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../css/style.css';
 import { Form, Field } from 'react-final-form';
 import LeaderBoardsBatt from './LeaderBoardsBatt/LeaderBoardsBatt';
 import LeaderBoardsPitch from './LeaderBoardsPitch/LeaderBoardsPitch';
 import LeaderBoardsTabs from './LeaderBoardsTabs';
 import LeaderBoardsFilters from './LeaderBoardsFilters';
 import NewFilterSelect from '../Form/NewFilterSelect';
-import { BATTING_FILTR, PITCHING_FILTR } from '../../assets/options';
+import { BATTING_FILTR, PITCHING_FILTR } from '../../utils/constants';
 
 const LeaderBoards = ({
   leaderBoard,

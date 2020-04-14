@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../css/style.css';
-import '../../css/profile.css';
-import userpick from '../../img/userpic.png';
+import '../../assets/css/profile.css';
+import userpick from '../../assets/img/userpic.png';
 import Comparison from '../Comparison';
 import Pitching from '../Pitching';
 import Batting from '../Batting';

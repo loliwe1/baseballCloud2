@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
-import '../../css/style.css';
 import PlayerContainer from '../Player';
 import NetworkFiltersForm from '../NetworkFiltersForm';
 import FilterInputSearchName from '../Form/FilterInputSearchName/FilterInputSearchName';

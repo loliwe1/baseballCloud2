@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../css/style.css';
 import BattingItem from './BattingItem/BattingItem';
 import NoInfo from '../NoInfo/NoInfo';
 

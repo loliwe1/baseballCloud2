@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../css/style.css';
 import PitchingItemTop from '../PitchingItem/PitchingItemTop';
 import PitchingItemAvg from '../PitchingItem/PitchingItemAvg';
 import NoInfo from '../NoInfo/NoInfo';

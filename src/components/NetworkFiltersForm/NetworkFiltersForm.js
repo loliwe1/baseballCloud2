@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
-import '../../css/style.css';
 import FilterInput from '../Form/FilterInput';
 import NewFilterSelect from '../Form/NewFilterSelect';
-import { POSITION, FAVORITE, SHOW } from '../../assets/options';
+import { POSITION, FAVORITE, SHOW } from '../../utils/constants';
 
 const NetworkFiltersForm = ({
   filterNetworkSchool,

@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../css/style.css';
-import '../../css/modal.css';
-import userpick from '../../img/userpic.png';
+import '../../assets/css/modal.css';
+import userpick from '../../assets/img/userpic.png';
 import Spinner from '../Spinner/Spinner';
 import ComparisonForm from './ComparisonForm/ComparisonForm';
 import ComparsionTopTable from './ComparsionTopTable/ComparsionTopTable';

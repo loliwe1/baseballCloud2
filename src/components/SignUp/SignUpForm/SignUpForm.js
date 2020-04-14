@@ -7,7 +7,7 @@ import {
   minPassLength,
   composeValidators,
   confirmPass,
-} from '../../../assets/validations';
+} from '../../../utils/validations';
 
 
 const SignUpForm = ({ signUp, error, clearError }) => (

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
 import FilterBattingLogInput from '../../../Form/FilterBattingLogInput/FilterBattingLogInput';
 import NewFilterSelect from '../../../Form/NewFilterSelect';
-import { PITCHING } from '../../../../assets/options';
+import { PITCHING } from '../../../../utils/constants';
 
 const PitchingLogForm = ({ filterName, filterPitchType }) => (
   <Form

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PoginationItem from './PaginationItem';
-import '../../css/style.css';
 import PaginationArrow from './PaginationArrow/PaginationArrow';
 
 const Pagination = ({

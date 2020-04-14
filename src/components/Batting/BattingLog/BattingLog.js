@@ -1,6 +1,4 @@
 import React from 'react';
-import '../../../css/style.css';
-import '../../../css/modal.css';
 import { Form, Field } from 'react-final-form';
 import PropTypes from 'prop-types';
 import BattingLogItem from '../BattingLogItem';
@@ -9,7 +7,7 @@ import NewFilterSelect from '../../Form/NewFilterSelect';
 import Pagination from '../../Pagination';
 import NoInfo from '../../NoInfo/NoInfo';
 import Spinner from '../../Spinner/Spinner';
-import {BATTING_LOG} from '../../../assets/options';
+import { BATTING_LOG } from '../../../utils/constants';
 
 const BattingLog = ({
   battingLog,

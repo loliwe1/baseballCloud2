@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../../css/style.css';
 
 const LeaderBoardsTabs = ({ openBatting, openPitch, activeTab }) => (
   <div className="leaderboards__tabs">

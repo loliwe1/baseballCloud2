@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../css/style.css';
 
 const PitchingItemAvg = ({ pitch_type, velocity, spin_rate }) => (
   <div className="profile-table__values-row">

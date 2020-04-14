@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../css/style.css';
-import '../../css/profileForm.css';
+import '../../assets/css/profile.css';
 import { Form, Field } from 'react-final-form';
-import userpick from '../../img/userpic.png';
+import userpick from '../../assets/img/userpic.png';
 import {
   requiredFirstName,
   requiredLastName,
@@ -21,15 +20,15 @@ import {
   requiredAge,
   required,
   requiredInches,
-} from '../../assets/validations';
+} from '../../utils/validations';
 import {
   PROFILE_POSITION,
   PROFILE_SCHOOLS,
   HAND,
   FACILITIES,
-} from '../../assets/options';
+  numberField,
+} from '../../utils/constants';
 import ProfileSideBarInput from '../Form/ProfileSideBarInput/ProfileSideBarInput';
-import { numberField } from '../../assets/utils';
 import ProfileSideBarSelect from '../Form/ProfileSideBarSelect/ProfileSideBarSelect';
 
 const ProfileSideBarForm = ({

@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../../css/style.css';
 import { Form, Field } from 'react-final-form';
 import FilterInput from '../../Form/FilterInput';
 import NewFilterSelect from '../../Form/NewFilterSelect';
-import { POSITION, DATE, FAVORITE } from '../../../assets/options';
+import { POSITION, DATE, FAVORITE } from '../../../utils/constants';
 
 const LeaderBoardsFilters = ({
   filterDate,

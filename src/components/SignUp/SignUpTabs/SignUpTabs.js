@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SignUpTabsItem from '../SignUpTabsItem';
-import { PLAYER_NAME, SCOUT_NAME } from '../../../assets/info';
+import { PLAYER_NAME, SCOUT_NAME } from '../../../utils/constants';
 
 const SignUpTabs = ({ changeActiveTab, role }) => (
   <div className="modal-signUp__toggle-block">

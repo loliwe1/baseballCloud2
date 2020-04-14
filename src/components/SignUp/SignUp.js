@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../css/style.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SignUpTabs from './SignUpTabs';
@@ -9,7 +8,7 @@ import {
   PLAYER_INFO,
   SCOUT_TITLE,
   SCOUT_INFO,
-} from '../../assets/info';
+} from '../../utils/constants';
 import SignUpForm from './SignUpForm/SignUpForm';
 
 const SignUp = ({

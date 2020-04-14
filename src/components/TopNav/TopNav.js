@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../css/style.css';
 import { NavLink } from 'react-router-dom';
 import TopNavLogo from './TopNavLogo';
 import TopNavCurrentProfile from './TopNavCurrentProfile';

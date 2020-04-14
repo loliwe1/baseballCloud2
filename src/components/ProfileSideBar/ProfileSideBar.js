@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../css/style.css';
-import userpick from '../../img/userpic.png';
+import userpick from '../../assets/img/userpic.png';
 import FavoriteButton from './FavoriteButton/FavoriteButton';
 import NonFavoriteButton from './FavoriteButton/NonFavouriteButton';
 import ProfileChangeButton from './ProfileChangeButton/ProfileChangeButton';

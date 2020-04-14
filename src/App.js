@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Navigation from './navigation/navigation';
+import './assets/css/style.css';
+import './assets/css/modal.css';
+
 
 
 function App({ user }) {

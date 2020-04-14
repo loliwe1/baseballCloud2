@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ICONS } from '../../../assets/info';
+import { ICONS } from '../../../utils/constants';
 
 const DefaultInput = ({
   input,

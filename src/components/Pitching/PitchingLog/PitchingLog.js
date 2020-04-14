@@ -1,8 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../../css/style.css';
-import '../../../css/modal.css';
-
 import Pagination from '../../Pagination';
 import NoInfo from '../../NoInfo/NoInfo';
 import Spinner from '../../Spinner/Spinner';

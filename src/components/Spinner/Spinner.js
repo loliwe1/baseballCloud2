@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import PulseLoader from 'react-spinners/PulseLoader';
-import '../../css/spinner.css';
+import '../../assets/css/spinner.css';
 
 const override = css`
   display: block;

@@ -6,7 +6,6 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import '../css/style.css';
 import Profile from '../components/Profile';
 import LeaderBoards from '../components/LeaderBoards';
 import Network from '../components/Network';

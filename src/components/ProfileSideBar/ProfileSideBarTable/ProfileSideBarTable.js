@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ageIcon from '../../../img/icons/age.svg';
-import heightIcon from '../../../img/icons/height.svg';
-import weightIcon from '../../../img/icons/weight.svg';
-import throwsIcon from '../../../img/icons/throws.svg';
-import batsIcon from '../../../img/icons/bats.svg';
+import ageIcon from '../../../assets/img/icons/age.svg';
+import heightIcon from '../../../assets/img/icons/height.svg';
+import weightIcon from '../../../assets/img/icons/weight.svg';
+import throwsIcon from '../../../assets/img/icons/throws.svg';
+import batsIcon from '../../../assets/img/icons/bats.svg';
 import ProfileSideBarTableItem from '../ProfileSideBarTableItem/ProfileSideBarTableItem';
 
 const ProfileSideBarTable = ({
