@@ -10,7 +10,6 @@ const DefaultInput = ({
   meta,
 }) => {
   const { type } = input;
-
   return (
     <>
       <div className="modal-signUp__input-wrap input-wrap">

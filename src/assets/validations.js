@@ -6,14 +6,13 @@ export const requiredBats = (value) => (value ? undefined : 'Bats Required');
 
 export const required = (value) => (value ? undefined : 'Required');
 export const minPassLength = (value) => (value.length >= 6 ? undefined : 'Must contain more than 6 characters');
-// export const passValue = (v) => ({ v });
-// export const equalPass = (value) => {
-//   console.log(passValue)
-//   console.log(value)
-// }
 
 export const maxAge = (value) => (
-  (Number.isNaN(value) || value < 30) ? undefined : 'Must not be older than 30'
+  (Number.isNaN(value) || value <= 30) ? undefined : 'Must not be older than 30'
+);
+
+export const confirmPass = ({ password }) => (value) => (
+  (password && password.length < 6) ? undefined : password === value ? undefined : 'Passwords are not equal'
 );
 
 export const requiredAge = (value) => (value ? undefined : 'Age Required');

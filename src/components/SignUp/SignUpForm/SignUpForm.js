@@ -6,13 +6,14 @@ import {
   required,
   minPassLength,
   composeValidators,
+  confirmPass,
 } from '../../../assets/validations';
 
 
 const SignUpForm = ({ signUp, error, clearError }) => (
   <Form
     onSubmit={signUp}
-    render={({ handleSubmit }) => (
+    render={({ handleSubmit, values }) => (
       <form onSubmit={handleSubmit} className="modal-signUp__form">
         <Field
           name="email"
@@ -35,6 +36,7 @@ const SignUpForm = ({ signUp, error, clearError }) => (
         <Field
           name="password_confirmation"
           component={DefaultInput}
+          validate={confirmPass(values)}
           type="password"
           placeholder="Confirm Password"
           iconType="check"

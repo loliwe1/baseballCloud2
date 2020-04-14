@@ -5,7 +5,6 @@ import '../../css/style.css';
 import { Form, Field } from 'react-final-form';
 import DefaultInput from '../Form/DefaultInput/DefaultInput';
 
-
 const LogIn = ({ signIn, error }) => (
   <main className="login-page">
     <h1 className="visually-hidden">
