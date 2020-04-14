@@ -8,43 +8,43 @@ class BattingLogItemContainer extends React.Component {
     this.state = { active: false };
   }
 
-    changeActive = () => {
-      this.setState((prevState) => ({ active: !prevState.active }));
-    }
+  changeActive = () => {
+    this.setState((prevState) => ({ active: !prevState.active }));
+  }
 
-    render() {
-      const { active } = this.state;
-      const {
-        date,
-        pitcherName,
-        pitcherHandedness,
-        pitchType,
-        pitchCall,
-        exitVelocity,
-        launchAngle,
-        direction,
-        distance,
-        hitSpinRate,
-        hangTime,
-      } = this.props;
-      return (
-        <BattingLogItem
-          active={active}
-          changeActive={this.changeActive}
-          date={date}
-          pitcherName={pitcherName}
-          pitcherHandedness={pitcherHandedness}
-          pitchType={pitchType}
-          pitchCall={pitchCall}
-          exitVelocity={exitVelocity}
-          launchAngle={launchAngle}
-          direction={direction}
-          distance={distance}
-          hitSpinRate={hitSpinRate}
-          hangTime={hangTime}
-        />
-      );
-    }
+  render() {
+    const { active } = this.state;
+    const {
+      date,
+      pitcherName,
+      pitcherHandedness,
+      pitchType,
+      pitchCall,
+      exitVelocity,
+      launchAngle,
+      direction,
+      distance,
+      hitSpinRate,
+      hangTime,
+    } = this.props;
+    return (
+      <BattingLogItem
+        active={active}
+        changeActive={this.changeActive}
+        date={date}
+        pitcherName={pitcherName}
+        pitcherHandedness={pitcherHandedness}
+        pitchType={pitchType}
+        pitchCall={pitchCall}
+        exitVelocity={exitVelocity}
+        launchAngle={launchAngle}
+        direction={direction}
+        distance={distance}
+        hitSpinRate={hitSpinRate}
+        hangTime={hangTime}
+      />
+    );
+  }
 }
 
 BattingLogItemContainer.propTypes = {
