@@ -50,11 +50,7 @@ const Leader = ({
     </div>
     <div className="leaderboards__table-col leaderboards__table-col--favorite">
       <button type="button" href="#" className="leaderboards__table-like" onClick={changeFavorite}>
-        {!favorite
-          ?
-            <i className="leaderboards__blue-icon fa fa-heart-o" aria-hidden="true" />
-          :
-            <i className="leaderboards__blue-icon fa fa-heart" aria-hidden="true" />}
+        <i className={`leaderboards__blue-icon fa fa-heart${!favorite ? '-o' : ''}`} aria-hidden="true" />
       </button>
     </div>
   </div>

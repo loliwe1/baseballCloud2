@@ -9,6 +9,7 @@ import NewFilterSelect from '../../Form/NewFilterSelect';
 import Pagination from '../../Pagination';
 import NoInfo from '../../NoInfo/NoInfo';
 import Spinner from '../../Spinner/Spinner';
+import {BATTING_LOG} from '../../../assets/options';
 
 const BattingLog = ({
   battingLog,
@@ -35,14 +36,7 @@ const BattingLog = ({
             component={NewFilterSelect}
             onChange={filterPitchType}
             title="Pitch Type"
-            options={[
-              { value: '', name: 'None' },
-              { value: 'Four Seam Fastball', name: 'Four Seam Fastball' },
-              { value: 'Two Seam Fastball', name: 'Two Seam Fastball' },
-              { value: 'Curveball', name: 'Curveball' },
-              { value: 'Changeup', name: 'Changeup' },
-              { value: 'Slider', name: 'Slider' },
-            ]}
+            options={BATTING_LOG}
           />
         </div>
       )}

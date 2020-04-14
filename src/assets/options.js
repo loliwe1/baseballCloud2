@@ -66,3 +66,22 @@ export const PITCHING = [
   { value: 'Changeup', name: 'Changeup' },
   { value: 'Slider', name: 'Slider' },
 ];
+
+export const BATTING_LOG = [
+  { value: '', name: 'None' },
+  { value: 'Four Seam Fastball', name: 'Four Seam Fastball' },
+  { value: 'Two Seam Fastball', name: 'Two Seam Fastball' },
+  { value: 'Curveball', name: 'Curveball' },
+  { value: 'Changeup', name: 'Changeup' },
+  { value: 'Slider', name: 'Slider' },
+];
+
+export const BATTING_FILTR = [
+  { value: 'exit_velocity', name: 'Exit Velocity' },
+  { value: 'carry_distance', name: 'Carry Distance' },
+];
+
+export const PITCHING_FILTR = [
+  { value: 'pitch_velocity', name: 'Pitch Velocity' },
+  { value: 'spin_rate', name: 'Spin Rate' },
+];

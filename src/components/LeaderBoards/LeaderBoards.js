@@ -7,6 +7,7 @@ import LeaderBoardsPitch from './LeaderBoardsPitch/LeaderBoardsPitch';
 import LeaderBoardsTabs from './LeaderBoardsTabs';
 import LeaderBoardsFilters from './LeaderBoardsFilters';
 import NewFilterSelect from '../Form/NewFilterSelect';
+import { BATTING_FILTR, PITCHING_FILTR } from '../../assets/options';
 
 const LeaderBoards = ({
   leaderBoard,
@@ -40,12 +41,7 @@ const LeaderBoards = ({
                   component={NewFilterSelect}
                   onChange={filterVelocity}
                   title={title}
-                  options={
-                    [
-                      { value: 'exit_velocity', name: 'Exit Velocity' },
-                      { value: 'carry_distance', name: 'Carry Distance' },
-                    ]
-                }
+                  options={BATTING_FILTR}
                 />
               ) : (
                 <Field
@@ -53,12 +49,7 @@ const LeaderBoards = ({
                   component={NewFilterSelect}
                   onChange={filterVelocity}
                   title={title}
-                  options={
-                    [
-                      { value: 'pitch_velocity', name: 'Pitch Velocity' },
-                      { value: 'spin_rate', name: 'Spin Rate' },
-                    ]
-                }
+                  options={PITCHING_FILTR}
                 />
               )}
             </div>

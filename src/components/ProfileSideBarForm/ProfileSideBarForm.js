@@ -22,7 +22,12 @@ import {
   required,
   requiredInches,
 } from '../../assets/validations';
-import { PROFILE_POSITION, PROFILE_SCHOOLS, HAND, FACILITIES } from '../../assets/options';
+import {
+  PROFILE_POSITION,
+  PROFILE_SCHOOLS,
+  HAND,
+  FACILITIES,
+} from '../../assets/options';
 import ProfileSideBarInput from '../Form/ProfileSideBarInput/ProfileSideBarInput';
 import { numberField } from '../../assets/utils';
 import ProfileSideBarSelect from '../Form/ProfileSideBarSelect/ProfileSideBarSelect';
@@ -32,7 +37,6 @@ const ProfileSideBarForm = ({
   closeForm,
   schools,
   teams,
-  facilities,
   first_name,
   last_name,
   age,
