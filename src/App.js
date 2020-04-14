@@ -5,8 +5,6 @@ import Navigation from './navigation/navigation';
 import './assets/css/style.css';
 import './assets/css/modal.css';
 
-
-
 function App({ user }) {
   return (
     <div className="main">
