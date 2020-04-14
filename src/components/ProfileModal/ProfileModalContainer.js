@@ -58,6 +58,7 @@ class ProfileModalContainer extends React.Component {
     const { logOut } = this.props;
 
     logOut();
+    localStorage.clear();
   }
 
   render() {

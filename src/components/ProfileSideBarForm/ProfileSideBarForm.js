@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../../assets/css/profile.css';
+import '../../assets/css/profileForm.css';
 import { Form, Field } from 'react-final-form';
 import userpick from '../../assets/img/userpic.png';
 import {
